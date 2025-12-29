@@ -32,7 +32,7 @@ export default function Layout({ children, currentPageName }) {
     setMobileMenuOpen(false);
   }, [currentPageName]);
 
-  const logoUrl = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_692d97eec5d324b9b483d4d8/6ec108081_WhatsAppImage2025-12-29at100900AM.jpg";
+  const logoUrl = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/599a3e2b6_WhatsApp_Image_2025-12-29_at_100900_AM-removebg-preview.png";
 
   return (
     <div className="min-h-screen bg-white">
