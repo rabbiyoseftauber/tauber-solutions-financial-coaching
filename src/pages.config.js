@@ -1,23 +1,23 @@
-import Home from './pages/Home';
-import Services from './pages/Services';
+import Affiliates from './pages/Affiliates';
 import Coaches from './pages/Coaches';
+import Community from './pages/Community';
+import Home from './pages/Home';
 import Schedule from './pages/Schedule';
+import Services from './pages/Services';
 import Testimonials from './pages/Testimonials';
 import Tools from './pages/Tools';
-import Affiliates from './pages/Affiliates';
-import Community from './pages/Community';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
-    "Home": Home,
-    "Services": Services,
+    "Affiliates": Affiliates,
     "Coaches": Coaches,
+    "Community": Community,
+    "Home": Home,
     "Schedule": Schedule,
+    "Services": Services,
     "Testimonials": Testimonials,
     "Tools": Tools,
-    "Affiliates": Affiliates,
-    "Community": Community,
 }
 
 export const pagesConfig = {

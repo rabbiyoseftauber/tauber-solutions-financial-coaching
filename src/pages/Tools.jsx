@@ -5,9 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Calculator, Download, TrendingUp, Home, Building, CreditCard, ArrowRight } from 'lucide-react';
+import { Calculator, Download, TrendingUp, Home, Building, CreditCard, ArrowRight, Brain } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import FinancialQuiz from '@/components/interactive/FinancialQuiz';
 
 function InvestmentCalculator() {
   const [principal, setPrincipal] = useState(10000);
@@ -296,6 +297,33 @@ export default function Tools() {
               Start making informed financial decisions today.
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Financial Literacy Quiz */}
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-6 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-[#C2983B]/10 rounded-full mb-6">
+              <Brain className="w-8 h-8 text-[#C2983B]" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-light text-[#1F2A44]">
+              Test Your <span className="font-normal">Financial Knowledge</span>
+            </h2>
+            <p className="text-gray-600 font-light mt-4 max-w-2xl mx-auto">
+              Take our interactive quiz to discover your financial literacy level 
+              and learn key concepts along the way.
+            </p>
+          </motion.div>
+          
+          <div className="max-w-3xl mx-auto">
+            <FinancialQuiz />
+          </div>
         </div>
       </section>
 

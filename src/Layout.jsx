@@ -4,6 +4,8 @@ import { createPageUrl } from '@/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
+import LiveChat from '@/components/interactive/LiveChat';
+import NewsletterSignup from '@/components/interactive/NewsletterSignup';
 
 const navigation = [
   { name: 'Home', page: 'Home' },
@@ -193,6 +195,11 @@ export default function Layout({ children, currentPageName }) {
                 </li>
               </ul>
             </div>
+
+            {/* Newsletter */}
+            <div>
+              <NewsletterSignup variant="inline" />
+            </div>
           </div>
 
           <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
@@ -210,6 +217,9 @@ export default function Layout({ children, currentPageName }) {
 
       {/* WhatsApp Button */}
       <WhatsAppButton />
+      
+      {/* Live Chat */}
+      <LiveChat />
     </div>
   );
 }
