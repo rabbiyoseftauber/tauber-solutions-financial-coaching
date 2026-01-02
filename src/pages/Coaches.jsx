@@ -117,23 +117,6 @@ export default function Coaches() {
                 {coaches[0].bio}
               </p>
               
-              <div className="space-y-4 mb-8">
-                <a 
-                  href={`mailto:${coaches[0].email}`}
-                  className="flex items-center gap-3 text-gray-700 hover:text-[#c5a059] transition-colors"
-                >
-                  <Mail className="w-5 h-5" />
-                  {coaches[0].email}
-                </a>
-                <a 
-                  href={`tel:${coaches[0].phone.replace(/\D/g, '')}`}
-                  className="flex items-center gap-3 text-gray-700 hover:text-[#c5a059] transition-colors"
-                >
-                  <Phone className="w-5 h-5" />
-                  {coaches[0].phone}
-                </a>
-              </div>
-              
               <Link to={createPageUrl('Schedule') + '?coach=chaim'}>
                 <Button className="bg-[#1a2b4b] hover:bg-[#2c3e50] text-white px-8 py-6 rounded-lg shadow-lg group">
                   Schedule with {coaches[0].name.split(' ')[0]}
@@ -175,22 +158,7 @@ export default function Coaches() {
                       {coach.name.split(' ').map(n => n[0]).join('')}
                     </span>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1a2b4b]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <div className="flex gap-3">
-                      <a 
-                        href={`mailto:${coach.email}`}
-                        className="w-10 h-10 bg-white/20 flex items-center justify-center hover:bg-[#c5a059] transition-colors"
-                      >
-                        <Mail className="w-4 h-4 text-white" />
-                      </a>
-                      <a 
-                        href={`tel:${coach.phone.replace(/\D/g, '')}`}
-                        className="w-10 h-10 bg-white/20 flex items-center justify-center hover:bg-[#c5a059] transition-colors"
-                      >
-                        <Phone className="w-4 h-4 text-white" />
-                      </a>
-                    </div>
-                  </div>
+
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-[#1a2b4b] mb-1">{coach.name}</h3>
