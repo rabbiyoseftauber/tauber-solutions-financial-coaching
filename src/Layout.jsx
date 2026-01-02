@@ -6,10 +6,10 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
 import NewsletterSignup from '@/components/interactive/NewsletterSignup';
 
-const navigation = [
-  { name: 'Home', page: 'Home' },
+const getNavigation = (currentPage) => [
+  { name: 'Home', page: currentPage === 'UK' ? 'UK' : 'Home' },
   { name: 'Services', page: 'Services' },
-  { name: 'Our Coaches', page: 'Coaches' },
+  { name: 'Our Coaches', page: currentPage === 'UK' ? 'UKCoaches' : 'Coaches' },
   { name: 'Free Tools', page: 'Tools' },
   { name: 'Schedule Now', page: 'Schedule' },
 ];
@@ -17,6 +17,7 @@ const navigation = [
 export default function Layout({ children, currentPageName }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigation = getNavigation(currentPageName);
 
   useEffect(() => {
     const handleScroll = () => {
