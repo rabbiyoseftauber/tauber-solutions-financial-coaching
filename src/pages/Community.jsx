@@ -12,7 +12,7 @@ const socialLinks = [
     description: 'Join our active WhatsApp group for daily tips, Q&A, and community support.',
     icon: MessageCircle,
     color: 'bg-[#25D366]',
-    link: 'https://wa.me/13479638998',
+    link: 'https://wa.me/18453226500',
     cta: 'Join Group'
   },
   {
@@ -150,7 +150,7 @@ export default function Community() {
               Get daily financial tips, ask questions, share wins, and connect 
               with others on their financial journey. It's free and full of value!
             </p>
-            <a href="https://wa.me/13479638998" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/18453226500" target="_blank" rel="noopener noreferrer">
               <Button 
                 size="lg"
                 className="bg-[#25D366] hover:bg-[#20bd5a] text-white px-12 py-6 text-lg rounded-none"
