@@ -11,15 +11,7 @@ export default function HeroSection() {
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         <div className="max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}>
 
-            <span className="inline-block text-[#C2983B] text-sm tracking-[0.3em] uppercase mb-6 font-medium">
-              Financial Coaching Excellence
-            </span>
-          </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -38,10 +30,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-lg md:text-xl text-gray-300 leading-relaxed mb-10 max-w-2xl font-light">
 
-            Achieve your goals with confidence — whether you're getting out of debt, 
-            mastering your budget, growing your savings, or optimizing investments. 
-            Our coaching gives you the clarity, tools, and momentum to take charge 
-            of your financial life and create your future.
+            Expert financial coaching to help you achieve your goals with confidence.
           </motion.p>
 
           <motion.div
@@ -58,25 +47,7 @@ export default function HeroSection() {
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
-            <a href="https://wa.me/13479638998" target="_blank" rel="noopener noreferrer">
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-white/10 text-white border-2 border-white/30 hover:bg-white/20 px-8 py-6 text-lg rounded-none transition-all duration-300">
-                <MessageCircle className="mr-2 w-5 h-5" />
-                Chat on WhatsApp
-              </Button>
-            </a>
           </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-16 text-[#C2983B] tracking-[0.2em] uppercase text-sm font-medium">
-
-            Your Money, Your Goals, Our Mission
-          </motion.p>
         </div>
       </div>
 
