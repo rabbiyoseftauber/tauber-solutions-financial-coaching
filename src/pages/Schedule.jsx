@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Calendar, Clock, MessageCircle, ArrowRight, CheckCircle, User, Video, Phone } from 'lucide-react';
+import { Calendar, Clock, MessageCircle, ArrowRight, CheckCircle, User, Video, Phone, Mic } from 'lucide-react';
 import SEO from '@/components/seo/SEO';
 
 const getSessionTypes = (coachId) => {
@@ -37,6 +37,14 @@ const getSessionTypes = (coachId) => {
       price: isSender ? '£90' : '$100',
       description: 'Continue your progress with accountability and guidance.',
       icon: User
+    },
+    {
+      id: 'speaking',
+      title: 'Speaking Engagement',
+      duration: 'Custom',
+      price: 'Contact for quote',
+      description: 'Book a transformative workshop, seminar, or keynote for your organization or community.',
+      icon: Mic
     }
   ];
 };
@@ -53,8 +61,9 @@ const coaches = [
 export default function Schedule() {
   const urlParams = new URLSearchParams(window.location.search);
   const coachParam = urlParams.get('coach');
+  const typeParam = urlParams.get('type');
   
-  const [selectedSession, setSelectedSession] = useState('free-call');
+  const [selectedSession, setSelectedSession] = useState(typeParam || 'free-call');
   const [selectedCoach, setSelectedCoach] = useState(coachParam || 'any');
   const [step, setStep] = useState(1);
   
