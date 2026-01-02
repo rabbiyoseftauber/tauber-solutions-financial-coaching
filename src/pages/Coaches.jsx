@@ -198,7 +198,7 @@ export default function Coaches() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-[#1F2A44]">
+      <section className="py-24 bg-[#C2983B]">
         <div className="container mx-auto px-6 lg:px-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -208,13 +208,13 @@ export default function Coaches() {
             <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
               Ready to Start Your Journey?
             </h2>
-            <p className="text-xl text-gray-300 font-light mb-10 max-w-2xl mx-auto">
+            <p className="text-xl text-white font-light mb-10 max-w-2xl mx-auto">
               Connect with one of our coaches today and take the first step toward financial freedom.
             </p>
             <Link to={createPageUrl('Schedule')}>
               <Button 
                 size="lg"
-                className="bg-[#C2983B] hover:bg-[#a8842f] text-white px-10 py-6 text-lg rounded-none"
+                className="bg-[#1F2A44] hover:bg-[#2a3654] text-white font-semibold px-10 py-6 text-lg rounded-none"
               >
                 Schedule Your Meeting
                 <ArrowRight className="ml-2 w-5 h-5" />

@@ -456,7 +456,7 @@ export default function Tools() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-[#1F2A44]">
+      <section className="py-24 bg-[#C2983B]">
         <div className="container mx-auto px-6 lg:px-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -466,13 +466,13 @@ export default function Tools() {
             <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
               Need Personalized Guidance?
             </h2>
-            <p className="text-xl text-gray-300 font-light mb-10 max-w-2xl mx-auto">
+            <p className="text-xl text-white font-light mb-10 max-w-2xl mx-auto">
               Our tools are a great start, but nothing beats working with a professional coach.
             </p>
             <Link to={createPageUrl('Schedule')}>
               <Button 
                 size="lg"
-                className="bg-[#C2983B] hover:bg-[#a8842f] text-white px-10 py-6 text-lg rounded-none"
+                className="bg-[#1F2A44] hover:bg-[#2a3654] text-white font-semibold px-10 py-6 text-lg rounded-none"
               >
                 Schedule a Free Call
                 <ArrowRight className="ml-2 w-5 h-5" />
