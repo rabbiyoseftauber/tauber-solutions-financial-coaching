@@ -63,6 +63,7 @@ export default function Schedule() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setStep(3);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -173,7 +174,10 @@ export default function Schedule() {
 
                 <div className="text-center">
                   <Button 
-                    onClick={() => setStep(2)}
+                    onClick={() => {
+                      setStep(2);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
                     className="bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold px-12 py-6 rounded-none group"
                   >
                     Continue
@@ -259,7 +263,10 @@ export default function Schedule() {
                     <Button 
                       type="button"
                       variant="outline"
-                      onClick={() => setStep(1)}
+                      onClick={() => {
+                        setStep(1);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
                       className="flex-1 h-14 rounded-none border-gray-300"
                     >
                       Back
