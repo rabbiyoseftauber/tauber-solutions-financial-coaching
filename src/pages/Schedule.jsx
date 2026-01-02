@@ -9,32 +9,36 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Calendar, Clock, MessageCircle, ArrowRight, CheckCircle, User, Video, Phone } from 'lucide-react';
 
-const sessionTypes = [
-  {
-    id: 'free-call',
-    title: 'Free Info Call',
-    duration: '15 minutes',
-    price: 'Free',
-    description: 'Quick introduction to learn about our services and see if we\'re a good fit.',
-    icon: Phone
-  },
-  {
-    id: 'initial-session',
-    title: 'Initial Coaching Session',
-    duration: '2 hours',
-    price: '$150',
-    description: 'Deep dive into your financial situation with personalized recommendations.',
-    icon: Video
-  },
-  {
-    id: 'follow-up',
-    title: 'Follow-up Session',
-    duration: '50 minutes',
-    price: '$100',
-    description: 'Continue your progress with accountability and guidance.',
-    icon: User
-  }
-];
+const getSessionTypes = (coachId) => {
+  const isSender = coachId === 'sender';
+  
+  return [
+    {
+      id: 'free-call',
+      title: 'Free Info Call',
+      duration: '15 minutes',
+      price: 'Free',
+      description: 'Quick introduction to learn about our services and see if we\'re a good fit.',
+      icon: Phone
+    },
+    {
+      id: 'initial-session',
+      title: 'Initial Coaching Session',
+      duration: '2 hours',
+      price: isSender ? '£180' : '$150',
+      description: 'Deep dive into your financial situation with personalized recommendations.',
+      icon: Video
+    },
+    {
+      id: 'follow-up',
+      title: 'Follow-up Session',
+      duration: '50 minutes',
+      price: isSender ? '£90' : '$100',
+      description: 'Continue your progress with accountability and guidance.',
+      icon: User
+    }
+  ];
+};
 
 const coaches = [
   { id: 'any', name: 'Any Available Coach' },
@@ -52,6 +56,8 @@ export default function Schedule() {
   const [selectedSession, setSelectedSession] = useState('free-call');
   const [selectedCoach, setSelectedCoach] = useState(coachParam || 'any');
   const [step, setStep] = useState(1);
+  
+  const sessionTypes = getSessionTypes(selectedCoach);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
