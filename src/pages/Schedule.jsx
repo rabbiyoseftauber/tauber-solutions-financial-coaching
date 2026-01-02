@@ -42,7 +42,7 @@ const coaches = [
   { id: 'naftale', name: 'Naftale Ostreicher - Executive Coach' },
   { id: 'rivky', name: 'Rivky Friedman - Executive Coach' },
   { id: 'moshe', name: 'Moshe Gelbman - Coach' },
-  { id: 'sender', name: 'Sender Ekstein - Coach' }
+  { id: 'sender', name: 'Sender Eckstein - Coach' }
 ];
 
 export default function Schedule() {

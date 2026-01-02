@@ -44,7 +44,7 @@ const coaches = [
     id: 'moshe'
   },
   {
-    name: 'Sender Ekstein',
+    name: 'Sender Eckstein',
     title: 'Coach',
     email: 'sendere@taubersolutions.com',
     phone: '+44 (739) 278-8116',
