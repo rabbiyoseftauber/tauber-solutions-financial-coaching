@@ -321,11 +321,21 @@ export default function Schedule() {
                   Our team will contact you within 24 hours to confirm your session.
                 </p>
                 
-                <div className="bg-gray-100 p-6 rounded-none inline-block mb-8">
-                  <p className="text-sm text-gray-500 mb-2">Selected Session</p>
-                  <p className="font-semibold text-[#1F2A44]">
-                    {sessionTypes.find(s => s.id === selectedSession)?.title}
-                  </p>
+                <div className="bg-gray-100 p-6 rounded-none mb-8 max-w-lg mx-auto">
+                  <div className="grid grid-cols-2 gap-6 text-center">
+                    <div>
+                      <p className="text-sm text-gray-500 mb-2">Selected Session</p>
+                      <p className="font-semibold text-[#1F2A44]">
+                        {sessionTypes.find(s => s.id === selectedSession)?.title}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500 mb-2">Coach</p>
+                      <p className="font-semibold text-[#1F2A44]">
+                        {coaches.find(c => c.id === selectedCoach)?.name}
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 
                 <div>
