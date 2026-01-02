@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Calculator, Download, TrendingUp, Home, Building, CreditCard, ArrowRight, Brain, Building2 } from 'lucide-react';
+import { Download, TrendingUp, Home, Building2, CreditCard, ArrowRight, Brain } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import FinancialQuiz from '@/components/interactive/FinancialQuiz';
 
-function InvestmentCalculator({ formatCurrency }) {
+function InvestmentCalculator({ formatCurrency, currency }) {
   const [principal, setPrincipal] = useState(10000);
   const [monthly, setMonthly] = useState(500);
   const [rate, setRate] = useState(7);
@@ -28,68 +28,74 @@ function InvestmentCalculator({ formatCurrency }) {
   const result = calculateInvestment();
   
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="space-y-6">
+    <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
+      <div className="flex items-center gap-4 mb-8">
+        <div className="w-14 h-14 bg-[#c5a059] rounded-full flex items-center justify-center">
+          <TrendingUp className="w-7 h-7 text-white" />
+        </div>
+        <h3 className="text-2xl font-bold text-white">Investment Calculator</h3>
+      </div>
+      
+      <div className="space-y-6 mb-8">
         <div>
-          <Label className="text-[#1F2A44]">Initial Investment</Label>
+          <Label className="text-gray-300 text-sm mb-2 block">Initial Investment ({currency})</Label>
           <Input 
             type="number" 
             value={principal} 
             onChange={(e) => setPrincipal(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
+            placeholder="e.g. 10000"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
           />
         </div>
         <div>
-          <Label className="text-[#1F2A44]">Monthly Contribution</Label>
+          <Label className="text-gray-300 text-sm mb-2 block">Monthly Contribution ({currency})</Label>
           <Input 
             type="number" 
             value={monthly} 
             onChange={(e) => setMonthly(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
+            placeholder="e.g. 500"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
           />
         </div>
         <div>
-          <Label className="text-[#1F2A44]">Expected Annual Return (%)</Label>
+          <Label className="text-gray-300 text-sm mb-2 block">Expected Annual Return (%)</Label>
           <Input 
             type="number" 
             value={rate} 
             onChange={(e) => setRate(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
+            placeholder="e.g. 7"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
           />
         </div>
         <div>
-          <Label className="text-[#1F2A44]">Investment Period (Years)</Label>
+          <Label className="text-gray-300 text-sm mb-2 block">Investment Period (Years)</Label>
           <Input 
             type="number" 
             value={years} 
             onChange={(e) => setYears(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
+            placeholder="e.g. 20"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
           />
         </div>
       </div>
       
-      <div className="bg-[#1F2A44] p-8 text-white">
-        <h3 className="text-lg font-light mb-6">Your Investment Growth</h3>
-        <div className="space-y-6">
+      <div className="pt-6 border-t border-white/10">
+        <p className="text-gray-400 text-sm mb-2">Potential Future Value:</p>
+        <p className="text-5xl font-bold text-[#c5a059] mb-6">
+          {formatCurrency(result.futureValue)}
+        </p>
+        <div className="grid grid-cols-2 gap-4">
           <div>
-            <p className="text-gray-400 text-sm">Future Value</p>
-            <p className="text-4xl font-semibold text-[#C2983B]">
-              {formatCurrency(result.futureValue)}
+            <p className="text-gray-400 text-xs mb-1">Total Contributions</p>
+            <p className="text-lg font-medium text-white">
+              {formatCurrency(result.totalContributions)}
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/20">
-            <div>
-              <p className="text-gray-400 text-sm">Total Contributions</p>
-              <p className="text-xl font-medium">
-                {formatCurrency(result.totalContributions)}
-              </p>
-            </div>
-            <div>
-              <p className="text-gray-400 text-sm">Investment Earnings</p>
-              <p className="text-xl font-medium text-green-400">
-                {formatCurrency(result.earnings)}
-              </p>
-            </div>
+          <div>
+            <p className="text-gray-400 text-xs mb-1">Investment Earnings</p>
+            <p className="text-lg font-medium text-green-400">
+              {formatCurrency(result.earnings)}
+            </p>
           </div>
         </div>
       </div>
@@ -97,7 +103,7 @@ function InvestmentCalculator({ formatCurrency }) {
   );
 }
 
-function MortgageCalculator({ formatCurrency }) {
+function MortgageCalculator({ formatCurrency, currency }) {
   const [homePrice, setHomePrice] = useState(400000);
   const [downPayment, setDownPayment] = useState(80000);
   const [interestRate, setInterestRate] = useState(6.5);
@@ -116,69 +122,75 @@ function MortgageCalculator({ formatCurrency }) {
   const result = calculateMortgage();
   
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="space-y-6">
+    <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
+      <div className="flex items-center gap-4 mb-8">
+        <div className="w-14 h-14 bg-[#c5a059] rounded-full flex items-center justify-center">
+          <Home className="w-7 h-7 text-white" />
+        </div>
+        <h3 className="text-2xl font-bold text-white">Mortgage Calculator</h3>
+      </div>
+      
+      <div className="space-y-6 mb-8">
         <div>
-          <Label className="text-[#1F2A44]">Home Price</Label>
+          <Label className="text-gray-300 text-sm mb-2 block">Home Price ({currency})</Label>
           <Input 
             type="number" 
             value={homePrice} 
             onChange={(e) => setHomePrice(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
+            placeholder="e.g. 400000"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
           />
         </div>
         <div>
-          <Label className="text-[#1F2A44]">Down Payment</Label>
+          <Label className="text-gray-300 text-sm mb-2 block">Down Payment ({currency})</Label>
           <Input 
             type="number" 
             value={downPayment} 
             onChange={(e) => setDownPayment(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
+            placeholder="e.g. 80000"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
           />
         </div>
         <div>
-          <Label className="text-[#1F2A44]">Interest Rate (%)</Label>
+          <Label className="text-gray-300 text-sm mb-2 block">Interest Rate (%)</Label>
           <Input 
             type="number" 
             step="0.1"
             value={interestRate} 
             onChange={(e) => setInterestRate(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
+            placeholder="e.g. 6.5"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
           />
         </div>
         <div>
-          <Label className="text-[#1F2A44]">Loan Term (Years)</Label>
+          <Label className="text-gray-300 text-sm mb-2 block">Loan Term (Years)</Label>
           <Input 
             type="number" 
             value={loanTerm} 
             onChange={(e) => setLoanTerm(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
+            placeholder="e.g. 30"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
           />
         </div>
       </div>
       
-      <div className="bg-[#1F2A44] p-8 text-white">
-        <h3 className="text-lg font-light mb-6">Your Mortgage Breakdown</h3>
-        <div className="space-y-6">
+      <div className="pt-6 border-t border-white/10">
+        <p className="text-gray-400 text-sm mb-2">Monthly Payment:</p>
+        <p className="text-5xl font-bold text-[#c5a059] mb-6">
+          {formatCurrency(result.monthlyPayment)}
+        </p>
+        <div className="grid grid-cols-2 gap-4">
           <div>
-            <p className="text-gray-400 text-sm">Monthly Payment</p>
-            <p className="text-4xl font-semibold text-[#C2983B]">
-              {formatCurrency(result.monthlyPayment)}
+            <p className="text-gray-400 text-xs mb-1">Loan Amount</p>
+            <p className="text-lg font-medium text-white">
+              {formatCurrency(result.principal)}
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/20">
-            <div>
-              <p className="text-gray-400 text-sm">Loan Amount</p>
-              <p className="text-xl font-medium">
-                {formatCurrency(result.principal)}
-              </p>
-            </div>
-            <div>
-              <p className="text-gray-400 text-sm">Total Interest</p>
-              <p className="text-xl font-medium text-red-400">
-                {formatCurrency(result.totalInterest)}
-              </p>
-            </div>
+          <div>
+            <p className="text-gray-400 text-xs mb-1">Total Interest</p>
+            <p className="text-lg font-medium text-red-400">
+              {formatCurrency(result.totalInterest)}
+            </p>
           </div>
         </div>
       </div>
@@ -186,85 +198,7 @@ function MortgageCalculator({ formatCurrency }) {
   );
 }
 
-function LoanCalculator({ formatCurrency }) {
-  const [loanAmount, setLoanAmount] = useState(25000);
-  const [interestRate, setInterestRate] = useState(8);
-  const [loanTerm, setLoanTerm] = useState(5);
-  
-  const calculateLoan = () => {
-    const r = interestRate / 100 / 12;
-    const n = loanTerm * 12;
-    const monthlyPayment = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-    const totalPayment = monthlyPayment * n;
-    const totalInterest = totalPayment - loanAmount;
-    return { monthlyPayment, totalPayment, totalInterest };
-  };
-  
-  const result = calculateLoan();
-  
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="space-y-6">
-        <div>
-          <Label className="text-[#1F2A44]">Loan Amount</Label>
-          <Input 
-            type="number" 
-            value={loanAmount} 
-            onChange={(e) => setLoanAmount(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
-          />
-        </div>
-        <div>
-          <Label className="text-[#1F2A44]">Interest Rate (%)</Label>
-          <Input 
-            type="number" 
-            step="0.1"
-            value={interestRate} 
-            onChange={(e) => setInterestRate(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
-          />
-        </div>
-        <div>
-          <Label className="text-[#1F2A44]">Loan Term (Years)</Label>
-          <Input 
-            type="number" 
-            value={loanTerm} 
-            onChange={(e) => setLoanTerm(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
-          />
-        </div>
-      </div>
-      
-      <div className="bg-[#1F2A44] p-8 text-white">
-        <h3 className="text-lg font-light mb-6">Your Loan Summary</h3>
-        <div className="space-y-6">
-          <div>
-            <p className="text-gray-400 text-sm">Monthly Payment</p>
-            <p className="text-4xl font-semibold text-[#C2983B]">
-              {formatCurrency(result.monthlyPayment)}
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/20">
-            <div>
-              <p className="text-gray-400 text-sm">Total Payment</p>
-              <p className="text-xl font-medium">
-                {formatCurrency(result.totalPayment)}
-              </p>
-            </div>
-            <div>
-              <p className="text-gray-400 text-sm">Total Interest</p>
-              <p className="text-xl font-medium text-red-400">
-                {formatCurrency(result.totalInterest)}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function CommercialMortgageCalculator({ formatCurrency }) {
+function CommercialMortgageCalculator({ formatCurrency, currency }) {
   const [propertyValue, setPropertyValue] = useState(1500000);
   const [downPayment, setDownPayment] = useState(375000);
   const [interestRate, setInterestRate] = useState(7.5);
@@ -288,90 +222,180 @@ function CommercialMortgageCalculator({ formatCurrency }) {
   const result = calculateCommercialMortgage();
   
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="space-y-6">
+    <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
+      <div className="flex items-center gap-4 mb-8">
+        <div className="w-14 h-14 bg-[#c5a059] rounded-full flex items-center justify-center">
+          <Building2 className="w-7 h-7 text-white" />
+        </div>
+        <h3 className="text-2xl font-bold text-white">Commercial Mortgage</h3>
+      </div>
+      
+      <div className="space-y-6 mb-8">
         <div>
-          <Label className="text-[#1F2A44]">Property Value</Label>
+          <Label className="text-gray-300 text-sm mb-2 block">Property Value ({currency})</Label>
           <Input 
             type="number" 
             value={propertyValue} 
             onChange={(e) => setPropertyValue(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
+            placeholder="e.g. 1500000"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
           />
         </div>
         <div>
-          <Label className="text-[#1F2A44]">Down Payment</Label>
+          <Label className="text-gray-300 text-sm mb-2 block">Down Payment ({currency})</Label>
           <Input 
             type="number" 
             value={downPayment} 
             onChange={(e) => setDownPayment(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
+            placeholder="e.g. 375000"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
           />
         </div>
         <div>
-          <Label className="text-[#1F2A44]">Interest Rate (%)</Label>
+          <Label className="text-gray-300 text-sm mb-2 block">Interest Rate (%)</Label>
           <Input 
             type="number" 
             step="0.1"
             value={interestRate} 
             onChange={(e) => setInterestRate(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
+            placeholder="e.g. 7.5"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
           />
         </div>
         <div>
-          <Label className="text-[#1F2A44]">Loan Term (Years)</Label>
+          <Label className="text-gray-300 text-sm mb-2 block">Loan Term (Years)</Label>
           <Input 
             type="number" 
             value={loanTerm} 
             onChange={(e) => setLoanTerm(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
+            placeholder="e.g. 20"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
           />
         </div>
         <div>
-          <Label className="text-[#1F2A44]">Annual Property Income</Label>
+          <Label className="text-gray-300 text-sm mb-2 block">Annual Property Income ({currency})</Label>
           <Input 
             type="number" 
             value={annualIncome} 
             onChange={(e) => setAnnualIncome(Number(e.target.value))}
-            className="mt-2 h-12 rounded-none"
+            placeholder="e.g. 180000"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
           />
         </div>
       </div>
       
-      <div className="bg-[#1F2A44] p-8 text-white">
-        <h3 className="text-lg font-light mb-6">Commercial Mortgage Analysis</h3>
-        <div className="space-y-6">
+      <div className="pt-6 border-t border-white/10">
+        <p className="text-gray-400 text-sm mb-2">Monthly Payment:</p>
+        <p className="text-5xl font-bold text-[#c5a059] mb-6">
+          {formatCurrency(result.monthlyPayment)}
+        </p>
+        <div className="grid grid-cols-2 gap-4">
           <div>
-            <p className="text-gray-400 text-sm">Monthly Payment</p>
-            <p className="text-4xl font-semibold text-[#C2983B]">
-              {formatCurrency(result.monthlyPayment)}
+            <p className="text-gray-400 text-xs mb-1">Loan Amount</p>
+            <p className="text-lg font-medium text-white">
+              {formatCurrency(result.principal)}
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/20">
-            <div>
-              <p className="text-gray-400 text-sm">Loan Amount</p>
-              <p className="text-xl font-medium">
-                {formatCurrency(result.principal)}
-              </p>
-            </div>
-            <div>
-              <p className="text-gray-400 text-sm">LTV Ratio</p>
-              <p className="text-xl font-medium">
-                {result.ltv.toFixed(1)}%
-              </p>
-            </div>
-            <div>
-              <p className="text-gray-400 text-sm">DSCR</p>
-              <p className={`text-xl font-medium ${result.dscr >= 1.25 ? 'text-green-400' : 'text-yellow-400'}`}>
-                {result.dscr.toFixed(2)}x
-              </p>
-            </div>
-            <div>
-              <p className="text-gray-400 text-sm">Total Interest</p>
-              <p className="text-xl font-medium text-red-400">
-                {formatCurrency(result.totalInterest)}
-              </p>
-            </div>
+          <div>
+            <p className="text-gray-400 text-xs mb-1">LTV Ratio</p>
+            <p className="text-lg font-medium text-white">
+              {result.ltv.toFixed(1)}%
+            </p>
+          </div>
+          <div>
+            <p className="text-gray-400 text-xs mb-1">DSCR</p>
+            <p className={`text-lg font-medium ${result.dscr >= 1.25 ? 'text-green-400' : 'text-yellow-400'}`}>
+              {result.dscr.toFixed(2)}x
+            </p>
+          </div>
+          <div>
+            <p className="text-gray-400 text-xs mb-1">Total Interest</p>
+            <p className="text-lg font-medium text-red-400">
+              {formatCurrency(result.totalInterest)}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function LoanCalculator({ formatCurrency, currency }) {
+  const [loanAmount, setLoanAmount] = useState(25000);
+  const [interestRate, setInterestRate] = useState(8);
+  const [loanTerm, setLoanTerm] = useState(5);
+  
+  const calculateLoan = () => {
+    const r = interestRate / 100 / 12;
+    const n = loanTerm * 12;
+    const monthlyPayment = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const totalPayment = monthlyPayment * n;
+    const totalInterest = totalPayment - loanAmount;
+    return { monthlyPayment, totalPayment, totalInterest };
+  };
+  
+  const result = calculateLoan();
+  
+  return (
+    <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
+      <div className="flex items-center gap-4 mb-8">
+        <div className="w-14 h-14 bg-[#c5a059] rounded-full flex items-center justify-center">
+          <CreditCard className="w-7 h-7 text-white" />
+        </div>
+        <h3 className="text-2xl font-bold text-white">Loan Calculator</h3>
+      </div>
+      
+      <div className="space-y-6 mb-8">
+        <div>
+          <Label className="text-gray-300 text-sm mb-2 block">Loan Amount ({currency})</Label>
+          <Input 
+            type="number" 
+            value={loanAmount} 
+            onChange={(e) => setLoanAmount(Number(e.target.value))}
+            placeholder="e.g. 25000"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+          />
+        </div>
+        <div>
+          <Label className="text-gray-300 text-sm mb-2 block">Interest Rate (%)</Label>
+          <Input 
+            type="number" 
+            step="0.1"
+            value={interestRate} 
+            onChange={(e) => setInterestRate(Number(e.target.value))}
+            placeholder="e.g. 8"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+          />
+        </div>
+        <div>
+          <Label className="text-gray-300 text-sm mb-2 block">Loan Term (Years)</Label>
+          <Input 
+            type="number" 
+            value={loanTerm} 
+            onChange={(e) => setLoanTerm(Number(e.target.value))}
+            placeholder="e.g. 5"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+          />
+        </div>
+      </div>
+      
+      <div className="pt-6 border-t border-white/10">
+        <p className="text-gray-400 text-sm mb-2">Monthly Payment:</p>
+        <p className="text-5xl font-bold text-[#c5a059] mb-6">
+          {formatCurrency(result.monthlyPayment)}
+        </p>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <p className="text-gray-400 text-xs mb-1">Total Payment</p>
+            <p className="text-lg font-medium text-white">
+              {formatCurrency(result.totalPayment)}
+            </p>
+          </div>
+          <div>
+            <p className="text-gray-400 text-xs mb-1">Total Interest</p>
+            <p className="text-lg font-medium text-red-400">
+              {formatCurrency(result.totalInterest)}
+            </p>
           </div>
         </div>
       </div>
@@ -397,10 +421,6 @@ export default function Tools() {
   
   const currentCurrency = currencies.find(c => c.code === currency);
   
-  const convert = (usdAmount) => {
-    return usdAmount * currentCurrency.rate;
-  };
-  
   const formatCurrency = (amount) => {
     return `${currentCurrency.symbol}${amount.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
   };
@@ -410,7 +430,7 @@ export default function Tools() {
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-[#1a2b4b] via-[#2c3e50] to-[#1a2b4b] relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute bottom-20 right-20 w-96 h-96 border border-[#C2983B] rounded-full" />
+          <div className="absolute bottom-20 right-20 w-96 h-96 border border-[#c5a059] rounded-full" />
         </div>
         
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
@@ -435,7 +455,7 @@ export default function Tools() {
       </section>
 
       {/* Calculators */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-[#f8f9fa]">
         <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -448,16 +468,16 @@ export default function Tools() {
             </h2>
             
             <div className="flex items-center justify-center gap-2 flex-wrap">
-              <span className="text-sm text-gray-600">Currency:</span>
-              <div className="flex gap-2 bg-gray-100 p-1 rounded-none flex-wrap">
+              <span className="text-sm text-gray-600 font-medium">Currency:</span>
+              <div className="flex gap-2 bg-[#1a2b4b]/10 p-1.5 rounded-lg flex-wrap">
                 {currencies.map((curr) => (
                   <button
                     key={curr.code}
                     onClick={() => setCurrency(curr.code)}
-                    className={`px-4 py-2 text-sm font-medium transition-colors rounded-none ${
+                    className={`px-4 py-2 text-sm font-medium transition-all rounded-lg ${
                       currency === curr.code
-                        ? 'bg-[#1F2A44] text-white'
-                        : 'text-gray-600 hover:text-[#1F2A44]'
+                        ? 'bg-[#1a2b4b] text-white shadow-md'
+                        : 'text-gray-600 hover:text-[#1a2b4b] hover:bg-white/50'
                     }`}
                   >
                     {curr.symbol} {curr.code}
@@ -467,13 +487,13 @@ export default function Tools() {
             </div>
           </motion.div>
 
-          <Tabs defaultValue="investment" className="max-w-5xl mx-auto">
-            <TabsList className="w-full grid grid-cols-2 sm:grid-cols-4 mb-12 h-auto bg-gray-100 rounded-none gap-1">
+          <Tabs defaultValue="investment" className="max-w-4xl mx-auto">
+            <TabsList className="w-full grid grid-cols-2 sm:grid-cols-4 mb-12 h-auto bg-[#1a2b4b]/20 rounded-lg gap-2 p-2">
               {tools.map((tool) => (
                 <TabsTrigger 
                   key={tool.id} 
                   value={tool.id}
-                  className="py-4 rounded-none data-[state=active]:bg-[#1F2A44] data-[state=active]:text-white text-xs sm:text-sm"
+                  className="py-4 rounded-lg data-[state=active]:bg-[#1a2b4b] data-[state=active]:text-white text-xs sm:text-sm font-medium transition-all"
                 >
                   <tool.icon className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
                   {tool.name}
@@ -487,7 +507,7 @@ export default function Tools() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  <tool.component convert={convert} formatCurrency={formatCurrency} currency={currency} />
+                  <tool.component formatCurrency={formatCurrency} currency={currentCurrency.code} />
                 </motion.div>
               </TabsContent>
             ))}
@@ -496,7 +516,7 @@ export default function Tools() {
       </section>
 
       {/* Downloadable Resources */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -504,7 +524,7 @@ export default function Tools() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-light text-[#1F2A44]">
+            <h2 className="text-3xl md:text-4xl font-light text-[#1a2b4b]">
               Downloadable <span className="font-normal">Resources</span>
             </h2>
           </motion.div>
@@ -517,14 +537,14 @@ export default function Tools() {
             >
               <Card className="h-full border-0 shadow-sm hover:shadow-lg transition-shadow group">
                 <CardContent className="p-8">
-                  <div className="w-14 h-14 bg-[#C2983B]/10 flex items-center justify-center mb-6 group-hover:bg-[#C2983B]/20 transition-colors">
-                    <Download className="w-7 h-7 text-[#C2983B]" />
+                  <div className="w-14 h-14 bg-[#c5a059]/10 flex items-center justify-center mb-6 group-hover:bg-[#c5a059]/20 transition-colors rounded-lg">
+                    <Download className="w-7 h-7 text-[#c5a059]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#1F2A44] mb-3">Sample Budget Template</h3>
+                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Sample Budget Template</h3>
                   <p className="text-gray-600 font-light mb-6">
                     A comprehensive budget template to track income, expenses, and savings goals.
                   </p>
-                  <Button variant="outline" className="rounded-none border-[#1F2A44] text-[#1F2A44] hover:bg-[#1F2A44] hover:text-white">
+                  <Button variant="outline" className="rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
                     <Download className="w-4 h-4 mr-2" />
                     Download Excel
                   </Button>
@@ -540,14 +560,14 @@ export default function Tools() {
             >
               <Card className="h-full border-0 shadow-sm hover:shadow-lg transition-shadow group">
                 <CardContent className="p-8">
-                  <div className="w-14 h-14 bg-[#C2983B]/10 flex items-center justify-center mb-6 group-hover:bg-[#C2983B]/20 transition-colors">
-                    <Download className="w-7 h-7 text-[#C2983B]" />
+                  <div className="w-14 h-14 bg-[#c5a059]/10 flex items-center justify-center mb-6 group-hover:bg-[#c5a059]/20 transition-colors rounded-lg">
+                    <Download className="w-7 h-7 text-[#c5a059]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#1F2A44] mb-3">Debt Payoff Tracker</h3>
+                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Debt Payoff Tracker</h3>
                   <p className="text-gray-600 font-light mb-6">
                     Track multiple debts and visualize your progress to becoming debt-free.
                   </p>
-                  <Button variant="outline" className="rounded-none border-[#1F2A44] text-[#1F2A44] hover:bg-[#1F2A44] hover:text-white">
+                  <Button variant="outline" className="rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
                     <Download className="w-4 h-4 mr-2" />
                     Download PDF
                   </Button>
@@ -563,14 +583,14 @@ export default function Tools() {
             >
               <Card className="h-full border-0 shadow-sm hover:shadow-lg transition-shadow group">
                 <CardContent className="p-8">
-                  <div className="w-14 h-14 bg-[#C2983B]/10 flex items-center justify-center mb-6 group-hover:bg-[#C2983B]/20 transition-colors">
-                    <Download className="w-7 h-7 text-[#C2983B]" />
+                  <div className="w-14 h-14 bg-[#c5a059]/10 flex items-center justify-center mb-6 group-hover:bg-[#c5a059]/20 transition-colors rounded-lg">
+                    <Download className="w-7 h-7 text-[#c5a059]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#1F2A44] mb-3">Financial Goals Worksheet</h3>
+                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Financial Goals Worksheet</h3>
                   <p className="text-gray-600 font-light mb-6">
                     Define clear financial goals and create actionable steps to achieve them.
                   </p>
-                  <Button variant="outline" className="rounded-none border-[#1F2A44] text-[#1F2A44] hover:bg-[#1F2A44] hover:text-white">
+                  <Button variant="outline" className="rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
                     <Download className="w-4 h-4 mr-2" />
                     Download PDF
                   </Button>
@@ -582,7 +602,7 @@ export default function Tools() {
       </section>
 
       {/* Financial Literacy Quiz */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-[#f8f9fa]">
         <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -590,10 +610,10 @@ export default function Tools() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-[#C2983B]/10 rounded-full mb-6">
-              <Brain className="w-8 h-8 text-[#C2983B]" />
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-[#c5a059]/10 rounded-full mb-6">
+              <Brain className="w-8 h-8 text-[#c5a059]" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-light text-[#1F2A44]">
+            <h2 className="text-3xl md:text-4xl font-light text-[#1a2b4b]">
               Test Your <span className="font-normal">Financial Knowledge</span>
             </h2>
             <p className="text-gray-600 font-light mt-4 max-w-2xl mx-auto">
@@ -609,7 +629,7 @@ export default function Tools() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-[#C2983B]">
+      <section className="py-24 bg-[#c5a059]">
         <div className="container mx-auto px-6 lg:px-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -625,7 +645,7 @@ export default function Tools() {
             <Link to={createPageUrl('Schedule')}>
               <Button 
                 size="lg"
-                className="bg-[#1F2A44] hover:bg-[#2a3654] text-white font-semibold px-10 py-6 text-lg rounded-none"
+                className="bg-[#1a2b4b] hover:bg-[#2c3e50] text-white font-semibold px-10 py-6 text-lg rounded-lg shadow-lg"
               >
                 Schedule a Free Call
                 <ArrowRight className="ml-2 w-5 h-5" />
