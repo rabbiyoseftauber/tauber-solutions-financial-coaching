@@ -155,7 +155,6 @@ export default function Schedule() {
                           <span className="flex items-center gap-1">
                             <Clock className="w-4 h-4" /> {session.duration}
                           </span>
-                          <span className="font-semibold text-[#c5a059]">{session.price}</span>
                         </div>
                         <p className="text-gray-600 text-sm font-light">{session.description}</p>
                       </CardContent>
