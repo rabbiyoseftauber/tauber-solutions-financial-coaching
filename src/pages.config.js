@@ -6,6 +6,8 @@ import Schedule from './pages/Schedule';
 import Services from './pages/Services';
 import Testimonials from './pages/Testimonials';
 import Tools from './pages/Tools';
+import UK from './pages/UK';
+import UKCoaches from './pages/UKCoaches';
 import __Layout from './Layout.jsx';
 
 
@@ -18,6 +20,8 @@ export const PAGES = {
     "Services": Services,
     "Testimonials": Testimonials,
     "Tools": Tools,
+    "UK": UK,
+    "UKCoaches": UKCoaches,
 }
 
 export const pagesConfig = {
