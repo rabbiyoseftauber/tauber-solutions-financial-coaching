@@ -7,15 +7,20 @@ import { createPageUrl } from '@/utils';
 
 export default function CTASection() {
   return (
-    <section className="py-24 bg-[#1F2A44] relative overflow-hidden">
+    <section className="bg-[#C2983B] py-24 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute -top-20 -right-20 w-96 h-96 border border-[#C2983B] rounded-full" />
+        <div className="absolute -bottom-20 -left-20 w-72 h-72 border border-[#C2983B] rounded-full" />
+      </div>
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+            viewport={{ once: true }}>
+
             <span className="text-[#C2983B] text-sm tracking-[0.3em] uppercase mb-6 block">
               Take the First Step
             </span>
@@ -29,20 +34,20 @@ export default function CTASection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to={createPageUrl('Schedule')}>
-                <Button 
-                  size="lg" 
-                  className="bg-[#C2983B] hover:bg-[#b08e35] text-white px-10 py-6 text-lg font-semibold rounded-none group"
-                >
+                <Button
+                  size="lg"
+                  className="bg-[#C2983B] hover:bg-[#a8842f] text-white px-10 py-6 text-lg rounded-none group">
+
                   Schedule Your Meeting
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
               <a href="tel:+13479638998">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   variant="outline"
-                  className="bg-white/10 border-2 border-white/30 text-white hover:bg-white/20 px-10 py-6 text-lg font-semibold rounded-none"
-                >
+                  className="border-2 border-white/30 text-white hover:bg-white/10 px-10 py-6 text-lg rounded-none">
+
                   <Phone className="mr-2 w-5 h-5" />
                   Call Us Now
                 </Button>
@@ -51,6 +56,6 @@ export default function CTASection() {
           </motion.div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
