@@ -21,14 +21,14 @@ export default function CTASection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}>
 
-            <span className="text-[#C2983B] text-sm tracking-[0.3em] uppercase mb-6 block">
+            <span className="text-[#1F2A44] text-sm tracking-[0.3em] uppercase mb-6 block">
               Take the First Step
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-6">
               Your Future Starts with{' '}
-              <span className="text-[#C2983B] font-normal">One Conversation</span>
+              <span className="text-[#1F2A44] font-normal">One Conversation</span>
             </h2>
-            <p className="text-xl text-gray-300 font-light mb-10">
+            <p className="text-xl text-white font-light mb-10">
               Ready to transform your financial life? Let's talk about your goals 
               and create a roadmap to success.
             </p>
@@ -36,8 +36,7 @@ export default function CTASection() {
               <Link to={createPageUrl('Schedule')}>
                 <Button
                   size="lg"
-                  className="bg-[#C2983B] hover:bg-[#a8842f] text-white px-10 py-6 text-lg rounded-none group">
-
+                  className="bg-[#1F2A44] hover:bg-[#2a3654] text-white font-semibold px-10 py-6 text-lg rounded-none group">
                   Schedule Your Meeting
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -46,8 +45,7 @@ export default function CTASection() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white/30 text-white hover:bg-white/10 px-10 py-6 text-lg rounded-none">
-
+                  className="bg-white text-[#1F2A44] hover:bg-gray-100 border-2 border-white font-semibold px-10 py-6 text-lg rounded-none">
                   <Phone className="mr-2 w-5 h-5" />
                   Call Us Now
                 </Button>
