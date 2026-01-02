@@ -72,7 +72,9 @@ export default function Layout({ children, currentPageName }) {
                   to={createPageUrl(item.page)}
                   className={`text-sm tracking-wide transition-colors duration-300 ${
                     currentPageName === item.page
-                      ? 'text-[#C2983B] font-medium'
+                      ? isScrolled
+                        ? 'text-[#1F2A44] font-semibold'
+                        : 'text-[#C2983B] font-semibold'
                       : isScrolled 
                         ? 'text-[#1F2A44] hover:text-[#C2983B]' 
                         : 'text-white/90 hover:text-white'
