@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import { HelmetProvider } from 'react-helmet-async';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
 import NewsletterSignup from '@/components/interactive/NewsletterSignup';
 
@@ -41,7 +42,8 @@ export default function Layout({ children, currentPageName }) {
   const logoUrl = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/599a3e2b6_WhatsApp_Image_2025-12-29_at_100900_AM-removebg-preview.png";
 
   return (
-    <div className="min-h-screen bg-white">
+    <HelmetProvider>
+      <div className="min-h-screen bg-white">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
@@ -210,6 +212,7 @@ export default function Layout({ children, currentPageName }) {
 
       {/* WhatsApp Button */}
       <WhatsAppButton />
-    </div>
+      </div>
+    </HelmetProvider>
   );
 }

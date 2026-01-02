@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Mail, Phone, Linkedin, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import SEO from '@/components/seo/SEO';
+import { createCoachSchema } from '@/components/seo/schemas';
 
 const coaches = [
   {
@@ -55,8 +57,20 @@ const coaches = [
 ];
 
 export default function UKCoaches() {
+  const coachSchemas = coaches.map(createCoachSchema);
+  
   return (
     <div className="pt-20">
+      <SEO
+        title="UK Financial Coaches"
+        description="Meet our UK-based financial coaching team. Expert guidance tailored to UK financial regulations, markets, and international clients."
+        canonical="/uk-coaches"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": coachSchemas
+        }}
+      />
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-[#1F2A44] via-[#2a3654] to-[#1F2A44] relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
