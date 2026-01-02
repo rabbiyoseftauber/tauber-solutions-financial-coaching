@@ -183,9 +183,9 @@ export default function Services() {
                     ))}
                   </ul>
                   
-                  <Link to={createPageUrl('Schedule')}>
+                  <Link to={service.title === 'Speaking Events' ? createPageUrl('Schedule') + '?type=speaking' : createPageUrl('Schedule')}>
                     <Button className="bg-[#1F2A44] hover:bg-[#2a3654] text-white px-8 py-6 rounded-none group">
-                      Book a Session
+                      {service.title === 'Speaking Events' ? 'Book a Speaking Engagement' : 'Book a Session'}
                       <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </Link>
