@@ -35,15 +35,15 @@ export default function Layout({ children, currentPageName }) {
   return (
     <div className="min-h-screen bg-white">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
         * {
-          font-family: 'Inter', sans-serif;
+          font-family: 'Inter', 'Assistant', sans-serif;
         }
-        
+
         :root {
-          --color-primary: #1F2A44;
-          --color-accent: #C2983B;
+          --color-primary: #1a2b4b;
+          --color-accent: #c5a059;
         }
       `}</style>
 
@@ -73,10 +73,10 @@ export default function Layout({ children, currentPageName }) {
                   className={`text-sm tracking-wide transition-colors duration-300 ${
                     currentPageName === item.page
                       ? isScrolled
-                        ? 'text-[#1F2A44] font-semibold'
-                        : 'text-[#C2983B] font-semibold'
+                        ? 'text-[#1a2b4b] font-semibold'
+                        : 'text-[#c5a059] font-semibold'
                       : isScrolled 
-                        ? 'text-[#1F2A44] hover:text-[#C2983B]' 
+                        ? 'text-[#1a2b4b] hover:text-[#c5a059]' 
                         : 'text-white/90 hover:text-white'
                   }`}
                 >
@@ -88,7 +88,7 @@ export default function Layout({ children, currentPageName }) {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`lg:hidden p-2 ${isScrolled ? 'text-[#1F2A44]' : 'text-white'}`}
+              className={`lg:hidden p-2 ${isScrolled ? 'text-[#1a2b4b]' : 'text-white'}`}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -111,8 +111,8 @@ export default function Layout({ children, currentPageName }) {
                     to={createPageUrl(item.page)}
                     className={`block text-lg ${
                       currentPageName === item.page
-                        ? 'text-[#C2983B] font-medium'
-                        : 'text-[#1F2A44]'
+                        ? 'text-[#c5a059] font-medium'
+                        : 'text-[#1a2b4b]'
                     }`}
                   >
                     {item.name}
@@ -128,7 +128,7 @@ export default function Layout({ children, currentPageName }) {
       <main>{children}</main>
 
       {/* Footer */}
-      <footer className="bg-[#1F2A44] text-white">
+      <footer className="bg-[#1a2b4b] text-white">
         <div className="container mx-auto px-6 lg:px-12 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {/* Brand */}
@@ -145,7 +145,7 @@ export default function Layout({ children, currentPageName }) {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-[#C2983B] text-sm tracking-[0.2em] uppercase mb-6">Quick Links</h4>
+              <h4 className="text-[#c5a059] text-sm tracking-[0.2em] uppercase mb-6">Quick Links</h4>
               <ul className="space-y-3">
                 {navigation.map((item) => (
                   <li key={item.name}>
@@ -162,7 +162,7 @@ export default function Layout({ children, currentPageName }) {
 
             {/* Contact */}
             <div>
-              <h4 className="text-[#C2983B] text-sm tracking-[0.2em] uppercase mb-6">Contact</h4>
+              <h4 className="text-[#c5a059] text-sm tracking-[0.2em] uppercase mb-6">Contact</h4>
               <ul className="space-y-3 text-gray-400 font-light">
                 <li>
                   <a href="mailto:chaim@taubersolutions.com" className="hover:text-white transition-colors">

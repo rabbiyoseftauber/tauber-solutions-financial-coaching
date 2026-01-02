@@ -78,7 +78,7 @@ export default function Schedule() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="py-24 bg-gradient-to-br from-[#1F2A44] via-[#2a3654] to-[#1F2A44] relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-[#1a2b4b] via-[#2c3e50] to-[#1a2b4b] relative overflow-hidden">
         
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
           <motion.div
@@ -86,12 +86,12 @@ export default function Schedule() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl"
           >
-            <span className="text-[#C2983B] text-sm tracking-[0.3em] uppercase mb-4 block">
+            <span className="text-[#c5a059] text-sm tracking-[0.3em] uppercase mb-4 block">
               Book Your Session
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
               Your Future Starts with{' '}
-              <span className="text-[#C2983B] font-normal">One Conversation</span>
+              <span className="text-[#c5a059] font-normal">One Conversation</span>
             </h1>
             <p className="text-xl text-gray-300 font-light leading-relaxed">
               Choose your session type, select a coach, and take the first step 
@@ -110,12 +110,12 @@ export default function Schedule() {
               {[1, 2, 3].map((s) => (
                 <React.Fragment key={s}>
                   <div className={`flex items-center justify-center w-10 h-10 rounded-full ${
-                    step >= s ? 'bg-[#C2983B] text-white' : 'bg-gray-200 text-gray-500'
-                  } font-medium transition-colors`}>
+                      step >= s ? 'bg-[#c5a059] text-white' : 'bg-gray-200 text-gray-500'
+                    } font-medium transition-colors`}>
                     {step > s ? <CheckCircle className="w-5 h-5" /> : s}
                   </div>
                   {s < 3 && (
-                    <div className={`w-24 h-0.5 ${step > s ? 'bg-[#C2983B]' : 'bg-gray-200'} transition-colors`} />
+                    <div className={`w-24 h-0.5 ${step > s ? 'bg-[#c5a059]' : 'bg-gray-200'} transition-colors`} />
                   )}
                 </React.Fragment>
               ))}
@@ -127,7 +127,7 @@ export default function Schedule() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <h2 className="text-2xl font-light text-[#1F2A44] mb-8 text-center">
+                <h2 className="text-2xl font-light text-[#1a2b4b] mb-8 text-center">
                   Select Your Session Type
                 </h2>
                 
@@ -137,25 +137,25 @@ export default function Schedule() {
                       key={session.id}
                       className={`cursor-pointer transition-all duration-300 hover:shadow-lg ${
                         selectedSession === session.id 
-                          ? 'border-2 border-[#C2983B] shadow-lg' 
+                          ? 'border-2 border-[#c5a059] shadow-lg' 
                           : 'border border-gray-200'
                       }`}
                       onClick={() => setSelectedSession(session.id)}
                     >
                       <CardContent className="p-6">
                         <div className={`w-12 h-12 rounded-full mb-4 flex items-center justify-center ${
-                          selectedSession === session.id ? 'bg-[#C2983B]' : 'bg-gray-100'
+                          selectedSession === session.id ? 'bg-[#c5a059]' : 'bg-gray-100'
                         } transition-colors`}>
                           <session.icon className={`w-6 h-6 ${
                             selectedSession === session.id ? 'text-white' : 'text-gray-500'
                           }`} />
                         </div>
-                        <h3 className="text-lg font-semibold text-[#1F2A44] mb-2">{session.title}</h3>
+                        <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">{session.title}</h3>
                         <div className="flex items-center gap-4 mb-3 text-sm text-gray-500">
                           <span className="flex items-center gap-1">
                             <Clock className="w-4 h-4" /> {session.duration}
                           </span>
-                          <span className="font-semibold text-[#C2983B]">{session.price}</span>
+                          <span className="font-semibold text-[#c5a059]">{session.price}</span>
                         </div>
                         <p className="text-gray-600 text-sm font-light">{session.description}</p>
                       </CardContent>
@@ -164,7 +164,7 @@ export default function Schedule() {
                 </div>
 
                 <div className="mb-12">
-                  <Label className="text-[#1F2A44] font-medium mb-3 block">
+                  <Label className="text-[#1a2b4b] font-medium mb-3 block">
                     Select Your Preferred Coach
                   </Label>
                   <Select value={selectedCoach} onValueChange={setSelectedCoach}>
@@ -187,7 +187,7 @@ export default function Schedule() {
                       setStep(2);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className="bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold px-12 py-6 rounded-none group"
+                    className="bg-[#c5a059] hover:bg-[#b08e35] text-white font-semibold px-12 py-6 rounded-lg shadow-lg group"
                   >
                     Continue
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -202,7 +202,7 @@ export default function Schedule() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <h2 className="text-2xl font-light text-[#1F2A44] mb-8 text-center">
+                <h2 className="text-2xl font-light text-[#1a2b4b] mb-8 text-center">
                   Enter Your Details
                 </h2>
 
@@ -210,13 +210,13 @@ export default function Schedule() {
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <p className="text-gray-500 mb-1">Session Type</p>
-                      <p className="font-semibold text-[#1F2A44]">
+                      <p className="font-semibold text-[#1a2b4b]">
                         {sessionTypes.find(s => s.id === selectedSession)?.title}
                       </p>
                     </div>
                     <div>
                       <p className="text-gray-500 mb-1">Coach</p>
-                      <p className="font-semibold text-[#1F2A44]">
+                      <p className="font-semibold text-[#1a2b4b]">
                         {coaches.find(c => c.id === selectedCoach)?.name}
                       </p>
                     </div>
@@ -225,7 +225,7 @@ export default function Schedule() {
 
                 <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
                   <div>
-                    <Label htmlFor="name" className="text-[#1F2A44] font-medium mb-2 block">
+                    <Label htmlFor="name" className="text-[#1a2b4b] font-medium mb-2 block">
                       Full Name
                     </Label>
                     <Input
@@ -240,7 +240,7 @@ export default function Schedule() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="email" className="text-[#1F2A44] font-medium mb-2 block">
+                    <Label htmlFor="email" className="text-[#1a2b4b] font-medium mb-2 block">
                       Email Address
                     </Label>
                     <Input
@@ -256,7 +256,7 @@ export default function Schedule() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="phone" className="text-[#1F2A44] font-medium mb-2 block">
+                    <Label htmlFor="phone" className="text-[#1a2b4b] font-medium mb-2 block">
                       Phone Number
                     </Label>
                     <Input
@@ -272,7 +272,7 @@ export default function Schedule() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="message" className="text-[#1F2A44] font-medium mb-2 block">
+                    <Label htmlFor="message" className="text-[#1a2b4b] font-medium mb-2 block">
                       Tell us about your goals (optional)
                     </Label>
                     <Textarea
@@ -299,7 +299,7 @@ export default function Schedule() {
                     </Button>
                     <Button 
                       type="submit"
-                      className="flex-1 h-14 bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold rounded-none"
+                      className="flex-1 h-14 bg-[#c5a059] hover:bg-[#b08e35] text-white font-semibold rounded-lg shadow-lg"
                     >
                       Submit Request
                     </Button>
@@ -319,7 +319,7 @@ export default function Schedule() {
                   <CheckCircle className="w-10 h-10 text-green-600" />
                 </div>
                 
-                <h2 className="text-3xl font-light text-[#1F2A44] mb-4">
+                <h2 className="text-3xl font-light text-[#1a2b4b] mb-4">
                   Request Submitted!
                 </h2>
                 <p className="text-gray-600 font-light mb-8 max-w-lg mx-auto">
@@ -331,13 +331,13 @@ export default function Schedule() {
                   <div className="grid grid-cols-2 gap-6 text-center">
                     <div>
                       <p className="text-sm text-gray-500 mb-2">Selected Session</p>
-                      <p className="font-semibold text-[#1F2A44]">
+                      <p className="font-semibold text-[#1a2b4b]">
                         {sessionTypes.find(s => s.id === selectedSession)?.title}
                       </p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-500 mb-2">Coach</p>
-                      <p className="font-semibold text-[#1F2A44]">
+                      <p className="font-semibold text-[#1a2b4b]">
                         {coaches.find(c => c.id === selectedCoach)?.name}
                       </p>
                     </div>
@@ -351,7 +351,7 @@ export default function Schedule() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold px-8 py-6 rounded-none">
+                    <Button className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold px-8 py-6 rounded-lg shadow-lg">
                       <MessageCircle className="mr-2 w-5 h-5" />
                       Chat on WhatsApp
                     </Button>
@@ -364,7 +364,7 @@ export default function Schedule() {
       </section>
 
       {/* Quick Contact */}
-      <section className="py-16 bg-[#1F2A44]">
+      <section className="py-16 bg-[#1a2b4b]">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
@@ -383,7 +383,7 @@ export default function Schedule() {
                 </Button>
               </a>
               <a href="https://wa.me/13479638998" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold px-8 py-6 rounded-none">
+                <Button className="bg-[#c5a059] hover:bg-[#b08e35] text-white font-semibold px-8 py-6 rounded-lg shadow-lg">
                   <MessageCircle className="mr-2 w-5 h-5" />
                   WhatsApp
                 </Button>

@@ -408,7 +408,7 @@ export default function Tools() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="py-24 bg-gradient-to-br from-[#1F2A44] via-[#2a3654] to-[#1F2A44] relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-[#1a2b4b] via-[#2c3e50] to-[#1a2b4b] relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute bottom-20 right-20 w-96 h-96 border border-[#C2983B] rounded-full" />
         </div>
@@ -419,12 +419,12 @@ export default function Tools() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl"
           >
-            <span className="text-[#C2983B] text-sm tracking-[0.3em] uppercase mb-4 block">
+            <span className="text-[#c5a059] text-sm tracking-[0.3em] uppercase mb-4 block">
               Free Resources
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
               Your Financial Toolkit —{' '}
-              <span className="text-[#C2983B] font-normal">No Cost, Just Clarity</span>
+              <span className="text-[#c5a059] font-normal">No Cost, Just Clarity</span>
             </h1>
             <p className="text-xl text-gray-300 font-light leading-relaxed">
               Practical tools to plan, budget, and invest smarter. 
@@ -443,7 +443,7 @@ export default function Tools() {
             viewport={{ once: true }}
             className="text-center mb-8"
           >
-            <h2 className="text-3xl md:text-4xl font-light text-[#1F2A44] mb-6">
+            <h2 className="text-3xl md:text-4xl font-light text-[#1a2b4b] mb-6">
               Financial <span className="font-normal">Calculators</span>
             </h2>
             
