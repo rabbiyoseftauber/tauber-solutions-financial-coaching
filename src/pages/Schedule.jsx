@@ -21,7 +21,7 @@ const sessionTypes = [
   {
     id: 'initial-session',
     title: 'Initial Coaching Session',
-    duration: '60 minutes',
+    duration: '2 hours',
     price: '$150',
     description: 'Deep dive into your financial situation with personalized recommendations.',
     icon: Video
@@ -29,7 +29,7 @@ const sessionTypes = [
   {
     id: 'follow-up',
     title: 'Follow-up Session',
-    duration: '45 minutes',
+    duration: '50 minutes',
     price: '$100',
     description: 'Continue your progress with accountability and guidance.',
     icon: User
