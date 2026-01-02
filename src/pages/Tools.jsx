@@ -9,6 +9,7 @@ import { Download, TrendingUp, Home, Building2, CreditCard, ArrowRight, Brain } 
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import FinancialQuiz from '@/components/interactive/FinancialQuiz';
+import SEO from '@/components/seo/SEO';
 
 function InvestmentCalculator({ formatCurrency, currency }) {
   const [principal, setPrincipal] = useState(10000);
@@ -427,6 +428,11 @@ export default function Tools() {
   
   return (
     <div className="pt-20">
+      <SEO
+        title="Free Financial Tools & Calculators"
+        description="Access free financial calculators, budget templates, and resources. Plan investments, calculate mortgages, and improve your financial literacy with our interactive tools."
+        canonical="/tools"
+      />
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-[#1a2b4b] via-[#2c3e50] to-[#1a2b4b] relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
