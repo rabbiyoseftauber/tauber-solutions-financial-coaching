@@ -393,7 +393,7 @@ export default function Schedule() {
                 <div>
                   <p className="text-gray-600 mb-4">Want to connect faster?</p>
                   <a 
-                    href="https://wa.me/13479638998"
+                    href="https://wa.me/18453226500"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -422,13 +422,13 @@ export default function Schedule() {
               </p>
             </div>
             <div className="flex gap-4">
-              <a href="tel:+13479638998">
+              <a href="tel:+18453226500">
                 <Button className="bg-white text-[#1a2b4b] hover:bg-gray-100 font-semibold px-8 py-6 rounded-lg shadow-lg">
                   <Phone className="mr-2 w-5 h-5" />
                   Call Now
                 </Button>
               </a>
-              <a href="https://wa.me/13479638998" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/18453226500" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-[#c5a059] hover:bg-[#b08e35] text-white font-semibold px-8 py-6 rounded-lg shadow-lg">
                   <MessageCircle className="mr-2 w-5 h-5" />
                   WhatsApp

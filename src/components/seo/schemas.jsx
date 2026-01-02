@@ -1,3 +1,4 @@
+
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "FinancialService",
@@ -6,7 +7,7 @@ export const organizationSchema = {
   "url": "https://taubersolutions.com",
   "logo": "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/599a3e2b6_WhatsApp_Image_2025-12-29_at_100900_AM-removebg-preview.png",
   "email": "office@taubersolutions.com",
-  "telephone": "+1-347-963-8998",
+  "telephone": "+1-845-322-6500",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "67 North Airmont Rd",

@@ -180,8 +180,8 @@ export default function Layout({ children, currentPageName }) {
                   </a>
                 </li>
                 <li>
-                  <a href="tel:+13479638998" className="hover:text-white transition-colors">
-                    +1 (347) 963-8998
+                  <a href="tel:+18453226500" className="hover:text-white transition-colors">
+                    +1 (845) 322-6500
                   </a>
                 </li>
                 <li className="pt-2">
