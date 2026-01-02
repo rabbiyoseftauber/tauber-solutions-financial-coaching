@@ -186,7 +186,7 @@ export default function Schedule() {
                   Select Your Session Type
                 </h2>
                 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                   {sessionTypes.map((session) => (
                     <Card 
                       key={session.id}
@@ -197,7 +197,7 @@ export default function Schedule() {
                       }`}
                       onClick={() => setSelectedSession(session.id)}
                     >
-                      <CardContent className="p-6">
+                      <CardContent className="p-6 h-full flex flex-col">
                         <div className={`w-12 h-12 rounded-full mb-4 flex items-center justify-center ${
                           selectedSession === session.id ? 'bg-[#c5a059]' : 'bg-gray-100'
                         } transition-colors`}>
@@ -211,7 +211,7 @@ export default function Schedule() {
                             <Clock className="w-4 h-4" /> {session.duration}
                           </span>
                         </div>
-                        <p className="text-gray-600 text-sm font-light">{session.description}</p>
+                        <p className="text-gray-600 text-sm font-light flex-grow">{session.description}</p>
                       </CardContent>
                     </Card>
                   ))}
