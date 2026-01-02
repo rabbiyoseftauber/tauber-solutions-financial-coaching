@@ -474,9 +474,9 @@ export default function Tools() {
               Financial <span className="font-normal">Calculators</span>
             </h2>
             
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center justify-center gap-2 flex-wrap">
               <span className="text-sm text-gray-600">Currency:</span>
-              <div className="flex gap-2 bg-gray-100 p-1 rounded-none">
+              <div className="flex gap-2 bg-gray-100 p-1 rounded-none flex-wrap">
                 {currencies.map((curr) => (
                   <button
                     key={curr.code}
@@ -495,14 +495,14 @@ export default function Tools() {
           </motion.div>
 
           <Tabs defaultValue="investment" className="max-w-5xl mx-auto">
-            <TabsList className="w-full grid grid-cols-4 mb-12 h-auto bg-gray-100 rounded-none">
+            <TabsList className="w-full grid grid-cols-2 sm:grid-cols-4 mb-12 h-auto bg-gray-100 rounded-none gap-1">
               {tools.map((tool) => (
                 <TabsTrigger 
                   key={tool.id} 
                   value={tool.id}
-                  className="py-4 rounded-none data-[state=active]:bg-[#1F2A44] data-[state=active]:text-white"
+                  className="py-4 rounded-none data-[state=active]:bg-[#1F2A44] data-[state=active]:text-white text-xs sm:text-sm"
                 >
-                  <tool.icon className="w-5 h-5 mr-2" />
+                  <tool.icon className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
                   {tool.name}
                 </TabsTrigger>
               ))}
