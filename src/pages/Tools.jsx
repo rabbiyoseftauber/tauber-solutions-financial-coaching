@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import FinancialQuiz from '@/components/interactive/FinancialQuiz';
 
-function InvestmentCalculator() {
+function InvestmentCalculator({ formatCurrency }) {
   const [principal, setPrincipal] = useState(10000);
   const [monthly, setMonthly] = useState(500);
   const [rate, setRate] = useState(7);
@@ -31,7 +31,7 @@ function InvestmentCalculator() {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div className="space-y-6">
         <div>
-          <Label className="text-[#1F2A44]">Initial Investment ($)</Label>
+          <Label className="text-[#1F2A44]">Initial Investment</Label>
           <Input 
             type="number" 
             value={principal} 
@@ -40,7 +40,7 @@ function InvestmentCalculator() {
           />
         </div>
         <div>
-          <Label className="text-[#1F2A44]">Monthly Contribution ($)</Label>
+          <Label className="text-[#1F2A44]">Monthly Contribution</Label>
           <Input 
             type="number" 
             value={monthly} 
@@ -74,20 +74,20 @@ function InvestmentCalculator() {
           <div>
             <p className="text-gray-400 text-sm">Future Value</p>
             <p className="text-4xl font-semibold text-[#C2983B]">
-              ${result.futureValue.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+              {formatCurrency(result.futureValue)}
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/20">
             <div>
               <p className="text-gray-400 text-sm">Total Contributions</p>
               <p className="text-xl font-medium">
-                ${result.totalContributions.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                {formatCurrency(result.totalContributions)}
               </p>
             </div>
             <div>
               <p className="text-gray-400 text-sm">Investment Earnings</p>
               <p className="text-xl font-medium text-green-400">
-                ${result.earnings.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                {formatCurrency(result.earnings)}
               </p>
             </div>
           </div>
@@ -97,7 +97,7 @@ function InvestmentCalculator() {
   );
 }
 
-function MortgageCalculator() {
+function MortgageCalculator({ formatCurrency }) {
   const [homePrice, setHomePrice] = useState(400000);
   const [downPayment, setDownPayment] = useState(80000);
   const [interestRate, setInterestRate] = useState(6.5);
@@ -119,7 +119,7 @@ function MortgageCalculator() {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div className="space-y-6">
         <div>
-          <Label className="text-[#1F2A44]">Home Price ($)</Label>
+          <Label className="text-[#1F2A44]">Home Price</Label>
           <Input 
             type="number" 
             value={homePrice} 
@@ -128,7 +128,7 @@ function MortgageCalculator() {
           />
         </div>
         <div>
-          <Label className="text-[#1F2A44]">Down Payment ($)</Label>
+          <Label className="text-[#1F2A44]">Down Payment</Label>
           <Input 
             type="number" 
             value={downPayment} 
@@ -163,20 +163,20 @@ function MortgageCalculator() {
           <div>
             <p className="text-gray-400 text-sm">Monthly Payment</p>
             <p className="text-4xl font-semibold text-[#C2983B]">
-              ${result.monthlyPayment.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+              {formatCurrency(result.monthlyPayment)}
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/20">
             <div>
               <p className="text-gray-400 text-sm">Loan Amount</p>
               <p className="text-xl font-medium">
-                ${result.principal.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                {formatCurrency(result.principal)}
               </p>
             </div>
             <div>
               <p className="text-gray-400 text-sm">Total Interest</p>
               <p className="text-xl font-medium text-red-400">
-                ${result.totalInterest.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                {formatCurrency(result.totalInterest)}
               </p>
             </div>
           </div>
@@ -186,7 +186,7 @@ function MortgageCalculator() {
   );
 }
 
-function LoanCalculator() {
+function LoanCalculator({ formatCurrency }) {
   const [loanAmount, setLoanAmount] = useState(25000);
   const [interestRate, setInterestRate] = useState(8);
   const [loanTerm, setLoanTerm] = useState(5);
@@ -206,7 +206,7 @@ function LoanCalculator() {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div className="space-y-6">
         <div>
-          <Label className="text-[#1F2A44]">Loan Amount ($)</Label>
+          <Label className="text-[#1F2A44]">Loan Amount</Label>
           <Input 
             type="number" 
             value={loanAmount} 
@@ -241,20 +241,20 @@ function LoanCalculator() {
           <div>
             <p className="text-gray-400 text-sm">Monthly Payment</p>
             <p className="text-4xl font-semibold text-[#C2983B]">
-              ${result.monthlyPayment.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+              {formatCurrency(result.monthlyPayment)}
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/20">
             <div>
               <p className="text-gray-400 text-sm">Total Payment</p>
               <p className="text-xl font-medium">
-                ${result.totalPayment.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                {formatCurrency(result.totalPayment)}
               </p>
             </div>
             <div>
               <p className="text-gray-400 text-sm">Total Interest</p>
               <p className="text-xl font-medium text-red-400">
-                ${result.totalInterest.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                {formatCurrency(result.totalInterest)}
               </p>
             </div>
           </div>
@@ -264,7 +264,7 @@ function LoanCalculator() {
   );
 }
 
-function CommercialMortgageCalculator() {
+function CommercialMortgageCalculator({ formatCurrency }) {
   const [propertyValue, setPropertyValue] = useState(1500000);
   const [downPayment, setDownPayment] = useState(375000);
   const [interestRate, setInterestRate] = useState(7.5);
@@ -291,7 +291,7 @@ function CommercialMortgageCalculator() {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div className="space-y-6">
         <div>
-          <Label className="text-[#1F2A44]">Property Value ($)</Label>
+          <Label className="text-[#1F2A44]">Property Value</Label>
           <Input 
             type="number" 
             value={propertyValue} 
@@ -300,7 +300,7 @@ function CommercialMortgageCalculator() {
           />
         </div>
         <div>
-          <Label className="text-[#1F2A44]">Down Payment ($)</Label>
+          <Label className="text-[#1F2A44]">Down Payment</Label>
           <Input 
             type="number" 
             value={downPayment} 
@@ -328,7 +328,7 @@ function CommercialMortgageCalculator() {
           />
         </div>
         <div>
-          <Label className="text-[#1F2A44]">Annual Property Income ($)</Label>
+          <Label className="text-[#1F2A44]">Annual Property Income</Label>
           <Input 
             type="number" 
             value={annualIncome} 
@@ -344,14 +344,14 @@ function CommercialMortgageCalculator() {
           <div>
             <p className="text-gray-400 text-sm">Monthly Payment</p>
             <p className="text-4xl font-semibold text-[#C2983B]">
-              ${result.monthlyPayment.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+              {formatCurrency(result.monthlyPayment)}
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/20">
             <div>
               <p className="text-gray-400 text-sm">Loan Amount</p>
               <p className="text-xl font-medium">
-                ${result.principal.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                {formatCurrency(result.principal)}
               </p>
             </div>
             <div>
@@ -369,7 +369,7 @@ function CommercialMortgageCalculator() {
             <div>
               <p className="text-gray-400 text-sm">Total Interest</p>
               <p className="text-xl font-medium text-red-400">
-                ${result.totalInterest.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                {formatCurrency(result.totalInterest)}
               </p>
             </div>
           </div>
@@ -386,7 +386,25 @@ const tools = [
   { id: 'loan', name: 'Loan', icon: CreditCard, component: LoanCalculator }
 ];
 
+const currencies = [
+  { code: 'USD', symbol: '$', rate: 1, name: 'US Dollar' },
+  { code: 'ILS', symbol: '₪', rate: 3.6, name: 'Israeli Shekel' },
+  { code: 'GBP', symbol: '£', rate: 0.79, name: 'British Pound' }
+];
+
 export default function Tools() {
+  const [currency, setCurrency] = useState('USD');
+  
+  const currentCurrency = currencies.find(c => c.code === currency);
+  
+  const convert = (usdAmount) => {
+    return usdAmount * currentCurrency.rate;
+  };
+  
+  const formatCurrency = (amount) => {
+    return `${currentCurrency.symbol}${amount.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
+  };
+  
   return (
     <div className="pt-20">
       {/* Hero Section */}
@@ -450,11 +468,30 @@ export default function Tools() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-8"
           >
-            <h2 className="text-3xl md:text-4xl font-light text-[#1F2A44]">
+            <h2 className="text-3xl md:text-4xl font-light text-[#1F2A44] mb-6">
               Financial <span className="font-normal">Calculators</span>
             </h2>
+            
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-sm text-gray-600">Currency:</span>
+              <div className="flex gap-2 bg-gray-100 p-1 rounded-none">
+                {currencies.map((curr) => (
+                  <button
+                    key={curr.code}
+                    onClick={() => setCurrency(curr.code)}
+                    className={`px-4 py-2 text-sm font-medium transition-colors rounded-none ${
+                      currency === curr.code
+                        ? 'bg-[#1F2A44] text-white'
+                        : 'text-gray-600 hover:text-[#1F2A44]'
+                    }`}
+                  >
+                    {curr.symbol} {curr.code}
+                  </button>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
           <Tabs defaultValue="investment" className="max-w-5xl mx-auto">
@@ -477,7 +514,7 @@ export default function Tools() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  <tool.component />
+                  <tool.component convert={convert} formatCurrency={formatCurrency} currency={currency} />
                 </motion.div>
               </TabsContent>
             ))}
