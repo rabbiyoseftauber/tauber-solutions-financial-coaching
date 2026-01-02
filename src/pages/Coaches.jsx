@@ -88,13 +88,16 @@ export default function Coaches() {
             viewport={{ once: true }}
             className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
           >
-            <div className="relative">
-              <img 
-                src={coaches[0].image}
-                alt={coaches[0].name}
-                className="w-full h-[500px] object-cover"
-              />
-              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-[#C2983B]/20 -z-10" />
+            <div className="relative h-[500px] bg-gradient-to-br from-[#1F2A44] to-[#2a3654] flex items-center justify-center">
+              <div className="text-center p-12">
+                <div className="w-32 h-32 bg-[#C2983B] rounded-full mx-auto mb-6 flex items-center justify-center">
+                  <span className="text-6xl font-light text-white">
+                    {coaches[0].name.split(' ').map(n => n[0]).join('')}
+                  </span>
+                </div>
+                <div className="absolute top-8 left-8 w-24 h-24 border-2 border-[#C2983B]/30 rounded-full" />
+                <div className="absolute bottom-12 right-12 w-16 h-16 border-2 border-[#C2983B]/30 rounded-full" />
+              </div>
             </div>
             
             <div>
@@ -161,12 +164,12 @@ export default function Coaches() {
                 transition={{ delay: index * 0.1 }}
                 className="bg-white group"
               >
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={coach.image}
-                    alt={coach.name}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                <div className="relative overflow-hidden h-64 bg-gradient-to-br from-[#1F2A44] to-[#2a3654] flex items-center justify-center">
+                  <div className="w-28 h-28 bg-[#C2983B] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-4xl font-light text-white">
+                      {coach.name.split(' ').map(n => n[0]).join('')}
+                    </span>
+                  </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1F2A44]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                     <div className="flex gap-3">
                       <a 
