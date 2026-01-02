@@ -173,8 +173,8 @@ export default function Layout({ children, currentPageName }) {
               <h4 className="text-[#c5a059] text-sm tracking-[0.2em] uppercase mb-6">Contact</h4>
               <ul className="space-y-3 text-gray-400 font-light">
                 <li>
-                  <a href="mailto:chaim@taubersolutions.com" className="hover:text-white transition-colors">
-                    chaim@taubersolutions.com
+                  <a href="mailto:office@taubersolutions.com" className="hover:text-white transition-colors">
+                    office@taubersolutions.com
                   </a>
                 </li>
                 <li>

@@ -64,13 +64,53 @@ export default function Schedule() {
     phone: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    const selectedSessionDetails = sessionTypes.find(s => s.id === selectedSession);
+    const selectedCoachDetails = coaches.find(c => c.id === selectedCoach);
+
+    const emailBody = `
+  New Coaching Session Request
+
+  Session Details:
+  - Type: ${selectedSessionDetails.title}
+  - Duration: ${selectedSessionDetails.duration}
+  - Coach: ${selectedCoachDetails.name}
+
+  Client Information:
+  - Name: ${formData.name}
+  - Email: ${formData.email}
+  - Phone: ${formData.phone}
+  - Message: ${formData.message || 'No additional message'}
+    `.trim();
+
+    try {
+      await fetch('https://api.base44.com/v1/integrations/call', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          integration_package: 'Core',
+          integration_name: 'SendEmail',
+          parameters: {
+            to: 'office@taubersolutions.com',
+            subject: `New Coaching Request - ${formData.name}`,
+            body: emailBody
+          }
+        })
+      });
+    } catch (error) {
+      console.error('Failed to send email:', error);
+    }
+
+    setIsSubmitting(false);
     setStep(3);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -298,9 +338,10 @@ export default function Schedule() {
                     </Button>
                     <Button 
                       type="submit"
-                      className="flex-1 h-14 bg-[#c5a059] hover:bg-[#b08e35] text-white font-semibold rounded-lg shadow-lg"
+                      disabled={isSubmitting}
+                      className="flex-1 h-14 bg-[#c5a059] hover:bg-[#b08e35] text-white font-semibold rounded-lg shadow-lg disabled:opacity-50"
                     >
-                      Submit Request
+                      {isSubmitting ? 'Sending...' : 'Submit Request'}
                     </Button>
                   </div>
                 </form>
