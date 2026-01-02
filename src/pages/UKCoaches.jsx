@@ -11,7 +11,7 @@ const coaches = [
     title: 'Coach',
     email: 'sendere@taubersolutions.com',
     phone: '+44 (739) 278-8116',
-    bio: 'Supporting growth in the UK & beyond. Sender brings an international perspective to financial coaching with deep understanding of UK financial markets and regulations.',
+    bio: 'As a UK-based financial coach with roots in the UK and experience working in Israel, I support clients in the UK and internationally.',
     image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80',
     featured: true,
     id: 'sender'
