@@ -4,18 +4,14 @@ import { createPageUrl } from '@/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
-import LiveChat from '@/components/interactive/LiveChat';
 import NewsletterSignup from '@/components/interactive/NewsletterSignup';
 
 const navigation = [
   { name: 'Home', page: 'Home' },
   { name: 'Services', page: 'Services' },
   { name: 'Our Coaches', page: 'Coaches' },
-  { name: 'Schedule', page: 'Schedule' },
-  { name: 'Testimonials', page: 'Testimonials' },
   { name: 'Free Tools', page: 'Tools' },
-  { name: 'Affiliates', page: 'Affiliates' },
-  { name: 'Community', page: 'Community' },
+  { name: 'Schedule Now', page: 'Schedule' },
 ];
 
 export default function Layout({ children, currentPageName }) {
@@ -149,24 +145,7 @@ export default function Layout({ children, currentPageName }) {
             <div>
               <h4 className="text-[#C2983B] text-sm tracking-[0.2em] uppercase mb-6">Quick Links</h4>
               <ul className="space-y-3">
-                {navigation.slice(0, 4).map((item) => (
-                  <li key={item.name}>
-                    <Link 
-                      to={createPageUrl(item.page)}
-                      className="text-gray-400 hover:text-white transition-colors font-light"
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Resources */}
-            <div>
-              <h4 className="text-[#C2983B] text-sm tracking-[0.2em] uppercase mb-6">Resources</h4>
-              <ul className="space-y-3">
-                {navigation.slice(4).map((item) => (
+                {navigation.map((item) => (
                   <li key={item.name}>
                     <Link 
                       to={createPageUrl(item.page)}
@@ -217,9 +196,6 @@ export default function Layout({ children, currentPageName }) {
 
       {/* WhatsApp Button */}
       <WhatsAppButton />
-      
-      {/* Live Chat */}
-      <LiveChat />
     </div>
   );
 }

@@ -8,11 +8,6 @@ import { createPageUrl } from '@/utils';
 export default function CTASection() {
   return (
     <section className="py-24 bg-[#1F2A44] relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute -top-20 -right-20 w-96 h-96 border border-[#C2983B] rounded-full" />
-        <div className="absolute -bottom-20 -left-20 w-72 h-72 border border-[#C2983B] rounded-full" />
-      </div>
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
@@ -36,7 +31,7 @@ export default function CTASection() {
               <Link to={createPageUrl('Schedule')}>
                 <Button 
                   size="lg" 
-                  className="bg-[#C2983B] hover:bg-[#a8842f] text-white px-10 py-6 text-lg rounded-none group"
+                  className="bg-[#C2983B] hover:bg-[#b08e35] text-white px-10 py-6 text-lg font-semibold rounded-none group"
                 >
                   Schedule Your Meeting
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -46,7 +41,7 @@ export default function CTASection() {
                 <Button 
                   size="lg" 
                   variant="outline"
-                  className="border-2 border-white/30 text-white hover:bg-white/10 px-10 py-6 text-lg rounded-none"
+                  className="bg-white/10 border-2 border-white/30 text-white hover:bg-white/20 px-10 py-6 text-lg font-semibold rounded-none"
                 >
                   <Phone className="mr-2 w-5 h-5" />
                   Call Us Now

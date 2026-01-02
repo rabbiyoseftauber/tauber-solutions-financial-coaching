@@ -8,12 +8,6 @@ import { createPageUrl } from '@/utils';
 export default function HeroSection() {
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-[#1F2A44] via-[#2a3654] to-[#1F2A44]">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-20 w-96 h-96 border border-[#C2983B] rounded-full" />
-        <div className="absolute bottom-20 right-20 w-72 h-72 border border-[#C2983B] rounded-full" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-[#C2983B] rounded-full" />
-      </div>
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         <div className="max-w-4xl">
@@ -59,8 +53,7 @@ export default function HeroSection() {
             <Link to={createPageUrl('Schedule')}>
               <Button
                 size="lg"
-                className="bg-[#C2983B] hover:bg-[#a8842f] text-white px-8 py-6 text-lg rounded-none group transition-all duration-300">
-
+                className="bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold px-8 py-6 text-lg rounded-none group transition-all duration-300">
                 Schedule Your Meeting
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -68,11 +61,10 @@ export default function HeroSection() {
             <a href="https://wa.me/13479638998" target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"
-                variant="outline" className="bg-slate-700 text-white px-8 py-6 text-lg font-medium rounded-none inline-flex items-center justify-center gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-sm hover:text-accent-foreground h-10 border-2 border-white/30 hover:bg-white/10 transition-all duration-300">
-
-
+                variant="outline"
+                className="bg-white/10 text-white border-2 border-white/30 hover:bg-white/20 px-8 py-6 text-lg rounded-none transition-all duration-300">
                 <MessageCircle className="mr-2 w-5 h-5" />
-                WhatsApp Chat
+                Chat on WhatsApp
               </Button>
             </a>
           </motion.div>

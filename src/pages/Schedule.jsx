@@ -69,9 +69,6 @@ export default function Schedule() {
     <div className="pt-20">
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-[#1F2A44] via-[#2a3654] to-[#1F2A44] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-10 right-10 w-72 h-72 border border-[#C2983B] rounded-full" />
-        </div>
         
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
           <motion.div
@@ -177,7 +174,7 @@ export default function Schedule() {
                 <div className="text-center">
                   <Button 
                     onClick={() => setStep(2)}
-                    className="bg-[#C2983B] hover:bg-[#a8842f] text-white px-12 py-6 rounded-none group"
+                    className="bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold px-12 py-6 rounded-none group"
                   >
                     Continue
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -269,7 +266,7 @@ export default function Schedule() {
                     </Button>
                     <Button 
                       type="submit"
-                      className="flex-1 h-14 bg-[#C2983B] hover:bg-[#a8842f] text-white rounded-none"
+                      className="flex-1 h-14 bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold rounded-none"
                     >
                       Submit Request
                     </Button>
@@ -311,7 +308,7 @@ export default function Schedule() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button className="bg-[#25D366] hover:bg-[#20bd5a] text-white px-8 py-6 rounded-none">
+                    <Button className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold px-8 py-6 rounded-none">
                       <MessageCircle className="mr-2 w-5 h-5" />
                       Chat on WhatsApp
                     </Button>
@@ -343,7 +340,7 @@ export default function Schedule() {
                 </Button>
               </a>
               <a href="https://wa.me/13479638998" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-[#C2983B] hover:bg-[#a8842f] text-white px-8 py-6 rounded-none">
+                <Button className="bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold px-8 py-6 rounded-none">
                   <MessageCircle className="mr-2 w-5 h-5" />
                   WhatsApp
                 </Button>

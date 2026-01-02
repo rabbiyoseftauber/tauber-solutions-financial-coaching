@@ -9,7 +9,6 @@ export default function Home() {
   return (
     <div>
       <HeroSection />
-      <TrustIndicators />
       <ServicesPreview />
       <NewsletterSignup variant="section" />
       <CTASection />

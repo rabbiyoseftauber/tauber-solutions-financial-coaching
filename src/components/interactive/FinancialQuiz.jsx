@@ -156,7 +156,7 @@ export default function FinancialQuiz() {
             
             <Button 
               onClick={resetQuiz}
-              className="bg-[#C2983B] hover:bg-[#a8842f] text-white px-8 py-6 text-lg rounded-none"
+              className="bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold px-8 py-6 text-lg rounded-none"
             >
               <RefreshCw className="mr-2 w-5 h-5" />
               Try Again
@@ -254,7 +254,7 @@ export default function FinancialQuiz() {
               {showExplanation && (
                 <Button
                   onClick={handleNext}
-                  className="bg-[#1F2A44] hover:bg-[#2a3654] text-white px-8 py-6 rounded-none w-full"
+                  className="bg-[#1F2A44] hover:bg-[#2a3654] text-white font-semibold px-8 py-6 rounded-none w-full"
                 >
                   {currentQuestion < quizQuestions.length - 1 ? 'Next Question' : 'See Results'}
                 </Button>

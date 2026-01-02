@@ -33,10 +33,6 @@ export default function NewsletterSignup({ variant = 'inline' }) {
   if (variant === 'section') {
     return (
       <section className="py-20 bg-gradient-to-br from-[#1F2A44] to-[#2a3654] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-10 right-10 w-64 h-64 border border-[#C2983B] rounded-full" />
-          <div className="absolute bottom-10 left-10 w-48 h-48 border border-[#C2983B] rounded-full" />
-        </div>
         
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
@@ -77,7 +73,7 @@ export default function NewsletterSignup({ variant = 'inline' }) {
                     <Button
                       type="submit"
                       disabled={isLoading}
-                      className="bg-[#C2983B] hover:bg-[#a8842f] text-white h-14 px-8 rounded-none whitespace-nowrap"
+                      className="bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold h-14 px-8 rounded-none whitespace-nowrap"
                     >
                       {isLoading ? 'Subscribing...' : 'Subscribe'}
                       <ArrowRight className="ml-2 w-5 h-5" />
@@ -132,7 +128,7 @@ export default function NewsletterSignup({ variant = 'inline' }) {
           <Button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-[#C2983B] hover:bg-[#a8842f] text-white rounded-none h-12"
+            className="w-full bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold rounded-none h-12"
           >
             {isLoading ? 'Subscribing...' : 'Subscribe'}
           </Button>

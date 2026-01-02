@@ -233,7 +233,7 @@ export default function LiveChat() {
                 />
                 <Button
                   onClick={handleSend}
-                  className="bg-[#C2983B] hover:bg-[#a8842f] text-white rounded-none"
+                  className="bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold rounded-none"
                 >
                   <Send className="w-4 h-4" />
                 </Button>
