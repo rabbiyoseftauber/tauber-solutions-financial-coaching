@@ -377,7 +377,7 @@ export default function Schedule() {
             </div>
             <div className="flex gap-4">
               <a href="tel:+13479638998">
-                <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded-none">
+                <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded-lg">
                   <Phone className="mr-2 w-5 h-5" />
                   Call Now
                 </Button>
