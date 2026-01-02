@@ -13,7 +13,8 @@ const coaches = [
     phone: '+1 (347) 963-8998',
     bio: 'Founder focused on clarity, strategy & sustainable growth. Chaim has helped hundreds of families transform their financial lives through practical, compassionate coaching.',
     image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80',
-    featured: true
+    featured: true,
+    id: 'chaim'
   },
   {
     name: 'Naftale Ostreicher',
@@ -21,7 +22,8 @@ const coaches = [
     email: 'naftale@taubersolutions.com',
     phone: '+1 (845) 502-3372',
     bio: 'Expert in personal finance transformation. Naftale specializes in helping clients break free from debt and build lasting wealth.',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80'
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
+    id: 'naftale'
   },
   {
     name: 'Rivky Friedman',
@@ -29,7 +31,8 @@ const coaches = [
     email: 'rivky@taubersolutions.com',
     phone: '+1 (845) 200-4365',
     bio: 'Coaching women & families toward secure futures. Rivky brings empathy and expertise to every client relationship.',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80'
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
+    id: 'rivky'
   },
   {
     name: 'Moshe Gelbman',
@@ -37,7 +40,8 @@ const coaches = [
     email: 'mgelbman@taubersolutions.com',
     phone: '+1 (845) 587-8892',
     bio: 'Helping clients build structure & confidence. Moshe\'s systematic approach makes complex financial concepts simple and actionable.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80'
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+    id: 'moshe'
   },
   {
     name: 'Sender Ekstein',
@@ -45,7 +49,8 @@ const coaches = [
     email: 'sendere@taubersolutions.com',
     phone: '+44 (739) 278-8116',
     bio: 'Supporting growth in the UK & beyond. Sender brings an international perspective to financial coaching.',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80'
+    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80',
+    id: 'sender'
   }
 ];
 
@@ -129,7 +134,7 @@ export default function Coaches() {
                 </a>
               </div>
               
-              <Link to={createPageUrl('Schedule')}>
+              <Link to={createPageUrl('Schedule') + '?coach=chaim'}>
                 <Button className="bg-[#1F2A44] hover:bg-[#2a3654] text-white px-8 py-6 rounded-none group">
                   Schedule with {coaches[0].name.split(' ')[0]}
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -193,7 +198,7 @@ export default function Coaches() {
                   <p className="text-gray-600 font-light text-sm leading-relaxed mb-6">
                     {coach.bio}
                   </p>
-                  <Link to={createPageUrl('Schedule')}>
+                  <Link to={createPageUrl('Schedule') + '?coach=' + coach.id}>
                     <Button className="w-full bg-[#1F2A44] hover:bg-[#2a3654] text-white py-4 rounded-none text-sm group">
                       Schedule with {coach.name.split(' ')[0]}
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />

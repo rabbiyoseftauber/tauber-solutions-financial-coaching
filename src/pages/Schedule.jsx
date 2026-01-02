@@ -46,8 +46,11 @@ const coaches = [
 ];
 
 export default function Schedule() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const coachParam = urlParams.get('coach');
+  
   const [selectedSession, setSelectedSession] = useState('free-call');
-  const [selectedCoach, setSelectedCoach] = useState('any');
+  const [selectedCoach, setSelectedCoach] = useState(coachParam || 'any');
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
@@ -196,7 +199,24 @@ export default function Schedule() {
                 <h2 className="text-2xl font-light text-[#1F2A44] mb-8 text-center">
                   Enter Your Details
                 </h2>
-                
+
+                <div className="bg-gray-100 p-6 rounded-none mb-8 max-w-xl mx-auto">
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <p className="text-gray-500 mb-1">Session Type</p>
+                      <p className="font-semibold text-[#1F2A44]">
+                        {sessionTypes.find(s => s.id === selectedSession)?.title}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-gray-500 mb-1">Coach</p>
+                      <p className="font-semibold text-[#1F2A44]">
+                        {coaches.find(c => c.id === selectedCoach)?.name}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
                 <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
                   <div>
                     <Label htmlFor="name" className="text-[#1F2A44] font-medium mb-2 block">
