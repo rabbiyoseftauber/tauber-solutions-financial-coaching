@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Calendar, Clock, MessageCircle, ArrowRight, CheckCircle, User, Video, Phone } from 'lucide-react';
+import SEO from '@/components/seo/SEO';
 
 const getSessionTypes = (coachId) => {
   const isSender = coachId === 'sender';
@@ -117,6 +118,11 @@ export default function Schedule() {
 
   return (
     <div className="pt-20">
+      <SEO
+        title="Schedule a Coaching Session"
+        description="Book your financial coaching session with Tauber Solutions. Choose from free consultation, initial coaching session, or follow-up appointments with our expert coaches."
+        canonical="/schedule"
+      />
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-[#1a2b4b] via-[#2c3e50] to-[#1a2b4b] relative overflow-hidden">
         
