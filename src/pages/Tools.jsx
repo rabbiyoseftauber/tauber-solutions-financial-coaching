@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Calculator, Download, TrendingUp, Home, Building, CreditCard, ArrowRight, Brain } from 'lucide-react';
+import { Calculator, Download, TrendingUp, Home, Building, CreditCard, ArrowRight, Brain, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import FinancialQuiz from '@/components/interactive/FinancialQuiz';
@@ -264,9 +264,125 @@ function LoanCalculator() {
   );
 }
 
+function CommercialMortgageCalculator() {
+  const [propertyValue, setPropertyValue] = useState(1500000);
+  const [downPayment, setDownPayment] = useState(375000);
+  const [interestRate, setInterestRate] = useState(7.5);
+  const [loanTerm, setLoanTerm] = useState(20);
+  const [annualIncome, setAnnualIncome] = useState(180000);
+  
+  const calculateCommercialMortgage = () => {
+    const principal = propertyValue - downPayment;
+    const r = interestRate / 100 / 12;
+    const n = loanTerm * 12;
+    const monthlyPayment = principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const annualDebtService = monthlyPayment * 12;
+    const dscr = annualIncome / annualDebtService;
+    const totalPayment = monthlyPayment * n;
+    const totalInterest = totalPayment - principal;
+    const ltv = (principal / propertyValue) * 100;
+    
+    return { monthlyPayment, totalPayment, totalInterest, principal, dscr, ltv };
+  };
+  
+  const result = calculateCommercialMortgage();
+  
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="space-y-6">
+        <div>
+          <Label className="text-[#1F2A44]">Property Value ($)</Label>
+          <Input 
+            type="number" 
+            value={propertyValue} 
+            onChange={(e) => setPropertyValue(Number(e.target.value))}
+            className="mt-2 h-12 rounded-none"
+          />
+        </div>
+        <div>
+          <Label className="text-[#1F2A44]">Down Payment ($)</Label>
+          <Input 
+            type="number" 
+            value={downPayment} 
+            onChange={(e) => setDownPayment(Number(e.target.value))}
+            className="mt-2 h-12 rounded-none"
+          />
+        </div>
+        <div>
+          <Label className="text-[#1F2A44]">Interest Rate (%)</Label>
+          <Input 
+            type="number" 
+            step="0.1"
+            value={interestRate} 
+            onChange={(e) => setInterestRate(Number(e.target.value))}
+            className="mt-2 h-12 rounded-none"
+          />
+        </div>
+        <div>
+          <Label className="text-[#1F2A44]">Loan Term (Years)</Label>
+          <Input 
+            type="number" 
+            value={loanTerm} 
+            onChange={(e) => setLoanTerm(Number(e.target.value))}
+            className="mt-2 h-12 rounded-none"
+          />
+        </div>
+        <div>
+          <Label className="text-[#1F2A44]">Annual Property Income ($)</Label>
+          <Input 
+            type="number" 
+            value={annualIncome} 
+            onChange={(e) => setAnnualIncome(Number(e.target.value))}
+            className="mt-2 h-12 rounded-none"
+          />
+        </div>
+      </div>
+      
+      <div className="bg-[#1F2A44] p-8 text-white">
+        <h3 className="text-lg font-light mb-6">Commercial Mortgage Analysis</h3>
+        <div className="space-y-6">
+          <div>
+            <p className="text-gray-400 text-sm">Monthly Payment</p>
+            <p className="text-4xl font-semibold text-[#C2983B]">
+              ${result.monthlyPayment.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/20">
+            <div>
+              <p className="text-gray-400 text-sm">Loan Amount</p>
+              <p className="text-xl font-medium">
+                ${result.principal.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+              </p>
+            </div>
+            <div>
+              <p className="text-gray-400 text-sm">LTV Ratio</p>
+              <p className="text-xl font-medium">
+                {result.ltv.toFixed(1)}%
+              </p>
+            </div>
+            <div>
+              <p className="text-gray-400 text-sm">DSCR</p>
+              <p className={`text-xl font-medium ${result.dscr >= 1.25 ? 'text-green-400' : 'text-yellow-400'}`}>
+                {result.dscr.toFixed(2)}x
+              </p>
+            </div>
+            <div>
+              <p className="text-gray-400 text-sm">Total Interest</p>
+              <p className="text-xl font-medium text-red-400">
+                ${result.totalInterest.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const tools = [
   { id: 'investment', name: 'Investment', icon: TrendingUp, component: InvestmentCalculator },
   { id: 'mortgage', name: 'Mortgage', icon: Home, component: MortgageCalculator },
+  { id: 'commercial', name: 'Commercial', icon: Building2, component: CommercialMortgageCalculator },
   { id: 'loan', name: 'Loan', icon: CreditCard, component: LoanCalculator }
 ];
 
@@ -342,7 +458,7 @@ export default function Tools() {
           </motion.div>
 
           <Tabs defaultValue="investment" className="max-w-5xl mx-auto">
-            <TabsList className="w-full grid grid-cols-3 mb-12 h-auto bg-gray-100 rounded-none">
+            <TabsList className="w-full grid grid-cols-4 mb-12 h-auto bg-gray-100 rounded-none">
               {tools.map((tool) => (
                 <TabsTrigger 
                   key={tool.id} 
