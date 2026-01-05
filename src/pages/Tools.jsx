@@ -536,19 +536,19 @@ export default function Tools() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full border-0 shadow-sm hover:shadow-lg transition-shadow group">
-                <CardContent className="p-8">
-                  <div className="w-14 h-14 bg-[#c5a059]/10 flex items-center justify-center mb-6 group-hover:bg-[#c5a059]/20 transition-colors rounded-lg">
-                    <Download className="w-7 h-7 text-[#c5a059]" />
+              <Card className="h-full border border-gray-200 hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6 h-full flex flex-col">
+                  <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
+                    <Download className="w-6 h-6 text-gray-500" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Your Goals Sheet</h3>
-                  <p className="text-gray-600 font-light mb-6">
+                  <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Your Goals Sheet</h3>
+                  <p className="text-gray-600 text-sm font-light flex-grow mb-6">
                     Capture your goals simply and clearly. It's the starting point for building your plan.
                   </p>
                   <div className="flex flex-col gap-3">
@@ -559,7 +559,7 @@ export default function Tools() {
                       download
                       className="block"
                     >
-                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download PDF
                       </Button>
@@ -571,7 +571,7 @@ export default function Tools() {
                       download
                       className="block"
                     >
-                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download Excel
                       </Button>
@@ -587,13 +587,13 @@ export default function Tools() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <Card className="h-full border-0 shadow-sm hover:shadow-lg transition-shadow group">
-                <CardContent className="p-8">
-                  <div className="w-14 h-14 bg-[#c5a059]/10 flex items-center justify-center mb-6 group-hover:bg-[#c5a059]/20 transition-colors rounded-lg">
-                    <Download className="w-7 h-7 text-[#c5a059]" />
+              <Card className="h-full border border-gray-200 hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6 h-full flex flex-col">
+                  <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
+                    <Download className="w-6 h-6 text-gray-500" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Asset Sheet</h3>
-                  <p className="text-gray-600 font-light mb-6">
+                  <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Asset Sheet</h3>
+                  <p className="text-gray-600 text-sm font-light flex-grow mb-6">
                     See your full financial picture in one clear sheet. Review it monthly to support real action and progress.
                   </p>
                   <div className="flex flex-col gap-3">
@@ -604,7 +604,7 @@ export default function Tools() {
                       download
                       className="block"
                     >
-                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download PDF
                       </Button>
@@ -616,7 +616,7 @@ export default function Tools() {
                       download
                       className="block"
                     >
-                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download Excel
                       </Button>
@@ -632,13 +632,13 @@ export default function Tools() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <Card className="h-full border-0 shadow-sm hover:shadow-lg transition-shadow group">
-                <CardContent className="p-8">
-                  <div className="w-14 h-14 bg-[#c5a059]/10 flex items-center justify-center mb-6 group-hover:bg-[#c5a059]/20 transition-colors rounded-lg">
-                    <Download className="w-7 h-7 text-[#c5a059]" />
+              <Card className="h-full border border-gray-200 hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6 h-full flex flex-col">
+                  <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
+                    <Download className="w-6 h-6 text-gray-500" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Budget Planner</h3>
-                  <p className="text-gray-600 font-light mb-6">
+                  <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Budget Planner</h3>
+                  <p className="text-gray-600 text-sm font-light flex-grow mb-6">
                     A powerful Excel budget tool you can also upload to Google Sheets for tracking. Plan your month, track weekly, and stay on top of spending with clear totals.
                   </p>
                   <div className="flex flex-col gap-3">
@@ -649,7 +649,7 @@ export default function Tools() {
                       download
                       className="block"
                     >
-                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download PDF
                       </Button>
@@ -661,7 +661,7 @@ export default function Tools() {
                       download
                       className="block"
                     >
-                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download Excel
                       </Button>
@@ -677,13 +677,13 @@ export default function Tools() {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <Card className="h-full border-0 shadow-sm hover:shadow-lg transition-shadow group">
-                <CardContent className="p-8">
-                  <div className="w-14 h-14 bg-[#c5a059]/10 flex items-center justify-center mb-6 group-hover:bg-[#c5a059]/20 transition-colors rounded-lg">
-                    <Download className="w-7 h-7 text-[#c5a059]" />
+              <Card className="h-full border border-gray-200 hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6 h-full flex flex-col">
+                  <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
+                    <Download className="w-6 h-6 text-gray-500" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Budget Category Guide</h3>
-                  <p className="text-gray-600 font-light mb-6">
+                  <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Budget Category Guide</h3>
+                  <p className="text-gray-600 text-sm font-light flex-grow mb-6">
                     A ready-made list of categories to use in the UK Budget Planner dropdowns. This guide matches the category dropdowns in the UK Budget Planner.
                   </p>
                   <div className="flex flex-col gap-3">
@@ -694,7 +694,7 @@ export default function Tools() {
                       download
                       className="block"
                     >
-                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download PDF
                       </Button>
@@ -706,7 +706,7 @@ export default function Tools() {
                       download
                       className="block"
                     >
-                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download Excel
                       </Button>
