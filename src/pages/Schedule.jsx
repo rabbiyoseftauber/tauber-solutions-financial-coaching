@@ -52,10 +52,10 @@ const getSessionTypes = (coachId) => {
 const coaches = [
   { id: 'any', name: 'Any Available Coach' },
   { id: 'chaim', name: 'Chaim Tauber - CEO & Executive Coach' },
-  { id: 'naftale', name: 'Naftale Ostreicher - Executive Coach' },
-  { id: 'rivky', name: 'Rivky Friedman - Executive Coach' },
-  { id: 'moshe', name: 'Moshe Gelbman - Coach' },
-  { id: 'sender', name: 'Sender Eckstein - Coach' }
+  { id: 'naftale', name: 'Naftale Ostreicher - Senior Coach' },
+  { id: 'rivky', name: 'Rivky Friedman - Senior Coach' },
+  { id: 'sender', name: 'Sender Eckstein - Coach' },
+  { id: 'moshe', name: 'Moshe Gelbman - Coach' }
 ];
 
 export default function Schedule() {
