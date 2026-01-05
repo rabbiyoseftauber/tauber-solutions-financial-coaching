@@ -598,7 +598,7 @@ export default function Tools() {
                   </p>
                   <div className="flex flex-col gap-3">
                     <a 
-                      href="#"
+                      href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/191dcde5b_UKAssetSheet.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       download
@@ -610,10 +610,9 @@ export default function Tools() {
                       </Button>
                     </a>
                     <a 
-                      href="#"
+                      href="https://docs.google.com/spreadsheets/d/1JiVVyn2C9rfZ2gGqkcldAJ7DUpohRHus/edit?gid=157671081#gid=157671081"
                       target="_blank"
                       rel="noopener noreferrer"
-                      download
                       className="block"
                     >
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
