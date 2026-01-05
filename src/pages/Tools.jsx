@@ -534,6 +534,10 @@ export default function Tools() {
             <h2 className="text-3xl md:text-4xl font-light text-[#1a2b4b]">
               Downloadable <span className="font-normal">Resources</span>
             </h2>
+            <div className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-[#c5a059]/10 rounded-lg">
+              <span className="text-sm text-[#1a2b4b] font-medium">Currency:</span>
+              <span className="text-sm font-semibold text-[#c5a059]">{currentCurrency.symbol} {currentCurrency.code}</span>
+            </div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
