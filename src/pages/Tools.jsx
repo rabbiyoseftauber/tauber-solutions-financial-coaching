@@ -594,9 +594,8 @@ export default function Tools() {
                   <p className="text-gray-600 font-light mb-6">
                     Track multiple debts and visualize your progress to becoming debt-free.
                   </p>
-                  <Button variant="outline" className="rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
-                    <Download className="w-4 h-4 mr-2" />
-                    Download PDF
+                  <Button variant="outline" className="rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white" disabled>
+                    Coming Soon
                   </Button>
                 </CardContent>
               </Card>
