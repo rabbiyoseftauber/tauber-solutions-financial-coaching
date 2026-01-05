@@ -418,7 +418,8 @@ const currencies = [
 ];
 
 export default function Tools() {
-  const [currency, setCurrency] = useState('USD');
+  const isUKSession = sessionStorage.getItem('isUKSession') === 'true';
+  const [currency, setCurrency] = useState(isUKSession ? 'GBP' : 'USD');
   
   const currentCurrency = currencies.find(c => c.code === currency);
   
