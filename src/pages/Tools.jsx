@@ -542,10 +542,10 @@ export default function Tools() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300">
+              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300 group">
                 <CardContent className="p-6 h-full flex flex-col">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
-                    <Target className="w-6 h-6 text-gray-500" />
+                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#c5a059]/10 mb-4 flex items-center justify-center transition-colors">
+                    <Target className="w-6 h-6 text-gray-500 group-hover:text-[#c5a059] transition-colors" />
                   </div>
                   <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Your Goals Sheet</h3>
                   <p className="text-gray-600 text-sm font-light flex-grow mb-6">
@@ -586,10 +586,10 @@ export default function Tools() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300">
+              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300 group">
                 <CardContent className="p-6 h-full flex flex-col">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
-                    <Wallet className="w-6 h-6 text-gray-500" />
+                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#c5a059]/10 mb-4 flex items-center justify-center transition-colors">
+                    <Wallet className="w-6 h-6 text-gray-500 group-hover:text-[#c5a059] transition-colors" />
                   </div>
                   <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Asset Sheet</h3>
                   <p className="text-gray-600 text-sm font-light flex-grow mb-6">
@@ -630,10 +630,10 @@ export default function Tools() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300">
+              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300 group">
                 <CardContent className="p-6 h-full flex flex-col">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
-                    <Calculator className="w-6 h-6 text-gray-500" />
+                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#c5a059]/10 mb-4 flex items-center justify-center transition-colors">
+                    <Calculator className="w-6 h-6 text-gray-500 group-hover:text-[#c5a059] transition-colors" />
                   </div>
                   <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Budget Planner</h3>
                   <p className="text-gray-600 text-sm font-light flex-grow mb-6">
@@ -674,10 +674,10 @@ export default function Tools() {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300">
+              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300 group">
                 <CardContent className="p-6 h-full flex flex-col">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
-                    <BookOpen className="w-6 h-6 text-gray-500" />
+                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#c5a059]/10 mb-4 flex items-center justify-center transition-colors">
+                    <BookOpen className="w-6 h-6 text-gray-500 group-hover:text-[#c5a059] transition-colors" />
                   </div>
                   <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Budget Category Guide</h3>
                   <p className="text-gray-600 text-sm font-light flex-grow mb-6">
