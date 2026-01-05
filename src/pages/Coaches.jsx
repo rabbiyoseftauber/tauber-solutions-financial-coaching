@@ -20,7 +20,7 @@ const coaches = [
   },
   {
     name: 'Naftale Ostreicher',
-    title: 'Executive Coach',
+    title: 'Senior Coach',
     email: 'naftale@taubersolutions.com',
     phone: '+1 (845) 502-3372',
     bio: 'Expert in personal finance transformation. Naftale specializes in helping clients break free from debt and build lasting wealth.',
@@ -29,21 +29,12 @@ const coaches = [
   },
   {
     name: 'Rivky Friedman',
-    title: 'Executive Coach',
+    title: 'Senior Coach',
     email: 'rivky@taubersolutions.com',
     phone: '+1 (845) 200-4365',
     bio: 'Coaching women & families toward secure futures. Rivky brings empathy and expertise to every client relationship.',
     image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
     id: 'rivky'
-  },
-  {
-    name: 'Moshe Gelbman',
-    title: 'Coach',
-    email: 'mgelbman@taubersolutions.com',
-    phone: '+1 (845) 587-8892',
-    bio: 'Helping clients build structure & confidence. Moshe\'s systematic approach makes complex financial concepts simple and actionable.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-    id: 'moshe'
   },
   {
     name: 'Sender Eckstein',
@@ -53,6 +44,15 @@ const coaches = [
     bio: 'As a UK-based financial coach with roots in the UK and experience working in Israel, I support clients in the UK and internationally.',
     image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80',
     id: 'sender'
+  },
+  {
+    name: 'Moshe Gelbman',
+    title: 'Coach',
+    email: 'mgelbman@taubersolutions.com',
+    phone: '+1 (845) 587-8892',
+    bio: 'Helping clients build structure & confidence. Moshe\'s systematic approach makes complex financial concepts simple and actionable.',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+    id: 'moshe'
   }
 ];
 
