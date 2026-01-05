@@ -556,7 +556,6 @@ export default function Tools() {
                       href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/83e47f6d0_UKGoalsSheet.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      download
                       className="block"
                     >
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
@@ -601,7 +600,6 @@ export default function Tools() {
                       href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/191dcde5b_UKAssetSheet.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      download
                       className="block"
                     >
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
@@ -646,7 +644,6 @@ export default function Tools() {
                       href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/668cc6683_TSMonthlyUKFinancialPlanner.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      download
                       className="block"
                     >
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
@@ -691,7 +688,6 @@ export default function Tools() {
                       href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/54dc673a5_TSUKCategoryGuide.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      download
                       className="block"
                     >
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
