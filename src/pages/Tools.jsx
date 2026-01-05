@@ -536,13 +536,13 @@ export default function Tools() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full border border-gray-200 hover:shadow-lg transition-all duration-300">
+              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
                     <Download className="w-6 h-6 text-gray-500" />
@@ -587,7 +587,7 @@ export default function Tools() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <Card className="h-full border border-gray-200 hover:shadow-lg transition-all duration-300">
+              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
                     <Download className="w-6 h-6 text-gray-500" />
@@ -632,7 +632,7 @@ export default function Tools() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <Card className="h-full border border-gray-200 hover:shadow-lg transition-all duration-300">
+              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
                     <Download className="w-6 h-6 text-gray-500" />
@@ -677,7 +677,7 @@ export default function Tools() {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <Card className="h-full border border-gray-200 hover:shadow-lg transition-all duration-300">
+              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
                     <Download className="w-6 h-6 text-gray-500" />
