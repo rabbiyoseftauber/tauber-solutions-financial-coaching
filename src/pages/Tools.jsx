@@ -551,13 +551,13 @@ export default function Tools() {
                     A comprehensive budget template to track income, expenses, and savings goals.
                   </p>
                   <a 
-                    href="https://docs.google.com/spreadsheets/d/1KeTnYl06KSBlG9wytccLqxCe7Ym-lFQo/edit?gid=2134956251#gid=2134956251"
+                    href="https://docs.google.com/spreadsheets/d/1KeTnYl06KSBlG9wytccLqxCe7Ym-lFQo/copy"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <Button variant="outline" className="rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
                       <Download className="w-4 h-4 mr-2" />
-                      Open Template
+                      Make a Copy
                     </Button>
                   </a>
                 </CardContent>
