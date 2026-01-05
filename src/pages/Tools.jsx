@@ -453,10 +453,29 @@ export default function Tools() {
               Your Financial Toolkit —{' '}
               <span className="text-[#c5a059] font-normal">No Cost, Just Clarity</span>
             </h1>
-            <p className="text-xl text-gray-300 font-light leading-relaxed">
+            <p className="text-xl text-gray-300 font-light leading-relaxed mb-8">
               Practical tools to plan, budget, and invest smarter. 
               Start making informed financial decisions today.
             </p>
+            
+            <div className="flex items-center gap-3 flex-wrap">
+              <span className="text-white/80 font-medium">Select Your Currency:</span>
+              <div className="flex gap-2 bg-white/10 p-1.5 rounded-lg flex-wrap">
+                {currencies.map((curr) => (
+                  <button
+                    key={curr.code}
+                    onClick={() => setCurrency(curr.code)}
+                    className={`px-5 py-2.5 text-sm font-semibold transition-all rounded-lg ${
+                      currency === curr.code
+                        ? 'bg-[#c5a059] text-white shadow-lg'
+                        : 'text-white/70 hover:text-white hover:bg-white/20'
+                    }`}
+                  >
+                    {curr.symbol} {curr.code}
+                  </button>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -473,25 +492,6 @@ export default function Tools() {
             <h2 className="text-3xl md:text-4xl font-light text-[#1a2b4b] mb-6">
               Financial <span className="font-normal">Calculators</span>
             </h2>
-            
-            <div className="flex items-center justify-center gap-2 flex-wrap">
-              <span className="text-sm text-gray-600 font-medium">Currency:</span>
-              <div className="flex gap-2 bg-[#1a2b4b]/10 p-1.5 rounded-lg flex-wrap">
-                {currencies.map((curr) => (
-                  <button
-                    key={curr.code}
-                    onClick={() => setCurrency(curr.code)}
-                    className={`px-4 py-2 text-sm font-medium transition-all rounded-lg ${
-                      currency === curr.code
-                        ? 'bg-[#1a2b4b] text-white shadow-md'
-                        : 'text-gray-600 hover:text-[#1a2b4b] hover:bg-white/50'
-                    }`}
-                  >
-                    {curr.symbol} {curr.code}
-                  </button>
-                ))}
-              </div>
-            </div>
           </motion.div>
 
           <Tabs defaultValue="investment" className="max-w-4xl mx-auto">
@@ -547,13 +547,17 @@ export default function Tools() {
                   <div className="w-14 h-14 bg-[#c5a059]/10 flex items-center justify-center mb-6 group-hover:bg-[#c5a059]/20 transition-colors rounded-lg">
                     <Download className="w-7 h-7 text-[#c5a059]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Sample Budget Template</h3>
+                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Sample Budget Template ({currentCurrency.code})</h3>
                   <p className="text-gray-600 font-light mb-6">
                     A comprehensive budget template to track income, expenses, and savings goals.
                   </p>
                   <div className="flex flex-col gap-3">
                     <a 
-                      href="https://docs.google.com/spreadsheets/d/1KeTnYl06KSBlG9wytccLqxCe7Ym-lFQo/copy"
+                      href={
+                        currency === 'USD' ? 'https://docs.google.com/spreadsheets/d/1KeTnYl06KSBlG9wytccLqxCe7Ym-lFQo/copy' :
+                        currency === 'GBP' ? 'https://docs.google.com/spreadsheets/d/1KeTnYl06KSBlG9wytccLqxCe7Ym-lFQo/copy' :
+                        'https://docs.google.com/spreadsheets/d/1KeTnYl06KSBlG9wytccLqxCe7Ym-lFQo/copy'
+                      }
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block"
@@ -564,7 +568,11 @@ export default function Tools() {
                       </Button>
                     </a>
                     <a 
-                      href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/fb4873d49_TS_Monthly_UK_Financial_Planner.pdf"
+                      href={
+                        currency === 'USD' ? 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/fb4873d49_TS_Monthly_UK_Financial_Planner.pdf' :
+                        currency === 'GBP' ? 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/fb4873d49_TS_Monthly_UK_Financial_Planner.pdf' :
+                        'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/fb4873d49_TS_Monthly_UK_Financial_Planner.pdf'
+                      }
                       target="_blank"
                       rel="noopener noreferrer"
                       download
