@@ -536,7 +536,7 @@ export default function Tools() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -547,32 +547,13 @@ export default function Tools() {
                   <div className="w-14 h-14 bg-[#c5a059]/10 flex items-center justify-center mb-6 group-hover:bg-[#c5a059]/20 transition-colors rounded-lg">
                     <Download className="w-7 h-7 text-[#c5a059]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Sample Budget Template ({currentCurrency.code})</h3>
+                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Your Goals Sheet</h3>
                   <p className="text-gray-600 font-light mb-6">
-                    A comprehensive budget template to track income, expenses, and savings goals.
+                    Capture your goals simply and clearly. It's the starting point for building your plan.
                   </p>
                   <div className="flex flex-col gap-3">
                     <a 
-                      href={
-                        currency === 'USD' ? 'https://docs.google.com/spreadsheets/d/1KeTnYl06KSBlG9wytccLqxCe7Ym-lFQo/copy' :
-                        currency === 'GBP' ? 'https://docs.google.com/spreadsheets/d/1KeTnYl06KSBlG9wytccLqxCe7Ym-lFQo/copy' :
-                        'https://docs.google.com/spreadsheets/d/1KeTnYl06KSBlG9wytccLqxCe7Ym-lFQo/copy'
-                      }
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block"
-                    >
-                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
-                        <Download className="w-4 h-4 mr-2" />
-                        Google Sheets
-                      </Button>
-                    </a>
-                    <a 
-                      href={
-                        currency === 'USD' ? 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/fb4873d49_TS_Monthly_UK_Financial_Planner.pdf' :
-                        currency === 'GBP' ? 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/fb4873d49_TS_Monthly_UK_Financial_Planner.pdf' :
-                        'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/fb4873d49_TS_Monthly_UK_Financial_Planner.pdf'
-                      }
+                      href="#"
                       target="_blank"
                       rel="noopener noreferrer"
                       download
@@ -581,6 +562,18 @@ export default function Tools() {
                       <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
                         <Download className="w-4 h-4 mr-2" />
                         Download PDF
+                      </Button>
+                    </a>
+                    <a 
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                      className="block"
+                    >
+                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                        <Download className="w-4 h-4 mr-2" />
+                        Download Excel
                       </Button>
                     </a>
                   </div>
@@ -599,13 +592,36 @@ export default function Tools() {
                   <div className="w-14 h-14 bg-[#c5a059]/10 flex items-center justify-center mb-6 group-hover:bg-[#c5a059]/20 transition-colors rounded-lg">
                     <Download className="w-7 h-7 text-[#c5a059]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Debt Payoff Tracker</h3>
+                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Asset Sheet</h3>
                   <p className="text-gray-600 font-light mb-6">
-                    Track multiple debts and visualize your progress to becoming debt-free.
+                    See your full financial picture in one clear sheet. Review it monthly to support real action and progress.
                   </p>
-                  <Button variant="outline" className="rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white" disabled>
-                    Coming Soon
-                  </Button>
+                  <div className="flex flex-col gap-3">
+                    <a 
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                      className="block"
+                    >
+                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                        <Download className="w-4 h-4 mr-2" />
+                        Download PDF
+                      </Button>
+                    </a>
+                    <a 
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                      className="block"
+                    >
+                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                        <Download className="w-4 h-4 mr-2" />
+                        Download Excel
+                      </Button>
+                    </a>
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
@@ -621,13 +637,81 @@ export default function Tools() {
                   <div className="w-14 h-14 bg-[#c5a059]/10 flex items-center justify-center mb-6 group-hover:bg-[#c5a059]/20 transition-colors rounded-lg">
                     <Download className="w-7 h-7 text-[#c5a059]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Financial Goals Worksheet</h3>
+                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Budget Planner</h3>
                   <p className="text-gray-600 font-light mb-6">
-                    Define clear financial goals and create actionable steps to achieve them.
+                    A powerful Excel budget tool you can also upload to Google Sheets for tracking. Plan your month, track weekly, and stay on top of spending with clear totals.
                   </p>
-                  <Button variant="outline" className="rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white" disabled>
-                    Coming Soon
-                  </Button>
+                  <div className="flex flex-col gap-3">
+                    <a 
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                      className="block"
+                    >
+                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                        <Download className="w-4 h-4 mr-2" />
+                        Download PDF
+                      </Button>
+                    </a>
+                    <a 
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                      className="block"
+                    >
+                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                        <Download className="w-4 h-4 mr-2" />
+                        Download Excel
+                      </Button>
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <Card className="h-full border-0 shadow-sm hover:shadow-lg transition-shadow group">
+                <CardContent className="p-8">
+                  <div className="w-14 h-14 bg-[#c5a059]/10 flex items-center justify-center mb-6 group-hover:bg-[#c5a059]/20 transition-colors rounded-lg">
+                    <Download className="w-7 h-7 text-[#c5a059]" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-3">Budget Category Guide</h3>
+                  <p className="text-gray-600 font-light mb-6">
+                    A ready-made list of categories to use in the UK Budget Planner dropdowns. This guide matches the category dropdowns in the UK Budget Planner.
+                  </p>
+                  <div className="flex flex-col gap-3">
+                    <a 
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                      className="block"
+                    >
+                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                        <Download className="w-4 h-4 mr-2" />
+                        Download PDF
+                      </Button>
+                    </a>
+                    <a 
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                      className="block"
+                    >
+                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                        <Download className="w-4 h-4 mr-2" />
+                        Download Excel
+                      </Button>
+                    </a>
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
