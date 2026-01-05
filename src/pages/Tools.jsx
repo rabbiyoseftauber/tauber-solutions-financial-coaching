@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Download, TrendingUp, Home, Building2, CreditCard, ArrowRight, Brain } from 'lucide-react';
+import { Download, TrendingUp, Home, Building2, CreditCard, ArrowRight, Brain, Target, Wallet, Calculator, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import FinancialQuiz from '@/components/interactive/FinancialQuiz';
@@ -545,7 +545,7 @@ export default function Tools() {
               <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
-                    <Download className="w-6 h-6 text-gray-500" />
+                    <Target className="w-6 h-6 text-gray-500" />
                   </div>
                   <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Your Goals Sheet</h3>
                   <p className="text-gray-600 text-sm font-light flex-grow mb-6">
@@ -589,7 +589,7 @@ export default function Tools() {
               <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
-                    <Download className="w-6 h-6 text-gray-500" />
+                    <Wallet className="w-6 h-6 text-gray-500" />
                   </div>
                   <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Asset Sheet</h3>
                   <p className="text-gray-600 text-sm font-light flex-grow mb-6">
@@ -633,7 +633,7 @@ export default function Tools() {
               <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
-                    <Download className="w-6 h-6 text-gray-500" />
+                    <Calculator className="w-6 h-6 text-gray-500" />
                   </div>
                   <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Budget Planner</h3>
                   <p className="text-gray-600 text-sm font-light flex-grow mb-6">
@@ -677,7 +677,7 @@ export default function Tools() {
               <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className="w-12 h-12 rounded-full bg-gray-100 mb-4 flex items-center justify-center">
-                    <Download className="w-6 h-6 text-gray-500" />
+                    <BookOpen className="w-6 h-6 text-gray-500" />
                   </div>
                   <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Budget Category Guide</h3>
                   <p className="text-gray-600 text-sm font-light flex-grow mb-6">
