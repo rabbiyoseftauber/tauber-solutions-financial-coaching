@@ -38,7 +38,7 @@ const coaches = [
   },
   {
     name: 'Sender Eckstein',
-    title: 'Coach',
+    title: 'Financial Coach',
     email: 'sendere@taubersolutions.com',
     phone: '+44 (739) 278-8116',
     bio: 'As a UK-based financial coach with roots in the UK and experience working in Israel, I support clients in the UK and internationally.',
@@ -47,7 +47,7 @@ const coaches = [
   },
   {
     name: 'Moshe Gelbman',
-    title: 'Coach',
+    title: 'Financial Coach',
     email: 'mgelbman@taubersolutions.com',
     phone: '+1 (845) 587-8892',
     bio: 'Helping clients build structure & confidence. Moshe\'s systematic approach makes complex financial concepts simple and actionable.',

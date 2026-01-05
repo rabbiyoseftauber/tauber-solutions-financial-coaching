@@ -17,7 +17,7 @@ const getSessionTypes = (coachId) => {
     {
       id: 'free-call',
       title: 'Free Info Call',
-      duration: '15 minutes',
+      duration: '5 minutes',
       price: 'Free',
       description: 'Quick introduction to learn about our services and see if we\'re a good fit.',
       icon: Phone
@@ -54,8 +54,8 @@ const coaches = [
   { id: 'chaim', name: 'Chaim Tauber - CEO & Executive Coach' },
   { id: 'naftale', name: 'Naftale Ostreicher - Senior Coach' },
   { id: 'rivky', name: 'Rivky Friedman - Senior Coach' },
-  { id: 'sender', name: 'Sender Eckstein - Coach' },
-  { id: 'moshe', name: 'Moshe Gelbman - Coach' }
+  { id: 'sender', name: 'Sender Eckstein - Financial Coach' },
+  { id: 'moshe', name: 'Moshe Gelbman - Financial Coach' }
 ];
 
 export default function Schedule() {
