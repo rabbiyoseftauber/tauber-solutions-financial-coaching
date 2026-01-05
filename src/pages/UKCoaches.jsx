@@ -29,7 +29,7 @@ const coaches = [
   },
   {
     name: 'Naftale Ostreicher',
-    title: 'Executive Coach',
+    title: 'Senior Coach',
     email: 'naftale@taubersolutions.com',
     phone: '+1 (845) 502-3372',
     bio: 'Expert in personal finance transformation. Naftale specializes in helping clients break free from debt and build lasting wealth.',
@@ -38,7 +38,7 @@ const coaches = [
   },
   {
     name: 'Rivky Friedman',
-    title: 'Executive Coach',
+    title: 'Senior Coach',
     email: 'rivky@taubersolutions.com',
     phone: '+1 (845) 200-4365',
     bio: 'Coaching women & families toward secure futures. Rivky brings empathy and expertise to every client relationship.',
