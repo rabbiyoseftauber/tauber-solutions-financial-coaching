@@ -550,16 +550,31 @@ export default function Tools() {
                   <p className="text-gray-600 font-light mb-6">
                     A comprehensive budget template to track income, expenses, and savings goals.
                   </p>
-                  <a 
-                    href="https://docs.google.com/spreadsheets/d/1KeTnYl06KSBlG9wytccLqxCe7Ym-lFQo/copy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button variant="outline" className="rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
-                      <Download className="w-4 h-4 mr-2" />
-                      Make a Copy
-                    </Button>
-                  </a>
+                  <div className="flex flex-col gap-3">
+                    <a 
+                      href="https://docs.google.com/spreadsheets/d/1KeTnYl06KSBlG9wytccLqxCe7Ym-lFQo/copy"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                        <Download className="w-4 h-4 mr-2" />
+                        Google Sheets
+                      </Button>
+                    </a>
+                    <a 
+                      href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/fb4873d49_TS_Monthly_UK_Financial_Planner.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                      className="block"
+                    >
+                      <Button variant="outline" className="w-full rounded-lg border-[#1a2b4b] text-[#1a2b4b] hover:bg-[#1a2b4b] hover:text-white">
+                        <Download className="w-4 h-4 mr-2" />
+                        Download PDF
+                      </Button>
+                    </a>
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
