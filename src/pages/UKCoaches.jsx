@@ -172,7 +172,7 @@ export default function UKCoaches() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {coaches.slice(1).map((coach, index) => (
               <motion.div
                 key={coach.name}
@@ -213,9 +213,9 @@ export default function UKCoaches() {
                     {coach.bio}
                   </p>
                   <Link to={createPageUrl('Schedule') + '?coach=' + coach.id} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                    <Button className="w-full bg-[#1a2b4b] hover:bg-[#2c3e50] text-white py-4 rounded-none text-sm group">
+                    <Button className="w-full bg-[#1a2b4b] hover:bg-[#2c3e50] text-white py-4 px-3 rounded-none text-xs sm:text-sm group whitespace-nowrap">
                       Schedule with {coach.name.split(' ')[0]}
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="ml-1 sm:ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </Link>
                 </div>
