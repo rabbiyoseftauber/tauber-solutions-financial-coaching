@@ -632,7 +632,7 @@ const resourcesData = [
   {
     id: 'goals',
     title: 'Your Goals Sheet',
-    description: 'Capture your goals simply and clearly. It's the starting point for building your plan.',
+    description: "Capture your goals simply and clearly. It's the starting point for building your plan.",
     icon: Target,
     links: {
       GBP: {
