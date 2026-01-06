@@ -743,9 +743,7 @@ export default function Tools() {
                     </a>
                     <a
                       href="https://docs.google.com/spreadsheets/d/10wTabnJSDS6fHRUYk3Fj2ade7loGHxQ3/export?format=xlsx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      download
+                      download="Goals-Sheet.xlsx"
                       className="block">
 
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
@@ -787,9 +785,7 @@ export default function Tools() {
                     </a>
                     <a
                       href="https://docs.google.com/spreadsheets/d/1JiVVyn2C9rfZ2gGqkcldAJ7DUpohRHus/export?format=xlsx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      download
+                      download="Asset-Sheet.xlsx"
                       className="block">
 
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
@@ -831,9 +827,7 @@ export default function Tools() {
                     </a>
                     <a
                       href="https://docs.google.com/spreadsheets/d/1OWSZoa6DQ-n3HeHtw-cUjBnwbRW-hVte/export?format=xlsx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      download
+                      download="Budget-Planner.xlsx"
                       className="block">
 
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
@@ -875,9 +869,7 @@ export default function Tools() {
                     </a>
                     <a
                       href="https://docs.google.com/spreadsheets/d/1XsoYxlf9BWJuB1kdSbL9-yySmOe2ipls/export?format=xlsx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      download
+                      download="Budget-Category-Guide.xlsx"
                       className="block">
 
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
