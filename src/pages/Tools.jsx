@@ -31,7 +31,7 @@ function InvestmentCalculator({ formatCurrency, currency }) {
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
       <div className="flex items-center gap-4 mb-8">
-        <div className="w-14 h-14 bg-[#c5a059] rounded-full flex items-center justify-center">
+        <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
           <TrendingUp className="w-7 h-7 text-white" />
         </div>
         <h3 className="text-2xl font-bold text-white">Investment Calculator</h3>
@@ -45,7 +45,7 @@ function InvestmentCalculator({ formatCurrency, currency }) {
             value={principal.toLocaleString()}
             onChange={(e) => setPrincipal(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 10,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
         <div>
@@ -55,7 +55,7 @@ function InvestmentCalculator({ formatCurrency, currency }) {
             value={monthly.toLocaleString()}
             onChange={(e) => setMonthly(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 500"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
         <div>
@@ -65,7 +65,7 @@ function InvestmentCalculator({ formatCurrency, currency }) {
             value={rate}
             onChange={(e) => setRate(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 7"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
         <div>
@@ -75,14 +75,14 @@ function InvestmentCalculator({ formatCurrency, currency }) {
             value={years}
             onChange={(e) => setYears(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 20"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
       </div>
       
       <div className="pt-6 border-t border-white/10">
         <p className="text-gray-400 text-sm mb-2">Potential Future Value:</p>
-        <p className="text-5xl font-bold text-[#c5a059] mb-6">
+        <p className="text-5xl font-bold text-[#C2983B] mb-6">
           {formatCurrency(result.futureValue)}
         </p>
         <div className="grid grid-cols-2 gap-4">
@@ -125,7 +125,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
       <div className="flex items-center gap-4 mb-8">
-        <div className="w-14 h-14 bg-[#c5a059] rounded-full flex items-center justify-center">
+        <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
           <Home className="w-7 h-7 text-white" />
         </div>
         <h3 className="text-2xl font-bold text-white">Mortgage Calculator</h3>
@@ -139,7 +139,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
             value={homePrice.toLocaleString()}
             onChange={(e) => setHomePrice(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 400,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
         <div>
@@ -149,7 +149,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
             value={downPayment.toLocaleString()}
             onChange={(e) => setDownPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 80,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
         <div>
@@ -159,7 +159,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
             value={interestRate}
             onChange={(e) => setInterestRate(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 6.5"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
         <div>
@@ -169,14 +169,14 @@ function MortgageCalculator({ formatCurrency, currency }) {
             value={loanTerm}
             onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 30"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
       </div>
       
       <div className="pt-6 border-t border-white/10">
         <p className="text-gray-400 text-sm mb-2">Monthly Payment:</p>
-        <p className="text-5xl font-bold text-[#c5a059] mb-6">
+        <p className="text-5xl font-bold text-[#C2983B] mb-6">
           {formatCurrency(result.monthlyPayment)}
         </p>
         <div className="grid grid-cols-2 gap-4">
@@ -224,7 +224,7 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
       <div className="flex items-center gap-4 mb-8">
-        <div className="w-14 h-14 bg-[#c5a059] rounded-full flex items-center justify-center">
+        <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
           <Building2 className="w-7 h-7 text-white" />
         </div>
         <h3 className="text-2xl font-bold text-white">Commercial Mortgage</h3>
@@ -238,7 +238,7 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
             value={propertyValue.toLocaleString()}
             onChange={(e) => setPropertyValue(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 1,500,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
         <div>
@@ -248,7 +248,7 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
             value={downPayment.toLocaleString()}
             onChange={(e) => setDownPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 375,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
         <div>
@@ -258,7 +258,7 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
             value={interestRate}
             onChange={(e) => setInterestRate(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 7.5"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
         <div>
@@ -268,7 +268,7 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
             value={loanTerm}
             onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 20"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
         <div>
@@ -278,14 +278,14 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
             value={annualIncome.toLocaleString()}
             onChange={(e) => setAnnualIncome(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 180,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
       </div>
       
       <div className="pt-6 border-t border-white/10">
         <p className="text-gray-400 text-sm mb-2">Monthly Payment:</p>
-        <p className="text-5xl font-bold text-[#c5a059] mb-6">
+        <p className="text-5xl font-bold text-[#C2983B] mb-6">
           {formatCurrency(result.monthlyPayment)}
         </p>
         <div className="grid grid-cols-2 gap-4">
@@ -338,7 +338,7 @@ function LoanCalculator({ formatCurrency, currency }) {
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
       <div className="flex items-center gap-4 mb-8">
-        <div className="w-14 h-14 bg-[#c5a059] rounded-full flex items-center justify-center">
+        <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
           <CreditCard className="w-7 h-7 text-white" />
         </div>
         <h3 className="text-2xl font-bold text-white">Loan Calculator</h3>
@@ -352,7 +352,7 @@ function LoanCalculator({ formatCurrency, currency }) {
             value={loanAmount.toLocaleString()}
             onChange={(e) => setLoanAmount(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 25,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
         <div>
@@ -362,7 +362,7 @@ function LoanCalculator({ formatCurrency, currency }) {
             value={interestRate}
             onChange={(e) => setInterestRate(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 8"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
         <div>
@@ -372,14 +372,14 @@ function LoanCalculator({ formatCurrency, currency }) {
             value={loanTerm}
             onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 5"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
       </div>
       
       <div className="pt-6 border-t border-white/10">
         <p className="text-gray-400 text-sm mb-2">Monthly Payment:</p>
-        <p className="text-5xl font-bold text-[#c5a059] mb-6">
+        <p className="text-5xl font-bold text-[#C2983B] mb-6">
           {formatCurrency(result.monthlyPayment)}
         </p>
         <div className="grid grid-cols-2 gap-4">
@@ -434,7 +434,7 @@ export default function Tools() {
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-[#1a2b4b] via-[#2c3e50] to-[#1a2b4b] relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute bottom-20 right-20 w-96 h-96 border border-[#c5a059] rounded-full" />
+          <div className="absolute bottom-20 right-20 w-96 h-96 border border-[#C2983B] rounded-full" />
         </div>
         
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
@@ -443,12 +443,12 @@ export default function Tools() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl">
 
-            <span className="text-[#c5a059] text-sm tracking-[0.3em] uppercase mb-4 block">
+            <span className="text-[#C2983B] text-sm tracking-[0.3em] uppercase mb-4 block">
               Free Resources
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
               Your Financial Toolkit —{' '}
-              <span className="text-[#c5a059] font-normal">No Cost, Just Clarity</span>
+              <span className="text-[#C2983B] font-normal">No Cost, Just Clarity</span>
             </h1>
             <p className="text-xl text-gray-300 font-light leading-relaxed mb-8">
               Practical tools to plan, budget, and invest smarter. 
@@ -464,7 +464,7 @@ export default function Tools() {
                   onClick={() => setCurrency(curr.code)}
                   className={`px-5 py-2.5 text-sm font-semibold transition-all rounded-lg ${
                   currency === curr.code ?
-                  'bg-[#c5a059] text-white shadow-lg' :
+                  'bg-[#C2983B] text-white shadow-lg' :
                   'text-white/70 hover:text-white hover:bg-white/20'}`
                   }>
 
@@ -531,9 +531,9 @@ export default function Tools() {
             <h2 className="text-3xl md:text-4xl font-light text-[#1a2b4b]">
               Downloadable <span className="font-normal">Resources</span>
             </h2>
-            <div className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-[#c5a059]/10 rounded-lg">
+            <div className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-[#C2983B]/10 rounded-lg">
               <span className="text-sm text-[#1a2b4b] font-medium">Currency:</span>
-              <span className="text-sm font-semibold text-[#c5a059]">{currentCurrency.symbol} {currentCurrency.code}</span>
+              <span className="text-sm font-semibold text-[#C2983B]">{currentCurrency.symbol} {currentCurrency.code}</span>
             </div>
           </motion.div>
 
@@ -543,10 +543,10 @@ export default function Tools() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}>
 
-              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300 group">
+              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#C2983B] hover:shadow-lg transition-all duration-300 group">
                 <CardContent className="p-6 h-full flex flex-col">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#c5a059]/10 mb-4 flex items-center justify-center transition-colors">
-                    <Target className="w-6 h-6 text-gray-500 group-hover:text-[#c5a059] transition-colors" />
+                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#C2983B]/10 mb-4 flex items-center justify-center transition-colors">
+                    <Target className="w-6 h-6 text-gray-500 group-hover:text-[#C2983B] transition-colors" />
                   </div>
                   <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Your Goals Sheet</h3>
                   <p className="text-gray-600 text-sm font-light flex-grow mb-6">
@@ -587,10 +587,10 @@ export default function Tools() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}>
 
-              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300 group">
+              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#C2983B] hover:shadow-lg transition-all duration-300 group">
                 <CardContent className="p-6 h-full flex flex-col">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#c5a059]/10 mb-4 flex items-center justify-center transition-colors">
-                    <Wallet className="w-6 h-6 text-gray-500 group-hover:text-[#c5a059] transition-colors" />
+                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#C2983B]/10 mb-4 flex items-center justify-center transition-colors">
+                    <Wallet className="w-6 h-6 text-gray-500 group-hover:text-[#C2983B] transition-colors" />
                   </div>
                   <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Asset Sheet</h3>
                   <p className="text-gray-600 text-sm font-light flex-grow mb-6">
@@ -631,10 +631,10 @@ export default function Tools() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}>
 
-              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300 group">
+              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#C2983B] hover:shadow-lg transition-all duration-300 group">
                 <CardContent className="p-6 h-full flex flex-col">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#c5a059]/10 mb-4 flex items-center justify-center transition-colors">
-                    <Calculator className="w-6 h-6 text-gray-500 group-hover:text-[#c5a059] transition-colors" />
+                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#C2983B]/10 mb-4 flex items-center justify-center transition-colors">
+                    <Calculator className="w-6 h-6 text-gray-500 group-hover:text-[#C2983B] transition-colors" />
                   </div>
                   <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Budget Planner</h3>
                   <p className="text-gray-600 text-sm font-light flex-grow mb-6">
@@ -675,10 +675,10 @@ export default function Tools() {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}>
 
-              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300 group">
+              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#C2983B] hover:shadow-lg transition-all duration-300 group">
                 <CardContent className="p-6 h-full flex flex-col">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#c5a059]/10 mb-4 flex items-center justify-center transition-colors">
-                    <BookOpen className="w-6 h-6 text-gray-500 group-hover:text-[#c5a059] transition-colors" />
+                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#C2983B]/10 mb-4 flex items-center justify-center transition-colors">
+                    <BookOpen className="w-6 h-6 text-gray-500 group-hover:text-[#C2983B] transition-colors" />
                   </div>
                   <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Budget Category Guide</h3>
                   <p className="text-gray-600 text-sm font-light flex-grow mb-6">
@@ -725,8 +725,8 @@ export default function Tools() {
             viewport={{ once: true }}
             className="text-center mb-16">
 
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-[#c5a059]/10 rounded-full mb-6">
-              <Brain className="w-8 h-8 text-[#c5a059]" />
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-[#C2983B]/10 rounded-full mb-6">
+              <Brain className="w-8 h-8 text-[#C2983B]" />
             </div>
             <h2 className="text-3xl md:text-4xl font-light text-[#1a2b4b]">
               Test Your <span className="font-normal">Financial Knowledge</span>

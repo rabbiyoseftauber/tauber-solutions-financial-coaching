@@ -53,7 +53,7 @@ export default function Layout({ children, currentPageName }) {
 
         :root {
           --color-primary: #1a2b4b;
-          --color-accent: #c5a059;
+          --color-accent: #C2983B;
         }
       `}</style>
 
