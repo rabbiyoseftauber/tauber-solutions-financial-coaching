@@ -181,8 +181,12 @@ export default function Coaches() {
                     {coach.bio}
                   </p>
                   <Link to={createPageUrl('Schedule') + '?coach=' + coach.id} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                    <Button className="w-full bg-[#1a2b4b] hover:bg-[#2c3e50] text-white py-3 px-2 rounded-lg shadow-lg text-[11px] leading-tight group">
-                      Schedule with<br />{coach.id === 'rivky' ? 'Mrs. Friedman' : coach.name.split(' ')[0]}
+                    <Button className="w-full bg-[#1a2b4b] hover:bg-[#2c3e50] text-white py-3 px-2 rounded-lg shadow-lg text-[11px] leading-tight group flex flex-col items-center">
+                      <span>Schedule with</span>
+                      <span className="flex items-center gap-1">
+                        {coach.id === 'rivky' ? 'Mrs. Friedman' : coach.name.split(' ')[0]}
+                        <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                      </span>
                     </Button>
                   </Link>
                 </div>
