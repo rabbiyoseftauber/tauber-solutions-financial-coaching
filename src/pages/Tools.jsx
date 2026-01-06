@@ -109,6 +109,8 @@ function MortgageCalculator({ formatCurrency, currency }) {
   const [downPayment, setDownPayment] = useState(80000);
   const [interestRate, setInterestRate] = useState(6.5);
   const [loanTerm, setLoanTerm] = useState(30);
+  const [showAmortization, setShowAmortization] = useState(false);
+  const [viewMode, setViewMode] = useState('yearly');
 
   const calculateMortgage = () => {
     const principal = homePrice - downPayment;
@@ -120,7 +122,44 @@ function MortgageCalculator({ formatCurrency, currency }) {
     return { monthlyPayment, totalPayment, totalInterest, principal };
   };
 
+  const calculateAmortization = () => {
+    const principal = homePrice - downPayment;
+    const r = interestRate / 100 / 12;
+    const monthlyPayment = calculateMortgage().monthlyPayment;
+    let balance = principal;
+    const schedule = [];
+
+    for (let month = 1; month <= loanTerm * 12; month++) {
+      const interestPayment = balance * r;
+      const principalPayment = monthlyPayment - interestPayment;
+      balance -= principalPayment;
+
+      schedule.push({
+        month,
+        year: Math.ceil(month / 12),
+        principal: principalPayment,
+        interest: interestPayment,
+        balance: Math.max(0, balance)
+      });
+    }
+
+    // Aggregate by year
+    const yearlySchedule = [];
+    for (let year = 1; year <= loanTerm; year++) {
+      const yearData = schedule.filter(m => m.year === year);
+      yearlySchedule.push({
+        year,
+        principal: yearData.reduce((sum, m) => sum + m.principal, 0),
+        interest: yearData.reduce((sum, m) => sum + m.interest, 0),
+        balance: yearData[yearData.length - 1].balance
+      });
+    }
+
+    return { monthly: schedule, yearly: yearlySchedule };
+  };
+
   const result = calculateMortgage();
+  const amortization = calculateAmortization();
 
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
@@ -179,7 +218,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
         <p className="text-5xl font-bold text-[#C2983B] mb-6">
           {formatCurrency(result.monthlyPayment)}
         </p>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 mb-6">
           <div>
             <p className="text-gray-400 text-xs mb-1">Loan Amount</p>
             <p className="text-lg font-medium text-white">
@@ -193,6 +232,56 @@ function MortgageCalculator({ formatCurrency, currency }) {
             </p>
           </div>
         </div>
+
+        <button
+          onClick={() => setShowAmortization(!showAmortization)}
+          className="w-full bg-[#1a2b4b]/70 hover:bg-[#1a2b4b] text-white py-3 rounded-lg transition-colors">
+          {showAmortization ? 'Hide' : 'Show'} Amortization Schedule
+        </button>
+
+        {showAmortization && (
+          <div className="mt-6 border-t border-white/10 pt-6">
+            <div className="flex gap-2 mb-4">
+              <button
+                onClick={() => setViewMode('yearly')}
+                className={`flex-1 py-2 rounded-lg transition-colors ${
+                  viewMode === 'yearly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'
+                }`}>
+                Yearly
+              </button>
+              <button
+                onClick={() => setViewMode('monthly')}
+                className={`flex-1 py-2 rounded-lg transition-colors ${
+                  viewMode === 'monthly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'
+                }`}>
+                Monthly
+              </button>
+            </div>
+
+            <div className="max-h-96 overflow-y-auto">
+              <table className="w-full text-sm">
+                <thead className="sticky top-0 bg-[#2c3e50]">
+                  <tr className="text-gray-400 border-b border-white/10">
+                    <th className="text-left py-2">{viewMode === 'yearly' ? 'Year' : 'Month'}</th>
+                    <th className="text-right py-2">Interest</th>
+                    <th className="text-right py-2">Principal</th>
+                    <th className="text-right py-2">Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(viewMode === 'yearly' ? amortization.yearly : amortization.monthly).map((row, idx) => (
+                    <tr key={idx} className="border-b border-white/5 text-gray-300">
+                      <td className="py-2">{viewMode === 'yearly' ? row.year : row.month}</td>
+                      <td className="text-right">{formatCurrency(row.interest)}</td>
+                      <td className="text-right">{formatCurrency(row.principal)}</td>
+                      <td className="text-right">{formatCurrency(row.balance)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
     </div>);
 
@@ -204,6 +293,8 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
   const [interestRate, setInterestRate] = useState(7.5);
   const [loanTerm, setLoanTerm] = useState(20);
   const [annualIncome, setAnnualIncome] = useState(180000);
+  const [showAmortization, setShowAmortization] = useState(false);
+  const [viewMode, setViewMode] = useState('yearly');
 
   const calculateCommercialMortgage = () => {
     const principal = propertyValue - downPayment;
@@ -219,7 +310,43 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
     return { monthlyPayment, totalPayment, totalInterest, principal, dscr, ltv };
   };
 
+  const calculateAmortization = () => {
+    const principal = propertyValue - downPayment;
+    const r = interestRate / 100 / 12;
+    const monthlyPayment = calculateCommercialMortgage().monthlyPayment;
+    let balance = principal;
+    const schedule = [];
+
+    for (let month = 1; month <= loanTerm * 12; month++) {
+      const interestPayment = balance * r;
+      const principalPayment = monthlyPayment - interestPayment;
+      balance -= principalPayment;
+
+      schedule.push({
+        month,
+        year: Math.ceil(month / 12),
+        principal: principalPayment,
+        interest: interestPayment,
+        balance: Math.max(0, balance)
+      });
+    }
+
+    const yearlySchedule = [];
+    for (let year = 1; year <= loanTerm; year++) {
+      const yearData = schedule.filter(m => m.year === year);
+      yearlySchedule.push({
+        year,
+        principal: yearData.reduce((sum, m) => sum + m.principal, 0),
+        interest: yearData.reduce((sum, m) => sum + m.interest, 0),
+        balance: yearData[yearData.length - 1].balance
+      });
+    }
+
+    return { monthly: schedule, yearly: yearlySchedule };
+  };
+
   const result = calculateCommercialMortgage();
+  const amortization = calculateAmortization();
 
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
@@ -396,6 +523,56 @@ function LoanCalculator({ formatCurrency, currency }) {
             </p>
           </div>
         </div>
+
+        <button
+          onClick={() => setShowAmortization(!showAmortization)}
+          className="w-full bg-[#1a2b4b]/70 hover:bg-[#1a2b4b] text-white py-3 rounded-lg transition-colors mt-6">
+          {showAmortization ? 'Hide' : 'Show'} Amortization Schedule
+        </button>
+
+        {showAmortization && (
+          <div className="mt-6 border-t border-white/10 pt-6">
+            <div className="flex gap-2 mb-4">
+              <button
+                onClick={() => setViewMode('yearly')}
+                className={`flex-1 py-2 rounded-lg transition-colors ${
+                  viewMode === 'yearly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'
+                }`}>
+                Yearly
+              </button>
+              <button
+                onClick={() => setViewMode('monthly')}
+                className={`flex-1 py-2 rounded-lg transition-colors ${
+                  viewMode === 'monthly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'
+                }`}>
+                Monthly
+              </button>
+            </div>
+
+            <div className="max-h-96 overflow-y-auto">
+              <table className="w-full text-sm">
+                <thead className="sticky top-0 bg-[#2c3e50]">
+                  <tr className="text-gray-400 border-b border-white/10">
+                    <th className="text-left py-2">{viewMode === 'yearly' ? 'Year' : 'Month'}</th>
+                    <th className="text-right py-2">Interest</th>
+                    <th className="text-right py-2">Principal</th>
+                    <th className="text-right py-2">Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(viewMode === 'yearly' ? amortization.yearly : amortization.monthly).map((row, idx) => (
+                    <tr key={idx} className="border-b border-white/5 text-gray-300">
+                      <td className="py-2">{viewMode === 'yearly' ? row.year : row.month}</td>
+                      <td className="text-right">{formatCurrency(row.interest)}</td>
+                      <td className="text-right">{formatCurrency(row.principal)}</td>
+                      <td className="text-right">{formatCurrency(row.balance)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
     </div>);
 
