@@ -59,19 +59,22 @@ export default function Layout({ children, currentPageName }) {
 
       {/* Header */}
       <header 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-transparent'
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm"
       >
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link to={createPageUrl('Home')} className="flex items-center">
+            <Link to={createPageUrl('Home')} className="flex items-center gap-3">
               <img 
                 src={logoUrl} 
                 alt="Tauber Solutions" 
                 className="h-12 w-auto"
               />
+              <span className={`text-xl font-semibold transition-colors ${
+                isScrolled ? 'text-[#1a2b4b]' : 'text-white'
+              }`}>
+                Tauber Solutions
+              </span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -82,12 +85,8 @@ export default function Layout({ children, currentPageName }) {
                   to={createPageUrl(item.page)}
                   className={`text-sm tracking-wide transition-colors duration-300 ${
                     currentPageName === item.page
-                      ? isScrolled
-                        ? 'text-[#1a2b4b] font-semibold'
-                        : 'text-[#c5a059] font-semibold'
-                      : isScrolled 
-                        ? 'text-[#1a2b4b] hover:text-[#c5a059]' 
-                        : 'text-white/90 hover:text-white'
+                      ? 'text-[#c5a059] font-semibold'
+                      : 'text-[#1a2b4b] hover:text-[#c5a059]'
                   }`}
                 >
                   {item.name}
@@ -98,7 +97,7 @@ export default function Layout({ children, currentPageName }) {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`lg:hidden p-2 ${isScrolled ? 'text-[#1a2b4b]' : 'text-white'}`}
+              className="lg:hidden p-2 text-[#1a2b4b]"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -146,8 +145,9 @@ export default function Layout({ children, currentPageName }) {
               <img 
                 src={logoUrl} 
                 alt="Tauber Solutions" 
-                className="h-16 w-auto mb-6"
+                className="h-16 w-auto mb-4"
               />
+              <h3 className="text-xl font-semibold text-white mb-2">Tauber Solutions</h3>
               <p className="text-gray-400 font-light leading-relaxed">
                 Your Money, Your Goals, Our Mission
               </p>
