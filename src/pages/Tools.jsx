@@ -12,6 +12,7 @@ import FinancialQuiz from '@/components/interactive/FinancialQuiz';
 import SEO from '@/components/seo/SEO';
 
 function InvestmentCalculator({ formatCurrency, currency }) {
+  const currentCurrencyObj = currencies.find(c => c.code === currency);
   const [principal, setPrincipal] = useState(10000);
   const [monthly, setMonthly] = useState(500);
   const [rate, setRate] = useState(7);
@@ -31,7 +32,7 @@ function InvestmentCalculator({ formatCurrency, currency }) {
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
       <div className="flex items-center gap-4 mb-8">
-        <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
+        <div className="w-14 h-14 min-w-[3.5rem] bg-[#C2983B] rounded-full flex items-center justify-center">
           <TrendingUp className="w-7 h-7 text-white" />
         </div>
         <h3 className="text-2xl font-bold text-white">Investment Calculator</h3>
@@ -39,24 +40,32 @@ function InvestmentCalculator({ formatCurrency, currency }) {
       
       <div className="space-y-6 mb-8">
         <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Initial Investment ({currency})</Label>
-          <Input
-            type="text"
-            value={principal.toLocaleString()}
-            onChange={(e) => setPrincipal(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 10,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
+          <Label className="text-gray-300 text-sm mb-2 block">Initial Investment</Label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+              {currentCurrencyObj.symbol}
+            </span>
+            <Input
+              type="text"
+              value={principal.toLocaleString()}
+              onChange={(e) => setPrincipal(Number(e.target.value.replace(/,/g, '')) || 0)}
+              placeholder="10,000"
+              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+          </div>
         </div>
         <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Monthly Contribution ({currency})</Label>
-          <Input
-            type="text"
-            value={monthly.toLocaleString()}
-            onChange={(e) => setMonthly(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 500"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
+          <Label className="text-gray-300 text-sm mb-2 block">Monthly Contribution</Label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+              {currentCurrencyObj.symbol}
+            </span>
+            <Input
+              type="text"
+              value={monthly.toLocaleString()}
+              onChange={(e) => setMonthly(Number(e.target.value.replace(/,/g, '')) || 0)}
+              placeholder="500"
+              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+          </div>
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Expected Annual Return (%)</Label>
@@ -64,9 +73,8 @@ function InvestmentCalculator({ formatCurrency, currency }) {
             type="text"
             value={rate}
             onChange={(e) => setRate(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 7"
+            placeholder="7"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Investment Period (Years)</Label>
@@ -74,9 +82,8 @@ function InvestmentCalculator({ formatCurrency, currency }) {
             type="text"
             value={years}
             onChange={(e) => setYears(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 20"
+            placeholder="20"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
         </div>
       </div>
       
@@ -105,6 +112,7 @@ function InvestmentCalculator({ formatCurrency, currency }) {
 }
 
 function MortgageCalculator({ formatCurrency, currency }) {
+  const currentCurrencyObj = currencies.find(c => c.code === currency);
   const [homePrice, setHomePrice] = useState(400000);
   const [downPayment, setDownPayment] = useState(80000);
   const [interestRate, setInterestRate] = useState(6.5);
@@ -164,7 +172,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
       <div className="flex items-center gap-4 mb-8">
-        <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
+        <div className="w-14 h-14 min-w-[3.5rem] bg-[#C2983B] rounded-full flex items-center justify-center">
           <Home className="w-7 h-7 text-white" />
         </div>
         <h3 className="text-2xl font-bold text-white">Mortgage Calculator</h3>
@@ -172,24 +180,32 @@ function MortgageCalculator({ formatCurrency, currency }) {
       
       <div className="space-y-6 mb-8">
         <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Home Price ({currency})</Label>
-          <Input
-            type="text"
-            value={homePrice.toLocaleString()}
-            onChange={(e) => setHomePrice(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 400,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
+          <Label className="text-gray-300 text-sm mb-2 block">Home Price</Label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+              {currentCurrencyObj.symbol}
+            </span>
+            <Input
+              type="text"
+              value={homePrice.toLocaleString()}
+              onChange={(e) => setHomePrice(Number(e.target.value.replace(/,/g, '')) || 0)}
+              placeholder="400,000"
+              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+          </div>
         </div>
         <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Down Payment ({currency})</Label>
-          <Input
-            type="text"
-            value={downPayment.toLocaleString()}
-            onChange={(e) => setDownPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 80,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
+          <Label className="text-gray-300 text-sm mb-2 block">Down Payment</Label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+              {currentCurrencyObj.symbol}
+            </span>
+            <Input
+              type="text"
+              value={downPayment.toLocaleString()}
+              onChange={(e) => setDownPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
+              placeholder="80,000"
+              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+          </div>
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Interest Rate (%)</Label>
@@ -197,9 +213,8 @@ function MortgageCalculator({ formatCurrency, currency }) {
             type="text"
             value={interestRate}
             onChange={(e) => setInterestRate(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 6.5"
+            placeholder="6.5"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Loan Term (Years)</Label>
@@ -207,9 +222,8 @@ function MortgageCalculator({ formatCurrency, currency }) {
             type="text"
             value={loanTerm}
             onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 30"
+            placeholder="30"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
         </div>
       </div>
       
@@ -288,6 +302,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
 }
 
 function CommercialMortgageCalculator({ formatCurrency, currency }) {
+  const currentCurrencyObj = currencies.find(c => c.code === currency);
   const [propertyValue, setPropertyValue] = useState(1500000);
   const [downPayment, setDownPayment] = useState(375000);
   const [interestRate, setInterestRate] = useState(7.5);
@@ -351,7 +366,7 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
       <div className="flex items-center gap-4 mb-8">
-        <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
+        <div className="w-14 h-14 min-w-[3.5rem] bg-[#C2983B] rounded-full flex items-center justify-center">
           <Building2 className="w-7 h-7 text-white" />
         </div>
         <h3 className="text-2xl font-bold text-white">Commercial Mortgage</h3>
@@ -359,24 +374,32 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
       
       <div className="space-y-6 mb-8">
         <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Property Value ({currency})</Label>
-          <Input
-            type="text"
-            value={propertyValue.toLocaleString()}
-            onChange={(e) => setPropertyValue(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 1,500,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
+          <Label className="text-gray-300 text-sm mb-2 block">Property Value</Label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+              {currentCurrencyObj.symbol}
+            </span>
+            <Input
+              type="text"
+              value={propertyValue.toLocaleString()}
+              onChange={(e) => setPropertyValue(Number(e.target.value.replace(/,/g, '')) || 0)}
+              placeholder="1,500,000"
+              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+          </div>
         </div>
         <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Down Payment ({currency})</Label>
-          <Input
-            type="text"
-            value={downPayment.toLocaleString()}
-            onChange={(e) => setDownPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 375,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
+          <Label className="text-gray-300 text-sm mb-2 block">Down Payment</Label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+              {currentCurrencyObj.symbol}
+            </span>
+            <Input
+              type="text"
+              value={downPayment.toLocaleString()}
+              onChange={(e) => setDownPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
+              placeholder="375,000"
+              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+          </div>
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Interest Rate (%)</Label>
@@ -384,9 +407,8 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
             type="text"
             value={interestRate}
             onChange={(e) => setInterestRate(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 7.5"
+            placeholder="7.5"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Loan Term (Years)</Label>
@@ -394,19 +416,22 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
             type="text"
             value={loanTerm}
             onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 20"
+            placeholder="20"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
         </div>
         <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Annual Property Income ({currency})</Label>
-          <Input
-            type="text"
-            value={annualIncome.toLocaleString()}
-            onChange={(e) => setAnnualIncome(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 180,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
+          <Label className="text-gray-300 text-sm mb-2 block">Annual Property Income</Label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+              {currentCurrencyObj.symbol}
+            </span>
+            <Input
+              type="text"
+              value={annualIncome.toLocaleString()}
+              onChange={(e) => setAnnualIncome(Number(e.target.value.replace(/,/g, '')) || 0)}
+              placeholder="180,000"
+              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+          </div>
         </div>
       </div>
       
@@ -497,19 +522,37 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
 }
 
 function LoanCalculator({ formatCurrency, currency }) {
+  const currentCurrencyObj = currencies.find(c => c.code === currency);
   const [loanAmount, setLoanAmount] = useState(25000);
   const [interestRate, setInterestRate] = useState(8);
   const [loanTerm, setLoanTerm] = useState(5);
+  const [additionalPayment, setAdditionalPayment] = useState(0);
+  const [paymentFrequency, setPaymentFrequency] = useState('monthly');
   const [showAmortization, setShowAmortization] = useState(false);
   const [viewMode, setViewMode] = useState('yearly');
 
   const calculateLoan = () => {
     const r = interestRate / 100 / 12;
     const n = loanTerm * 12;
-    const monthlyPayment = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-    const totalPayment = monthlyPayment * n;
-    const totalInterest = totalPayment - loanAmount;
-    return { monthlyPayment, totalPayment, totalInterest };
+    const baseMonthlyPayment = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const extraPayment = paymentFrequency === 'monthly' ? additionalPayment : additionalPayment / 12;
+    const monthlyPayment = baseMonthlyPayment + extraPayment;
+    
+    // Calculate actual payoff with extra payments
+    let balance = loanAmount;
+    let totalPaid = 0;
+    let monthsPaid = 0;
+    
+    while (balance > 0 && monthsPaid < n) {
+      const interestPayment = balance * r;
+      const principalPayment = Math.min(monthlyPayment - interestPayment, balance);
+      balance -= principalPayment;
+      totalPaid += interestPayment + principalPayment;
+      monthsPaid++;
+    }
+    
+    const totalInterest = totalPaid - loanAmount;
+    return { monthlyPayment, totalPayment: totalPaid, totalInterest, monthsSaved: n - monthsPaid };
   };
 
   const calculateAmortization = () => {
@@ -552,7 +595,7 @@ function LoanCalculator({ formatCurrency, currency }) {
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
       <div className="flex items-center gap-4 mb-8">
-        <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
+        <div className="w-14 h-14 min-w-[3.5rem] bg-[#C2983B] rounded-full flex items-center justify-center">
           <CreditCard className="w-7 h-7 text-white" />
         </div>
         <h3 className="text-2xl font-bold text-white">Loan Calculator</h3>
@@ -560,14 +603,18 @@ function LoanCalculator({ formatCurrency, currency }) {
       
       <div className="space-y-6 mb-8">
         <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Loan Amount ({currency})</Label>
-          <Input
-            type="text"
-            value={loanAmount.toLocaleString()}
-            onChange={(e) => setLoanAmount(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 25,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
+          <Label className="text-gray-300 text-sm mb-2 block">Loan Amount</Label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+              {currentCurrencyObj.symbol}
+            </span>
+            <Input
+              type="text"
+              value={loanAmount.toLocaleString()}
+              onChange={(e) => setLoanAmount(Number(e.target.value.replace(/,/g, '')) || 0)}
+              placeholder="25,000"
+              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+          </div>
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Interest Rate (%)</Label>
@@ -575,9 +622,8 @@ function LoanCalculator({ formatCurrency, currency }) {
             type="text"
             value={interestRate}
             onChange={(e) => setInterestRate(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 8"
+            placeholder="8"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Loan Term (Years)</Label>
@@ -585,9 +631,40 @@ function LoanCalculator({ formatCurrency, currency }) {
             type="text"
             value={loanTerm}
             onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="e.g. 5"
+            placeholder="5"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
+        </div>
+        <div>
+          <Label className="text-gray-300 text-sm mb-2 flex items-center justify-between">
+            <span>Additional Payment</span>
+            <div className="flex gap-2 bg-[#1a2b4b]/50 p-1 rounded">
+              <button
+                onClick={() => setPaymentFrequency('monthly')}
+                className={`px-3 py-1 text-xs rounded transition-colors ${
+                  paymentFrequency === 'monthly' ? 'bg-[#C2983B] text-white' : 'text-gray-400'
+                }`}>
+                Monthly
+              </button>
+              <button
+                onClick={() => setPaymentFrequency('yearly')}
+                className={`px-3 py-1 text-xs rounded transition-colors ${
+                  paymentFrequency === 'yearly' ? 'bg-[#C2983B] text-white' : 'text-gray-400'
+                }`}>
+                Yearly
+              </button>
+            </div>
+          </Label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+              {currentCurrencyObj.symbol}
+            </span>
+            <Input
+              type="text"
+              value={additionalPayment.toLocaleString()}
+              onChange={(e) => setAdditionalPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
+              placeholder="0"
+              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+          </div>
         </div>
       </div>
       
@@ -609,6 +686,14 @@ function LoanCalculator({ formatCurrency, currency }) {
               {formatCurrency(result.totalInterest)}
             </p>
           </div>
+          {additionalPayment > 0 && (
+            <div className="col-span-2">
+              <p className="text-gray-400 text-xs mb-1">Time Saved</p>
+              <p className="text-lg font-medium text-green-400">
+                {result.monthsSaved} months
+              </p>
+            </div>
+          )}
         </div>
 
       </div>
