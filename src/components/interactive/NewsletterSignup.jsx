@@ -41,12 +41,12 @@ export default function NewsletterSignup({ variant = 'inline' }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="w-16 h-16 bg-[#C2983B]/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Mail className="w-8 h-8 text-[#C2983B]" />
+              <div className="w-16 h-16 bg-[#c5a059]/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Mail className="w-8 h-8 text-[#c5a059]" />
               </div>
               
               <h2 className="text-3xl md:text-4xl font-light text-white mb-4">
-                Get Weekly Financial Tips
+                Get Financial Tips
               </h2>
               <p className="text-xl text-gray-300 font-light mb-10">
                 Join our newsletter for expert insights, exclusive resources, and practical advice delivered to your inbox.
@@ -73,7 +73,7 @@ export default function NewsletterSignup({ variant = 'inline' }) {
                     <Button
                       type="submit"
                       disabled={isLoading}
-                      className="bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold h-14 px-8 rounded-none whitespace-nowrap"
+                      className="bg-[#c5a059] hover:bg-[#b08e35] text-white font-semibold h-14 px-8 rounded-none whitespace-nowrap"
                     >
                       {isLoading ? 'Subscribing...' : 'Subscribe'}
                       <ArrowRight className="ml-2 w-5 h-5" />
@@ -108,11 +108,11 @@ export default function NewsletterSignup({ variant = 'inline' }) {
   // Inline variant (for footer)
   return (
     <div className="max-w-md">
-      <h4 className="text-[#C2983B] text-sm tracking-[0.2em] uppercase mb-4">
+      <h4 className="text-[#c5a059] text-sm tracking-[0.2em] uppercase mb-4">
         Stay Informed
       </h4>
       <p className="text-gray-400 font-light mb-4">
-        Get weekly financial tips and exclusive content.
+        Get financial tips and exclusive content.
       </p>
       
       {!isSubmitted ? (
@@ -128,7 +128,7 @@ export default function NewsletterSignup({ variant = 'inline' }) {
           <Button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold rounded-none h-12"
+            className="w-full bg-[#c5a059] hover:bg-[#b08e35] text-white font-semibold rounded-none h-12"
           >
             {isLoading ? 'Subscribing...' : 'Subscribe'}
           </Button>
