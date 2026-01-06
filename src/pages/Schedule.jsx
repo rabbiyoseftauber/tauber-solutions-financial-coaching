@@ -402,7 +402,13 @@ export default function Schedule() {
                 <div>
                   <p className="text-gray-600 mb-4">Want to connect faster?</p>
                   <a 
-                    href="https://wa.me/18453226500"
+                    href={`https://wa.me/18453226500?text=${encodeURIComponent([
+                      "Hi! I just submitted a coaching request and would love to connect.",
+                      "Hello! I submitted a request through your website and wanted to follow up.",
+                      "Hi there! Just booked a session and excited to get started!",
+                      "Hello! I filled out the coaching form and would like to chat.",
+                      "Hi! Looking forward to working with Tauber Solutions!"
+                    ][Math.floor(Math.random() * 5)])}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
