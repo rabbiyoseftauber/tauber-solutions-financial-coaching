@@ -56,8 +56,8 @@ const services = [
 ];
 
 const stats = [
-  { icon: Users, value: '500+', label: 'Clients Served' },
-  { icon: Clock, value: '10,000+', label: 'Coaching Hours' },
+  { icon: Users, value: '2,500+', label: 'Clients Served' },
+  { icon: Clock, value: '30,000+', label: 'Coaching Hours' },
   { icon: Target, value: '95%', label: 'Goal Achievement' },
 ];
 
