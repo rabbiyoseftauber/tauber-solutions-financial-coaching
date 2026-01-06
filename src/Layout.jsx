@@ -70,9 +70,7 @@ export default function Layout({ children, currentPageName }) {
                 alt="Tauber Solutions" 
                 className="h-12 w-auto"
               />
-              <span className={`text-xl font-semibold transition-colors ${
-                isScrolled ? 'text-[#1a2b4b]' : 'text-white'
-              }`}>
+              <span className="text-xl font-semibold text-[#1a2b4b]">
                 Tauber Solutions
               </span>
             </Link>
