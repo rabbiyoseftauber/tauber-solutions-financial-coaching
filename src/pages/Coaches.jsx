@@ -131,7 +131,7 @@ export default function Coaches() {
                 {coaches[0].bio}
               </p>
               
-              <Link to={createPageUrl('Schedule') + '?coach=chaim'}>
+              <Link to={createPageUrl('Schedule') + '?coach=chaim'} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                 <Button className="bg-[#1a2b4b] hover:bg-[#2c3e50] text-white px-8 py-6 rounded-lg shadow-lg group">
                   Schedule with {coaches[0].name.split(' ')[0]}
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -180,7 +180,7 @@ export default function Coaches() {
                   <p className="text-gray-600 font-light text-sm leading-relaxed mb-6 flex-1">
                     {coach.bio}
                   </p>
-                  <Link to={createPageUrl('Schedule') + '?coach=' + coach.id}>
+                  <Link to={createPageUrl('Schedule') + '?coach=' + coach.id} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                     <Button className="w-full bg-[#1a2b4b] hover:bg-[#2c3e50] text-white py-4 rounded-lg shadow-lg text-sm group">
                       Schedule with {coach.id === 'rivky' ? 'Mrs. Friedman' : coach.name.split(' ')[0]}
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -207,7 +207,7 @@ export default function Coaches() {
             <p className="text-xl text-white font-light mb-10 max-w-2xl mx-auto">
               Connect with one of our coaches today and take the first step toward financial freedom.
             </p>
-            <Link to={createPageUrl('Schedule')}>
+            <Link to={createPageUrl('Schedule')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <Button
                 size="lg"
                 className="bg-[#1a2b4b] hover:bg-[#2c3e50] text-white font-semibold px-10 py-6 text-lg rounded-lg shadow-lg">

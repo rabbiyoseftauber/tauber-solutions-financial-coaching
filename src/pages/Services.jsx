@@ -183,7 +183,7 @@ export default function Services() {
                   )}
                   </ul>
                   
-                  <Link to={service.title === 'Speaking Events' ? createPageUrl('Schedule') + '?type=speaking' : createPageUrl('Schedule')}>
+                  <Link to={service.title === 'Speaking Events' ? createPageUrl('Schedule') + '?type=speaking' : createPageUrl('Schedule')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                     <Button className="bg-[#1F2A44] hover:bg-[#2a3654] text-white px-8 py-6 rounded-none group">
                       {service.title === 'Speaking Events' ? 'Book a Speaking Engagement' : 'Book a Session'}
                       <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -210,7 +210,7 @@ export default function Services() {
             <p className="text-xl text-white font-light mb-10 max-w-2xl mx-auto">
               Start your journey to financial freedom today with a free consultation.
             </p>
-            <Link to={createPageUrl('Schedule')}>
+            <Link to={createPageUrl('Schedule')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <Button
                 size="lg"
                 className="bg-[#1F2A44] hover:bg-[#2a3654] text-white font-semibold px-10 py-6 text-lg rounded-none">

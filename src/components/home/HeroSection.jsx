@@ -39,7 +39,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4">
 
-            <Link to={createPageUrl('Schedule')}>
+            <Link to={createPageUrl('Schedule')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <Button
                 size="lg"
                 className="bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold px-8 py-6 text-lg rounded-none group transition-all duration-300">

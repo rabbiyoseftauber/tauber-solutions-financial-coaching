@@ -68,7 +68,7 @@ export default function ServicesPreview() {
               <div className="p-8">
                 <h3 className="text-xl font-semibold text-[#1F2A44] mb-3">{service.title}</h3>
                 <p className="text-gray-600 font-light leading-relaxed mb-6">{service.description}</p>
-                <Link to={createPageUrl('Services')} className="inline-flex items-center text-[#C2983B] font-medium group/link">
+                <Link to={createPageUrl('Services')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="inline-flex items-center text-[#C2983B] font-medium group/link">
                   Learn More 
                   <ArrowRight className="ml-2 w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                 </Link>
@@ -83,7 +83,7 @@ export default function ServicesPreview() {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <Link to={createPageUrl('Schedule')}>
+          <Link to={createPageUrl('Schedule')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <Button 
               size="lg"
               className="bg-[#1F2A44] hover:bg-[#2a3654] text-white px-10 py-6 text-lg rounded-none"
