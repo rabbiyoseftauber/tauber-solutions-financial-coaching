@@ -633,6 +633,9 @@ export default function Tools() {
   const isUKSession = sessionStorage.getItem('isUKSession') === 'true';
   const [currency, setCurrency] = useState(isUKSession ? 'GBP' : 'USD');
 
+  // Filter currencies based on UK session
+  const currencies = isUKSession ? ALL_CURRENCIES.filter(c => c.code === 'GBP') : ALL_CURRENCIES;
+
   const currentCurrency = currencies.find((c) => c.code === currency);
 
   const formatCurrency = (amount) => {
@@ -743,182 +746,87 @@ export default function Tools() {
             viewport={{ once: true }}
             className="text-center mb-16">
 
-            <h2 className="text-3xl md:text-4xl font-light text-[#1a2b4b]">
+            <h2 className="text-3xl md:text-4xl font-light text-[#1a2b4b] mb-6">
               Downloadable <span className="font-normal">Resources</span>
             </h2>
-            <div className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-[#C2983B]/10 rounded-lg">
-              <span className="text-sm text-[#1a2b4b] font-medium">Currency:</span>
-              <span className="text-sm font-semibold text-[#C2983B]">{currentCurrency.symbol} {currentCurrency.code}</span>
-            </div>
+            {!isUKSession && (
+              <div className="flex items-center justify-center gap-3 flex-wrap">
+                <span className="text-[#1a2b4b] font-medium">Select Your Currency:</span>
+                <div className="flex gap-2 bg-[#1a2b4b]/10 p-1.5 rounded-lg flex-wrap">
+                  {currencies.map((curr) => (
+                    <button
+                      key={curr.code}
+                      onClick={() => setCurrency(curr.code)}
+                      className={`px-5 py-2.5 text-sm font-semibold transition-all rounded-lg ${
+                        currency === curr.code
+                          ? 'bg-[#C2983B] text-white shadow-lg'
+                          : 'text-[#1a2b4b]/70 hover:text-[#1a2b4b] hover:bg-[#1a2b4b]/20'
+                      }`}
+                    >
+                      {curr.symbol} {curr.code}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+            {isUKSession && (
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#C2983B]/10 rounded-lg">
+                <span className="text-sm text-[#1a2b4b] font-medium">Currency:</span>
+                <span className="text-sm font-semibold text-[#C2983B]">{currentCurrency.symbol} {currentCurrency.code}</span>
+              </div>
+            )}
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}>
-
-              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#C2983B] hover:shadow-lg transition-all duration-300 group">
-                <CardContent className="p-6 h-full flex flex-col">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#C2983B]/10 mb-4 flex items-center justify-center transition-colors">
-                    <Target className="w-6 h-6 text-gray-500 group-hover:text-[#C2983B] transition-colors" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Your Goals Sheet</h3>
-                  <p className="text-gray-600 text-sm font-light flex-grow mb-6">
-                    Capture your goals simply and clearly. It's the starting point for building your plan.
-                  </p>
-                  <div className="flex flex-col gap-3">
-                    <a
-                      href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/83e47f6d0_UKGoalsSheet.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block">
-
-                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
-                        <Download className="w-4 h-4 mr-2" />
-                        Download PDF
-                      </Button>
-                    </a>
-                    <a
-                      href="https://docs.google.com/spreadsheets/d/10wTabnJSDS6fHRUYk3Fj2ade7loGHxQ3/export?format=xlsx"
-                      download="Goals-Sheet.xlsx"
-                      className="block">
-
-                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
-                        <Download className="w-4 h-4 mr-2" />
-                        Download Excel
-                      </Button>
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}>
-
-              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#C2983B] hover:shadow-lg transition-all duration-300 group">
-                <CardContent className="p-6 h-full flex flex-col">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#C2983B]/10 mb-4 flex items-center justify-center transition-colors">
-                    <Wallet className="w-6 h-6 text-gray-500 group-hover:text-[#C2983B] transition-colors" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Asset Sheet</h3>
-                  <p className="text-gray-600 text-sm font-light flex-grow mb-6">
-                    See your full financial picture in one clear sheet. Review it monthly to support real action and progress.
-                  </p>
-                  <div className="flex flex-col gap-3">
-                    <a
-                      href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/191dcde5b_UKAssetSheet.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block">
-
-                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
-                        <Download className="w-4 h-4 mr-2" />
-                        Download PDF
-                      </Button>
-                    </a>
-                    <a
-                      href="https://docs.google.com/spreadsheets/d/1JiVVyn2C9rfZ2gGqkcldAJ7DUpohRHus/export?format=xlsx"
-                      download="Asset-Sheet.xlsx"
-                      className="block">
-
-                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
-                        <Download className="w-4 h-4 mr-2" />
-                        Download Excel
-                      </Button>
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}>
-
-              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#C2983B] hover:shadow-lg transition-all duration-300 group">
-                <CardContent className="p-6 h-full flex flex-col">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#C2983B]/10 mb-4 flex items-center justify-center transition-colors">
-                    <Calculator className="w-6 h-6 text-gray-500 group-hover:text-[#C2983B] transition-colors" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Budget Planner</h3>
-                  <p className="text-gray-600 text-sm font-light flex-grow mb-6">
-                    A powerful Excel budget tool you can also upload to Google Sheets for tracking. Plan your month, track weekly, and stay on top of spending with clear totals.
-                  </p>
-                  <div className="flex flex-col gap-3">
-                    <a
-                      href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/668cc6683_TSMonthlyUKFinancialPlanner.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block">
-
-                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
-                        <Download className="w-4 h-4 mr-2" />
-                        Download PDF
-                      </Button>
-                    </a>
-                    <a
-                      href="https://docs.google.com/spreadsheets/d/1OWSZoa6DQ-n3HeHtw-cUjBnwbRW-hVte/export?format=xlsx"
-                      download="Budget-Planner.xlsx"
-                      className="block">
-
-                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
-                        <Download className="w-4 h-4 mr-2" />
-                        Download Excel
-                      </Button>
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}>
-
-              <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#C2983B] hover:shadow-lg transition-all duration-300 group">
-                <CardContent className="p-6 h-full flex flex-col">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#C2983B]/10 mb-4 flex items-center justify-center transition-colors">
-                    <BookOpen className="w-6 h-6 text-gray-500 group-hover:text-[#C2983B] transition-colors" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">Budget Category Guide</h3>
-                  <p className="text-gray-600 text-sm font-light flex-grow mb-6">
-                    A ready-made list of categories to use in the UK Budget Planner dropdowns. This guide matches the category dropdowns in the UK Budget Planner.
-                  </p>
-                  <div className="flex flex-col gap-3">
-                    <a
-                      href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/54dc673a5_TSUKCategoryGuide.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block">
-
-                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
-                        <Download className="w-4 h-4 mr-2" />
-                        Download PDF
-                      </Button>
-                    </a>
-                    <a
-                      href="https://docs.google.com/spreadsheets/d/1XsoYxlf9BWJuB1kdSbL9-yySmOe2ipls/export?format=xlsx"
-                      download="Budget-Category-Guide.xlsx"
-                      className="block">
-
-                      <Button variant="outline" className="w-full rounded-lg border-gray-300">
-                        <Download className="w-4 h-4 mr-2" />
-                        Download Excel
-                      </Button>
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+            {resourcesData.map((resource, index) => {
+              const Icon = resource.icon;
+              const links = resource.links[currency];
+              
+              return (
+                <motion.div
+                  key={resource.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#C2983B] hover:shadow-lg transition-all duration-300 group">
+                    <CardContent className="p-6 h-full flex flex-col">
+                      <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#C2983B]/10 mb-4 flex items-center justify-center transition-colors">
+                        <Icon className="w-6 h-6 text-gray-500 group-hover:text-[#C2983B] transition-colors" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">{resource.title}</h3>
+                      <p className="text-gray-600 text-sm font-light flex-grow mb-6">
+                        {resource.description}
+                      </p>
+                      <div className="flex flex-col gap-3">
+                        <a
+                          href={links.pdf}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block"
+                        >
+                          <Button variant="outline" className="w-full rounded-lg border-gray-300">
+                            <Download className="w-4 h-4 mr-2" />
+                            Download PDF
+                          </Button>
+                        </a>
+                        <a
+                          href={links.excel}
+                          download={`${resource.title.replace(/\s+/g, '-')}.xlsx`}
+                          className="block"
+                        >
+                          <Button variant="outline" className="w-full rounded-lg border-gray-300">
+                            <Download className="w-4 h-4 mr-2" />
+                            Download Excel
+                          </Button>
+                        </a>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
