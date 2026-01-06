@@ -180,15 +180,16 @@ export default function UKCoaches() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white group"
+                className="bg-white group flex flex-col"
               >
-                <div className="relative overflow-hidden h-64 bg-gradient-to-br from-[#1F2A44] to-[#2a3654] flex items-center justify-center">
+                <div className="relative overflow-hidden h-64 bg-gradient-to-br from-[#1a2b4b] to-[#2c3e50] flex items-center justify-center">
                   <div className="w-28 h-28 bg-[#C2983B] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <span className="text-4xl font-light text-white">
-                      {coach.name.split(' ').map(n => n[0]).join('')}
+                      {coach.name.split(' ').map((n) => n[0]).join('')}
                     </span>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1F2A44]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1a2b4b]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                     <div className="flex gap-3">
                       <a 
                         href={`mailto:${coach.email}`}
@@ -205,14 +206,14 @@ export default function UKCoaches() {
                     </div>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-[#1F2A44] mb-1">{coach.name}</h3>
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-semibold text-[#1a2b4b] mb-1">{coach.name}</h3>
                   <p className="text-[#C2983B] text-sm mb-4">{coach.title}</p>
-                  <p className="text-gray-600 font-light text-sm leading-relaxed mb-6">
+                  <p className="text-gray-600 font-light text-sm leading-relaxed mb-6 flex-1">
                     {coach.bio}
                   </p>
                   <Link to={createPageUrl('Schedule') + '?coach=' + coach.id}>
-                    <Button className="w-full bg-[#1F2A44] hover:bg-[#2a3654] text-white py-4 rounded-none text-sm group">
+                    <Button className="w-full bg-[#1a2b4b] hover:bg-[#2c3e50] text-white py-4 rounded-none text-sm group">
                       Schedule with {coach.name.split(' ')[0]}
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
