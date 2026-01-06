@@ -16,18 +16,18 @@ function InvestmentCalculator({ formatCurrency, currency }) {
   const [monthly, setMonthly] = useState(500);
   const [rate, setRate] = useState(7);
   const [years, setYears] = useState(20);
-  
+
   const calculateInvestment = () => {
     const r = rate / 100 / 12;
     const n = years * 12;
     const futureValue = principal * Math.pow(1 + r, n) + monthly * ((Math.pow(1 + r, n) - 1) / r);
-    const totalContributions = principal + (monthly * n);
+    const totalContributions = principal + monthly * n;
     const earnings = futureValue - totalContributions;
     return { futureValue, totalContributions, earnings };
   };
-  
+
   const result = calculateInvestment();
-  
+
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
       <div className="flex items-center gap-4 mb-8">
@@ -40,43 +40,43 @@ function InvestmentCalculator({ formatCurrency, currency }) {
       <div className="space-y-6 mb-8">
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Initial Investment ({currency})</Label>
-          <Input 
-            type="text" 
-            value={principal.toLocaleString()} 
+          <Input
+            type="text"
+            value={principal.toLocaleString()}
             onChange={(e) => setPrincipal(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 10,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Monthly Contribution ({currency})</Label>
-          <Input 
-            type="text" 
-            value={monthly.toLocaleString()} 
+          <Input
+            type="text"
+            value={monthly.toLocaleString()}
             onChange={(e) => setMonthly(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 500"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Expected Annual Return (%)</Label>
-          <Input 
-            type="text" 
-            value={rate} 
+          <Input
+            type="text"
+            value={rate}
             onChange={(e) => setRate(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 7"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Investment Period (Years)</Label>
-          <Input 
-            type="text" 
-            value={years} 
+          <Input
+            type="text"
+            value={years}
             onChange={(e) => setYears(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 20"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
       </div>
       
@@ -100,8 +100,8 @@ function InvestmentCalculator({ formatCurrency, currency }) {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 function MortgageCalculator({ formatCurrency, currency }) {
@@ -109,7 +109,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
   const [downPayment, setDownPayment] = useState(80000);
   const [interestRate, setInterestRate] = useState(6.5);
   const [loanTerm, setLoanTerm] = useState(30);
-  
+
   const calculateMortgage = () => {
     const principal = homePrice - downPayment;
     const r = interestRate / 100 / 12;
@@ -119,9 +119,9 @@ function MortgageCalculator({ formatCurrency, currency }) {
     const totalInterest = totalPayment - principal;
     return { monthlyPayment, totalPayment, totalInterest, principal };
   };
-  
+
   const result = calculateMortgage();
-  
+
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
       <div className="flex items-center gap-4 mb-8">
@@ -134,43 +134,43 @@ function MortgageCalculator({ formatCurrency, currency }) {
       <div className="space-y-6 mb-8">
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Home Price ({currency})</Label>
-          <Input 
-            type="text" 
-            value={homePrice.toLocaleString()} 
+          <Input
+            type="text"
+            value={homePrice.toLocaleString()}
             onChange={(e) => setHomePrice(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 400,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Down Payment ({currency})</Label>
-          <Input 
-            type="text" 
-            value={downPayment.toLocaleString()} 
+          <Input
+            type="text"
+            value={downPayment.toLocaleString()}
             onChange={(e) => setDownPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 80,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Interest Rate (%)</Label>
-          <Input 
-            type="text" 
-            value={interestRate} 
+          <Input
+            type="text"
+            value={interestRate}
             onChange={(e) => setInterestRate(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 6.5"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Loan Term (Years)</Label>
-          <Input 
-            type="text" 
-            value={loanTerm} 
+          <Input
+            type="text"
+            value={loanTerm}
             onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 30"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
       </div>
       
@@ -194,8 +194,8 @@ function MortgageCalculator({ formatCurrency, currency }) {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 function CommercialMortgageCalculator({ formatCurrency, currency }) {
@@ -204,7 +204,7 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
   const [interestRate, setInterestRate] = useState(7.5);
   const [loanTerm, setLoanTerm] = useState(20);
   const [annualIncome, setAnnualIncome] = useState(180000);
-  
+
   const calculateCommercialMortgage = () => {
     const principal = propertyValue - downPayment;
     const r = interestRate / 100 / 12;
@@ -214,13 +214,13 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
     const dscr = annualIncome / annualDebtService;
     const totalPayment = monthlyPayment * n;
     const totalInterest = totalPayment - principal;
-    const ltv = (principal / propertyValue) * 100;
-    
+    const ltv = principal / propertyValue * 100;
+
     return { monthlyPayment, totalPayment, totalInterest, principal, dscr, ltv };
   };
-  
+
   const result = calculateCommercialMortgage();
-  
+
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
       <div className="flex items-center gap-4 mb-8">
@@ -233,53 +233,53 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
       <div className="space-y-6 mb-8">
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Property Value ({currency})</Label>
-          <Input 
-            type="text" 
-            value={propertyValue.toLocaleString()} 
+          <Input
+            type="text"
+            value={propertyValue.toLocaleString()}
             onChange={(e) => setPropertyValue(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 1,500,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Down Payment ({currency})</Label>
-          <Input 
-            type="text" 
-            value={downPayment.toLocaleString()} 
+          <Input
+            type="text"
+            value={downPayment.toLocaleString()}
             onChange={(e) => setDownPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 375,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Interest Rate (%)</Label>
-          <Input 
-            type="text" 
-            value={interestRate} 
+          <Input
+            type="text"
+            value={interestRate}
             onChange={(e) => setInterestRate(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 7.5"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Loan Term (Years)</Label>
-          <Input 
-            type="text" 
-            value={loanTerm} 
+          <Input
+            type="text"
+            value={loanTerm}
             onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 20"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Annual Property Income ({currency})</Label>
-          <Input 
-            type="text" 
-            value={annualIncome.toLocaleString()} 
+          <Input
+            type="text"
+            value={annualIncome.toLocaleString()}
             onChange={(e) => setAnnualIncome(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 180,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
       </div>
       
@@ -315,15 +315,15 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 function LoanCalculator({ formatCurrency, currency }) {
   const [loanAmount, setLoanAmount] = useState(25000);
   const [interestRate, setInterestRate] = useState(8);
   const [loanTerm, setLoanTerm] = useState(5);
-  
+
   const calculateLoan = () => {
     const r = interestRate / 100 / 12;
     const n = loanTerm * 12;
@@ -332,9 +332,9 @@ function LoanCalculator({ formatCurrency, currency }) {
     const totalInterest = totalPayment - loanAmount;
     return { monthlyPayment, totalPayment, totalInterest };
   };
-  
+
   const result = calculateLoan();
-  
+
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
       <div className="flex items-center gap-4 mb-8">
@@ -347,33 +347,33 @@ function LoanCalculator({ formatCurrency, currency }) {
       <div className="space-y-6 mb-8">
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Loan Amount ({currency})</Label>
-          <Input 
-            type="text" 
-            value={loanAmount.toLocaleString()} 
+          <Input
+            type="text"
+            value={loanAmount.toLocaleString()}
             onChange={(e) => setLoanAmount(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 25,000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Interest Rate (%)</Label>
-          <Input 
-            type="text" 
-            value={interestRate} 
+          <Input
+            type="text"
+            value={interestRate}
             onChange={(e) => setInterestRate(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 8"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Loan Term (Years)</Label>
-          <Input 
-            type="text" 
-            value={loanTerm} 
+          <Input
+            type="text"
+            value={loanTerm}
             onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 5"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
         </div>
       </div>
       
@@ -397,40 +397,40 @@ function LoanCalculator({ formatCurrency, currency }) {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 const tools = [
-  { id: 'investment', name: 'Investment', icon: TrendingUp, component: InvestmentCalculator },
-  { id: 'mortgage', name: 'Mortgage', icon: Home, component: MortgageCalculator },
-  { id: 'commercial', name: 'Commercial', icon: Building2, component: CommercialMortgageCalculator },
-  { id: 'loan', name: 'Loan', icon: CreditCard, component: LoanCalculator }
-];
+{ id: 'investment', name: 'Investment', icon: TrendingUp, component: InvestmentCalculator },
+{ id: 'mortgage', name: 'Mortgage', icon: Home, component: MortgageCalculator },
+{ id: 'commercial', name: 'Commercial', icon: Building2, component: CommercialMortgageCalculator },
+{ id: 'loan', name: 'Loan', icon: CreditCard, component: LoanCalculator }];
+
 
 const currencies = [
-  { code: 'USD', symbol: '$', rate: 1, name: 'US Dollar' },
-  { code: 'ILS', symbol: '₪', rate: 3.6, name: 'Israeli Shekel' },
-  { code: 'GBP', symbol: '£', rate: 0.79, name: 'British Pound' }
-];
+{ code: 'USD', symbol: '$', rate: 1, name: 'US Dollar' },
+{ code: 'ILS', symbol: '₪', rate: 3.6, name: 'Israeli Shekel' },
+{ code: 'GBP', symbol: '£', rate: 0.79, name: 'British Pound' }];
+
 
 export default function Tools() {
   const isUKSession = sessionStorage.getItem('isUKSession') === 'true';
   const [currency, setCurrency] = useState(isUKSession ? 'GBP' : 'USD');
-  
-  const currentCurrency = currencies.find(c => c.code === currency);
-  
+
+  const currentCurrency = currencies.find((c) => c.code === currency);
+
   const formatCurrency = (amount) => {
     return `${currentCurrency.symbol}${amount.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
   };
-  
+
   return (
     <div className="pt-20">
       <SEO
         title="Free Financial Tools & Calculators"
         description="Access free financial calculators, budget templates, and resources. Plan investments, calculate mortgages, and improve your financial literacy with our interactive tools."
-        canonical="/tools"
-      />
+        canonical="/tools" />
+
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-[#1a2b4b] via-[#2c3e50] to-[#1a2b4b] relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
@@ -441,8 +441,8 @@ export default function Tools() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl"
-          >
+            className="max-w-3xl">
+
             <span className="text-[#c5a059] text-sm tracking-[0.3em] uppercase mb-4 block">
               Free Resources
             </span>
@@ -458,19 +458,19 @@ export default function Tools() {
             <div className="flex items-center gap-3 flex-wrap">
               <span className="text-white/80 font-medium">Select Your Currency:</span>
               <div className="flex gap-2 bg-white/10 p-1.5 rounded-lg flex-wrap">
-                {currencies.map((curr) => (
-                  <button
-                    key={curr.code}
-                    onClick={() => setCurrency(curr.code)}
-                    className={`px-5 py-2.5 text-sm font-semibold transition-all rounded-lg ${
-                      currency === curr.code
-                        ? 'bg-[#c5a059] text-white shadow-lg'
-                        : 'text-white/70 hover:text-white hover:bg-white/20'
-                    }`}
-                  >
+                {currencies.map((curr) =>
+                <button
+                  key={curr.code}
+                  onClick={() => setCurrency(curr.code)}
+                  className={`px-5 py-2.5 text-sm font-semibold transition-all rounded-lg ${
+                  currency === curr.code ?
+                  'bg-[#c5a059] text-white shadow-lg' :
+                  'text-white/70 hover:text-white hover:bg-white/20'}`
+                  }>
+
                     {curr.symbol} {curr.code}
                   </button>
-                ))}
+                )}
               </div>
             </div>
           </motion.div>
@@ -484,8 +484,8 @@ export default function Tools() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-8"
-          >
+            className="text-center mb-8">
+
             <h2 className="text-3xl md:text-4xl font-light text-[#1a2b4b] mb-6">
               Financial <span className="font-normal">Calculators</span>
             </h2>
@@ -493,28 +493,28 @@ export default function Tools() {
 
           <Tabs defaultValue="investment" className="max-w-4xl mx-auto">
             <TabsList className="w-full grid grid-cols-2 sm:grid-cols-4 mb-12 h-auto bg-[#1a2b4b]/20 rounded-lg gap-2 p-2">
-              {tools.map((tool) => (
-                <TabsTrigger 
-                  key={tool.id} 
-                  value={tool.id}
-                  className="py-4 rounded-lg data-[state=active]:bg-[#1a2b4b] data-[state=active]:text-white text-xs sm:text-sm font-medium transition-all"
-                >
+              {tools.map((tool) =>
+              <TabsTrigger
+                key={tool.id}
+                value={tool.id}
+                className="py-4 rounded-lg data-[state=active]:bg-[#1a2b4b] data-[state=active]:text-white text-xs sm:text-sm font-medium transition-all">
+
                   <tool.icon className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
                   {tool.name}
                 </TabsTrigger>
-              ))}
+              )}
             </TabsList>
             
-            {tools.map((tool) => (
-              <TabsContent key={tool.id} value={tool.id}>
+            {tools.map((tool) =>
+            <TabsContent key={tool.id} value={tool.id}>
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}>
+
                   <tool.component formatCurrency={formatCurrency} currency={currentCurrency.code} />
                 </motion.div>
               </TabsContent>
-            ))}
+            )}
           </Tabs>
         </div>
       </section>
@@ -526,8 +526,8 @@ export default function Tools() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+            className="text-center mb-16">
+
             <h2 className="text-3xl md:text-4xl font-light text-[#1a2b4b]">
               Downloadable <span className="font-normal">Resources</span>
             </h2>
@@ -541,8 +541,8 @@ export default function Tools() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
+              viewport={{ once: true }}>
+
               <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300 group">
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#c5a059]/10 mb-4 flex items-center justify-center transition-colors">
@@ -553,24 +553,24 @@ export default function Tools() {
                     Capture your goals simply and clearly. It's the starting point for building your plan.
                   </p>
                   <div className="flex flex-col gap-3">
-                    <a 
+                    <a
                       href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/83e47f6d0_UKGoalsSheet.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block"
-                    >
+                      className="block">
+
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download PDF
                       </Button>
                     </a>
-                    <a 
+                    <a
                       href="https://docs.google.com/spreadsheets/d/10wTabnJSDS6fHRUYk3Fj2ade7loGHxQ3/export?format=xlsx"
                       target="_blank"
                       rel="noopener noreferrer"
                       download
-                      className="block"
-                    >
+                      className="block">
+
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download Excel
@@ -585,8 +585,8 @@ export default function Tools() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
+              transition={{ delay: 0.1 }}>
+
               <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300 group">
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#c5a059]/10 mb-4 flex items-center justify-center transition-colors">
@@ -597,24 +597,24 @@ export default function Tools() {
                     See your full financial picture in one clear sheet. Review it monthly to support real action and progress.
                   </p>
                   <div className="flex flex-col gap-3">
-                    <a 
+                    <a
                       href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/191dcde5b_UKAssetSheet.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block"
-                    >
+                      className="block">
+
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download PDF
                       </Button>
                     </a>
-                    <a 
+                    <a
                       href="https://docs.google.com/spreadsheets/d/1JiVVyn2C9rfZ2gGqkcldAJ7DUpohRHus/export?format=xlsx"
                       target="_blank"
                       rel="noopener noreferrer"
                       download
-                      className="block"
-                    >
+                      className="block">
+
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download Excel
@@ -629,8 +629,8 @@ export default function Tools() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
+              transition={{ delay: 0.2 }}>
+
               <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300 group">
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#c5a059]/10 mb-4 flex items-center justify-center transition-colors">
@@ -641,24 +641,24 @@ export default function Tools() {
                     A powerful Excel budget tool you can also upload to Google Sheets for tracking. Plan your month, track weekly, and stay on top of spending with clear totals.
                   </p>
                   <div className="flex flex-col gap-3">
-                    <a 
+                    <a
                       href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/668cc6683_TSMonthlyUKFinancialPlanner.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block"
-                    >
+                      className="block">
+
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download PDF
                       </Button>
                     </a>
-                    <a 
+                    <a
                       href="https://docs.google.com/spreadsheets/d/1OWSZoa6DQ-n3HeHtw-cUjBnwbRW-hVte/export?format=xlsx"
                       target="_blank"
                       rel="noopener noreferrer"
                       download
-                      className="block"
-                    >
+                      className="block">
+
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download Excel
@@ -673,8 +673,8 @@ export default function Tools() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
+              transition={{ delay: 0.3 }}>
+
               <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#c5a059] hover:shadow-lg transition-all duration-300 group">
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#c5a059]/10 mb-4 flex items-center justify-center transition-colors">
@@ -685,24 +685,24 @@ export default function Tools() {
                     A ready-made list of categories to use in the UK Budget Planner dropdowns. This guide matches the category dropdowns in the UK Budget Planner.
                   </p>
                   <div className="flex flex-col gap-3">
-                    <a 
+                    <a
                       href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/54dc673a5_TSUKCategoryGuide.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block"
-                    >
+                      className="block">
+
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download PDF
                       </Button>
                     </a>
-                    <a 
+                    <a
                       href="https://docs.google.com/spreadsheets/d/1XsoYxlf9BWJuB1kdSbL9-yySmOe2ipls/export?format=xlsx"
                       target="_blank"
                       rel="noopener noreferrer"
                       download
-                      className="block"
-                    >
+                      className="block">
+
                       <Button variant="outline" className="w-full rounded-lg border-gray-300">
                         <Download className="w-4 h-4 mr-2" />
                         Download Excel
@@ -723,8 +723,8 @@ export default function Tools() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+            className="text-center mb-16">
+
             <div className="inline-flex items-center justify-center w-16 h-16 bg-[#c5a059]/10 rounded-full mb-6">
               <Brain className="w-8 h-8 text-[#c5a059]" />
             </div>
@@ -744,13 +744,13 @@ export default function Tools() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-[#c5a059]">
+      <section className="bg-[#C2983B] py-24">
         <div className="container mx-auto px-6 lg:px-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+            viewport={{ once: true }}>
+
             <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
               Need Personalized Guidance?
             </h2>
@@ -758,10 +758,10 @@ export default function Tools() {
               Our tools are a great start, but nothing beats working with a professional coach.
             </p>
             <Link to={createPageUrl('Schedule')}>
-              <Button 
+              <Button
                 size="lg"
-                className="bg-[#1a2b4b] hover:bg-[#2c3e50] text-white font-semibold px-10 py-6 text-lg rounded-lg shadow-lg"
-              >
+                className="bg-[#1a2b4b] hover:bg-[#2c3e50] text-white font-semibold px-10 py-6 text-lg rounded-lg shadow-lg">
+
                 Schedule a Free Call
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
@@ -769,6 +769,6 @@ export default function Tools() {
           </motion.div>
         </div>
       </section>
-    </div>
-  );
+    </div>);
+
 }
