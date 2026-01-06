@@ -8,57 +8,57 @@ import SEO from '@/components/seo/SEO';
 import { createCoachSchema } from '@/components/seo/schemas';
 
 const coaches = [
-  {
-    name: 'Chaim Tauber',
-    title: 'CEO & Executive Coach',
-    email: 'chaim@taubersolutions.com',
-    phone: '+1 (347) 963-8998',
-    bio: 'Founder focused on clarity, strategy & sustainable growth. Chaim has helped hundreds of families transform their financial lives through practical, compassionate coaching.',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80',
-    featured: true,
-    id: 'chaim'
-  },
-  {
-    name: 'Naftale Ostreicher',
-    title: 'Senior Coach',
-    email: 'naftale@taubersolutions.com',
-    phone: '+1 (845) 502-3372',
-    bio: 'Expert in personal finance transformation. Naftale specializes in helping clients break free from debt and build lasting wealth.',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
-    id: 'naftale'
-  },
-  {
-    name: 'Rivky Friedman',
-    title: 'Senior Coach',
-    email: 'rivky@taubersolutions.com',
-    phone: '+1 (845) 200-4365',
-    bio: 'Coaching women & families toward secure futures. Rivky brings empathy and expertise to every client relationship.',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
-    id: 'rivky'
-  },
-  {
-    name: 'Sender Eckstein',
-    title: 'Financial Coach',
-    email: 'sendere@taubersolutions.com',
-    phone: '+44 (739) 278-8116',
-    bio: 'As a UK-based financial coach with roots in the UK and experience working in Israel, I support clients in the UK and internationally.',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80',
-    id: 'sender'
-  },
-  {
-    name: 'Moshe Gelbman',
-    title: 'Financial Coach',
-    email: 'mgelbman@taubersolutions.com',
-    phone: '+1 (845) 587-8892',
-    bio: 'Helping clients build structure & confidence. Moshe\'s systematic approach makes complex financial concepts simple and actionable.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-    id: 'moshe'
-  }
-];
+{
+  name: 'Chaim Tauber',
+  title: 'CEO & Executive Coach',
+  email: 'chaim@taubersolutions.com',
+  phone: '+1 (347) 963-8998',
+  bio: 'Founder focused on clarity, strategy & sustainable growth. Chaim has helped hundreds of families transform their financial lives through practical, compassionate coaching.',
+  image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80',
+  featured: true,
+  id: 'chaim'
+},
+{
+  name: 'Naftale Ostreicher',
+  title: 'Senior Coach',
+  email: 'naftale@taubersolutions.com',
+  phone: '+1 (845) 502-3372',
+  bio: 'Expert in personal finance transformation. Naftale specializes in helping clients break free from debt and build lasting wealth.',
+  image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
+  id: 'naftale'
+},
+{
+  name: 'Rivky Friedman',
+  title: 'Senior Coach',
+  email: 'rivky@taubersolutions.com',
+  phone: '+1 (845) 200-4365',
+  bio: 'Coaching women & families toward secure futures. Rivky brings empathy and expertise to every client relationship.',
+  image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
+  id: 'rivky'
+},
+{
+  name: 'Sender Eckstein',
+  title: 'Financial Coach',
+  email: 'sendere@taubersolutions.com',
+  phone: '+44 (739) 278-8116',
+  bio: 'As a UK-based financial coach with roots in the UK and experience working in Israel, I support clients in the UK and internationally.',
+  image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80',
+  id: 'sender'
+},
+{
+  name: 'Moshe Gelbman',
+  title: 'Financial Coach',
+  email: 'mgelbman@taubersolutions.com',
+  phone: '+1 (845) 587-8892',
+  bio: 'Helping clients build structure & confidence. Moshe\'s systematic approach makes complex financial concepts simple and actionable.',
+  image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+  id: 'moshe'
+}];
+
 
 export default function Coaches() {
   const coachSchemas = coaches.map(createCoachSchema);
-  
+
   return (
     <div className="pt-20">
       <SEO
@@ -69,8 +69,8 @@ export default function Coaches() {
           "@context": "https://schema.org",
           "@type": "ItemList",
           "itemListElement": coachSchemas
-        }}
-      />
+        }} />
+
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-[#1a2b4b] via-[#2c3e50] to-[#1a2b4b] relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
@@ -81,8 +81,8 @@ export default function Coaches() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl"
-          >
+            className="max-w-3xl">
+
             <span className="text-[#c5a059] text-sm tracking-[0.3em] uppercase mb-4 block">
               Our Team
             </span>
@@ -105,13 +105,13 @@ export default function Coaches() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
-          >
+            className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
             <div className="relative h-[500px] bg-gradient-to-br from-[#1a2b4b] to-[#2c3e50] flex items-center justify-center">
               <div className="text-center p-12">
                 <div className="w-32 h-32 bg-[#c5a059] rounded-full mx-auto mb-6 flex items-center justify-center">
                   <span className="text-6xl font-light text-white">
-                    {coaches[0].name.split(' ').map(n => n[0]).join('')}
+                    {coaches[0].name.split(' ').map((n) => n[0]).join('')}
                   </span>
                 </div>
                 <div className="absolute top-8 left-8 w-24 h-24 border-2 border-[#c5a059]/30 rounded-full" />
@@ -149,27 +149,27 @@ export default function Coaches() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+            className="text-center mb-16">
+
             <h2 className="text-3xl md:text-4xl font-light text-[#1a2b4b]">
               Meet Our <span className="font-normal">Coaching Team</span>
             </h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {coaches.slice(1).map((coach, index) => (
-              <motion.div
-                key={coach.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white group flex flex-col"
-              >
+            {coaches.slice(1).map((coach, index) =>
+            <motion.div
+              key={coach.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-white group flex flex-col">
+
                 <div className="relative overflow-hidden h-64 bg-gradient-to-br from-[#1a2b4b] to-[#2c3e50] flex items-center justify-center">
                   <div className="w-28 h-28 bg-[#c5a059] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <span className="text-4xl font-light text-white">
-                      {coach.name.split(' ').map(n => n[0]).join('')}
+                      {coach.name.split(' ').map((n) => n[0]).join('')}
                     </span>
                   </div>
 
@@ -188,19 +188,19 @@ export default function Coaches() {
                   </Link>
                 </div>
               </motion.div>
-            ))}
+            )}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-[#c5a059]">
+      <section className="bg-[#C2983B] py-24">
         <div className="container mx-auto px-6 lg:px-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+            viewport={{ once: true }}>
+
             <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
               Ready to Start Your Journey?
             </h2>
@@ -208,10 +208,10 @@ export default function Coaches() {
               Connect with one of our coaches today and take the first step toward financial freedom.
             </p>
             <Link to={createPageUrl('Schedule')}>
-              <Button 
+              <Button
                 size="lg"
-                className="bg-[#1a2b4b] hover:bg-[#2c3e50] text-white font-semibold px-10 py-6 text-lg rounded-lg shadow-lg"
-              >
+                className="bg-[#1a2b4b] hover:bg-[#2c3e50] text-white font-semibold px-10 py-6 text-lg rounded-lg shadow-lg">
+
                 Schedule Your Meeting
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
@@ -219,6 +219,6 @@ export default function Coaches() {
           </motion.div>
         </div>
       </section>
-    </div>
-  );
+    </div>);
+
 }
