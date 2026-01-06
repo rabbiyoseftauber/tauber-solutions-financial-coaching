@@ -213,11 +213,14 @@ export default function UKCoaches() {
                     {coach.bio}
                   </p>
                   <Link to={createPageUrl('Schedule') + '?coach=' + coach.id} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                    <Button className="w-full bg-[#1a2b4b] hover:bg-[#2c3e50] text-white py-3 px-2 rounded-none text-[11px] leading-tight group flex flex-col items-center">
-                      <span>Schedule with</span>
-                      <span className="flex items-center gap-1">
-                        {coach.name.split(' ')[0]}
-                        <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                    <Button className="w-full bg-[#1a2b4b] hover:bg-[#2c3e50] text-white py-3 px-2 rounded-none text-[11px] leading-tight group">
+                      <span className="md:hidden">Schedule with<br />{coach.name.split(' ')[0]}</span>
+                      <span className="hidden md:flex md:flex-col md:items-center">
+                        <span>Schedule with</span>
+                        <span className="flex items-center gap-1">
+                          {coach.name.split(' ')[0]}
+                          <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                        </span>
                       </span>
                     </Button>
                   </Link>
