@@ -41,7 +41,7 @@ const coaches = [
   title: 'Financial Coach',
   email: 'sendere@taubersolutions.com',
   phone: '+44 (739) 278-8116',
-  bio: 'As a UK-based financial coach with roots in the UK and experience working in Israel, I support clients in the UK and internationally.',
+  bio: 'As a UK-based financial coach with roots in the UK and experience working in Israel, Sender supports clients in the UK and internationally.',
   image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80',
   id: 'sender'
 },
