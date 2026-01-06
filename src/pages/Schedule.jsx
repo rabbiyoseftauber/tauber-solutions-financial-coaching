@@ -141,12 +141,12 @@ export default function Schedule() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl"
           >
-            <span className="text-[#c5a059] text-sm tracking-[0.3em] uppercase mb-4 block">
+            <span className="text-[#C2983B] text-sm tracking-[0.3em] uppercase mb-4 block">
               Book Your Session
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
               Your Future Starts with{' '}
-              <span className="text-[#c5a059] font-normal">One Conversation</span>
+              <span className="text-[#C2983B] font-normal">One Conversation</span>
             </h1>
             <p className="text-xl text-gray-300 font-light leading-relaxed">
               Choose your session type, select a coach, and take the first step 
@@ -165,12 +165,12 @@ export default function Schedule() {
               {[1, 2, 3].map((s) => (
                 <React.Fragment key={s}>
                   <div className={`flex items-center justify-center w-10 h-10 rounded-full ${
-                      step >= s ? 'bg-[#c5a059] text-white' : 'bg-gray-200 text-gray-500'
+                      step >= s ? 'bg-[#C2983B] text-white' : 'bg-gray-200 text-gray-500'
                     } font-medium transition-colors`}>
                     {step > s ? <CheckCircle className="w-5 h-5" /> : s}
                   </div>
                   {s < 3 && (
-                    <div className={`w-24 h-0.5 ${step > s ? 'bg-[#c5a059]' : 'bg-gray-200'} transition-colors`} />
+                    <div className={`w-24 h-0.5 ${step > s ? 'bg-[#C2983B]' : 'bg-gray-200'} transition-colors`} />
                   )}
                 </React.Fragment>
               ))}
@@ -192,14 +192,14 @@ export default function Schedule() {
                       key={session.id}
                       className={`cursor-pointer transition-all duration-300 hover:shadow-lg ${
                         selectedSession === session.id 
-                          ? 'border-2 border-[#c5a059] shadow-lg' 
+                          ? 'border-2 border-[#C2983B] shadow-lg' 
                           : 'border border-gray-200'
                       }`}
                       onClick={() => setSelectedSession(session.id)}
                     >
                       <CardContent className="p-6 h-full flex flex-col">
                         <div className={`w-12 h-12 rounded-full mb-4 flex items-center justify-center ${
-                          selectedSession === session.id ? 'bg-[#c5a059]' : 'bg-gray-100'
+                          selectedSession === session.id ? 'bg-[#C2983B]' : 'bg-gray-100'
                         } transition-colors`}>
                           <session.icon className={`w-6 h-6 ${
                             selectedSession === session.id ? 'text-white' : 'text-gray-500'
@@ -243,7 +243,7 @@ export default function Schedule() {
                       setStep(2);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className="bg-[#c5a059] hover:bg-[#b08e35] text-white font-semibold px-12 py-6 rounded-lg shadow-lg group"
+                    className="bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold px-12 py-6 rounded-lg shadow-lg group"
                   >
                     Continue
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -356,7 +356,7 @@ export default function Schedule() {
                     <Button 
                       type="submit"
                       disabled={isSubmitting}
-                      className="flex-1 h-14 bg-[#c5a059] hover:bg-[#b08e35] text-white font-semibold rounded-lg shadow-lg disabled:opacity-50"
+                      className="flex-1 h-14 bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold rounded-lg shadow-lg disabled:opacity-50"
                     >
                       {isSubmitting ? 'Sending...' : 'Submit Request'}
                     </Button>
@@ -446,7 +446,7 @@ export default function Schedule() {
                 </Button>
               </a>
               <a href="https://wa.me/18453226500" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-[#c5a059] hover:bg-[#b08e35] text-white font-semibold px-8 py-6 rounded-lg shadow-lg">
+                <Button className="bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold px-8 py-6 rounded-lg shadow-lg">
                   <MessageCircle className="mr-2 w-5 h-5" />
                   WhatsApp
                 </Button>

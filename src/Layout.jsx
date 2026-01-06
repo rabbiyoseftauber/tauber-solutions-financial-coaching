@@ -85,8 +85,8 @@ export default function Layout({ children, currentPageName }) {
                   to={createPageUrl(item.page)}
                   className={`text-sm tracking-wide transition-colors duration-300 ${
                     currentPageName === item.page
-                      ? 'text-[#c5a059] font-semibold'
-                      : 'text-[#1a2b4b] hover:text-[#c5a059]'
+                      ? 'text-[#C2983B] font-semibold'
+                      : 'text-[#1a2b4b] hover:text-[#C2983B]'
                   }`}
                 >
                   {item.name}
@@ -120,7 +120,7 @@ export default function Layout({ children, currentPageName }) {
                     to={createPageUrl(item.page)}
                     className={`block text-lg ${
                       currentPageName === item.page
-                        ? 'text-[#c5a059] font-medium'
+                        ? 'text-[#C2983B] font-medium'
                         : 'text-[#1a2b4b]'
                     }`}
                   >
@@ -155,7 +155,7 @@ export default function Layout({ children, currentPageName }) {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-[#c5a059] text-sm tracking-[0.2em] uppercase mb-6">Quick Links</h4>
+              <h4 className="text-[#C2983B] text-sm tracking-[0.2em] uppercase mb-6">Quick Links</h4>
               <ul className="space-y-3">
                 {navigation.map((item) => (
                   <li key={item.name}>
@@ -172,7 +172,7 @@ export default function Layout({ children, currentPageName }) {
 
             {/* Contact */}
             <div>
-              <h4 className="text-[#c5a059] text-sm tracking-[0.2em] uppercase mb-6">Contact</h4>
+              <h4 className="text-[#C2983B] text-sm tracking-[0.2em] uppercase mb-6">Contact</h4>
               <ul className="space-y-3 text-gray-400 font-light">
                 <li>
                   <a href="mailto:office@taubersolutions.com" className="hover:text-white transition-colors">
