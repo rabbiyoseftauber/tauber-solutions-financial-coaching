@@ -994,7 +994,7 @@ export default function Tools() {
             <p className="text-xl text-white font-light mb-10 max-w-2xl mx-auto">
               Our tools are a great start, but nothing beats working with a professional coach.
             </p>
-            <Link to={createPageUrl('Schedule')}>
+            <Link to={createPageUrl('Schedule')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <Button
                 size="lg"
                 className="bg-[#1a2b4b] hover:bg-[#2c3e50] text-white font-semibold px-10 py-6 text-lg rounded-lg shadow-lg">
