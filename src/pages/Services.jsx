@@ -82,7 +82,7 @@ export default function Services() {
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-[#1F2A44] via-[#2a3654] to-[#1F2A44] relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 right-20 w-96 h-96 border border-[#C2983B] rounded-full" />
+          <div className="absolute top-20 right-20 w-96 h-96 border border-[#c5a059] rounded-full" />
         </div>
         
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
