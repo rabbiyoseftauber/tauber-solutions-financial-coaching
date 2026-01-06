@@ -213,9 +213,8 @@ export default function UKCoaches() {
                     {coach.bio}
                   </p>
                   <Link to={createPageUrl('Schedule') + '?coach=' + coach.id} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                    <Button className="w-full bg-[#1a2b4b] hover:bg-[#2c3e50] text-white py-4 px-3 rounded-none text-xs sm:text-sm group whitespace-nowrap">
-                      Schedule with {coach.name.split(' ')[0]}
-                      <ArrowRight className="ml-1 sm:ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <Button className="w-full bg-[#1a2b4b] hover:bg-[#2c3e50] text-white py-3 px-2 rounded-none text-[11px] leading-tight group">
+                      Schedule with<br />{coach.name.split(' ')[0]}
                     </Button>
                   </Link>
                 </div>
