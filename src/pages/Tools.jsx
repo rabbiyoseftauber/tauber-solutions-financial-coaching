@@ -65,9 +65,9 @@ function InvestmentCalculator({ formatCurrency, currency }) {
           </div>
         </div>
         <div>
-          <Label className="text-gray-300 text-sm mb-2 flex items-center justify-between">
+          <Label className="text-gray-300 text-sm mb-2 flex items-center gap-4">
             <span>Additional Contribution</span>
-            <div className="flex gap-2 bg-[#1a2b4b]/50 p-1 rounded ml-auto md:ml-4">
+            <div className="flex gap-2 bg-[#1a2b4b]/50 p-1 rounded">
               <button
                 onClick={() => setContributionFrequency('monthly')}
                 className={`px-3 py-1 text-xs rounded transition-colors ${
