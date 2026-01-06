@@ -14,15 +14,17 @@ import SEO from '@/components/seo/SEO';
 function InvestmentCalculator({ formatCurrency, currency }) {
   const currentCurrencyObj = currencies.find(c => c.code === currency);
   const [principal, setPrincipal] = useState(10000);
-  const [monthly, setMonthly] = useState(500);
+  const [contribution, setContribution] = useState(500);
+  const [contributionFrequency, setContributionFrequency] = useState('monthly');
   const [rate, setRate] = useState(7);
   const [years, setYears] = useState(20);
 
   const calculateInvestment = () => {
     const r = rate / 100 / 12;
     const n = years * 12;
-    const futureValue = principal * Math.pow(1 + r, n) + monthly * ((Math.pow(1 + r, n) - 1) / r);
-    const totalContributions = principal + monthly * n;
+    const monthlyContribution = contributionFrequency === 'monthly' ? contribution : contribution / 12;
+    const futureValue = principal * Math.pow(1 + r, n) + monthlyContribution * ((Math.pow(1 + r, n) - 1) / r);
+    const totalContributions = principal + monthlyContribution * n;
     const earnings = futureValue - totalContributions;
     return { futureValue, totalContributions, earnings };
   };
@@ -54,20 +56,6 @@ function InvestmentCalculator({ formatCurrency, currency }) {
           </div>
         </div>
         <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Monthly Contribution</Label>
-          <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
-              {currentCurrencyObj.symbol}
-            </span>
-            <Input
-              type="text"
-              value={monthly.toLocaleString()}
-              onChange={(e) => setMonthly(Number(e.target.value.replace(/,/g, '')) || 0)}
-              placeholder="500"
-              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-          </div>
-        </div>
-        <div>
           <Label className="text-gray-300 text-sm mb-2 block">Expected Annual Return (%)</Label>
           <Input
             type="text"
@@ -84,6 +72,38 @@ function InvestmentCalculator({ formatCurrency, currency }) {
             onChange={(e) => setYears(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="20"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+        </div>
+        <div>
+          <Label className="text-gray-300 text-sm mb-2 flex items-center justify-between">
+            <span>Additional Contribution</span>
+            <div className="flex gap-2 bg-[#1a2b4b]/50 p-1 rounded">
+              <button
+                onClick={() => setContributionFrequency('monthly')}
+                className={`px-3 py-1 text-xs rounded transition-colors ${
+                  contributionFrequency === 'monthly' ? 'bg-[#C2983B] text-white' : 'text-gray-400'
+                }`}>
+                Monthly
+              </button>
+              <button
+                onClick={() => setContributionFrequency('yearly')}
+                className={`px-3 py-1 text-xs rounded transition-colors ${
+                  contributionFrequency === 'yearly' ? 'bg-[#C2983B] text-white' : 'text-gray-400'
+                }`}>
+                Yearly
+              </button>
+            </div>
+          </Label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+              {currentCurrencyObj.symbol}
+            </span>
+            <Input
+              type="text"
+              value={contribution.toLocaleString()}
+              onChange={(e) => setContribution(Number(e.target.value.replace(/,/g, '')) || 0)}
+              placeholder="500"
+              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+          </div>
         </div>
       </div>
       
@@ -526,33 +546,16 @@ function LoanCalculator({ formatCurrency, currency }) {
   const [loanAmount, setLoanAmount] = useState(25000);
   const [interestRate, setInterestRate] = useState(8);
   const [loanTerm, setLoanTerm] = useState(5);
-  const [additionalPayment, setAdditionalPayment] = useState(0);
-  const [paymentFrequency, setPaymentFrequency] = useState('monthly');
   const [showAmortization, setShowAmortization] = useState(false);
   const [viewMode, setViewMode] = useState('yearly');
 
   const calculateLoan = () => {
     const r = interestRate / 100 / 12;
     const n = loanTerm * 12;
-    const baseMonthlyPayment = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-    const extraPayment = paymentFrequency === 'monthly' ? additionalPayment : additionalPayment / 12;
-    const monthlyPayment = baseMonthlyPayment + extraPayment;
-    
-    // Calculate actual payoff with extra payments
-    let balance = loanAmount;
-    let totalPaid = 0;
-    let monthsPaid = 0;
-    
-    while (balance > 0 && monthsPaid < n) {
-      const interestPayment = balance * r;
-      const principalPayment = Math.min(monthlyPayment - interestPayment, balance);
-      balance -= principalPayment;
-      totalPaid += interestPayment + principalPayment;
-      monthsPaid++;
-    }
-    
-    const totalInterest = totalPaid - loanAmount;
-    return { monthlyPayment, totalPayment: totalPaid, totalInterest, monthsSaved: n - monthsPaid };
+    const monthlyPayment = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const totalPayment = monthlyPayment * n;
+    const totalInterest = totalPayment - loanAmount;
+    return { monthlyPayment, totalPayment, totalInterest };
   };
 
   const calculateAmortization = () => {
@@ -634,38 +637,6 @@ function LoanCalculator({ formatCurrency, currency }) {
             placeholder="5"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
         </div>
-        <div>
-          <Label className="text-gray-300 text-sm mb-2 flex items-center justify-between">
-            <span>Additional Payment</span>
-            <div className="flex gap-2 bg-[#1a2b4b]/50 p-1 rounded">
-              <button
-                onClick={() => setPaymentFrequency('monthly')}
-                className={`px-3 py-1 text-xs rounded transition-colors ${
-                  paymentFrequency === 'monthly' ? 'bg-[#C2983B] text-white' : 'text-gray-400'
-                }`}>
-                Monthly
-              </button>
-              <button
-                onClick={() => setPaymentFrequency('yearly')}
-                className={`px-3 py-1 text-xs rounded transition-colors ${
-                  paymentFrequency === 'yearly' ? 'bg-[#C2983B] text-white' : 'text-gray-400'
-                }`}>
-                Yearly
-              </button>
-            </div>
-          </Label>
-          <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
-              {currentCurrencyObj.symbol}
-            </span>
-            <Input
-              type="text"
-              value={additionalPayment.toLocaleString()}
-              onChange={(e) => setAdditionalPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
-              placeholder="0"
-              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-          </div>
-        </div>
       </div>
       
       <div className="pt-6 border-t border-white/10">
@@ -686,14 +657,6 @@ function LoanCalculator({ formatCurrency, currency }) {
               {formatCurrency(result.totalInterest)}
             </p>
           </div>
-          {additionalPayment > 0 && (
-            <div className="col-span-2">
-              <p className="text-gray-400 text-xs mb-1">Time Saved</p>
-              <p className="text-lg font-medium text-green-400">
-                {result.monthsSaved} months
-              </p>
-            </div>
-          )}
         </div>
 
       </div>
