@@ -33,7 +33,7 @@ export default function CTASection() {
               and create a roadmap to success.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to={createPageUrl('Schedule')}>
+              <Link to={createPageUrl('Schedule')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                 <Button
                   size="lg"
                   className="bg-[#1F2A44] hover:bg-[#2a3654] text-white font-semibold px-10 py-6 text-lg rounded-none group">

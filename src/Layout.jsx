@@ -81,6 +81,7 @@ export default function Layout({ children, currentPageName }) {
                 <Link
                   key={item.name}
                   to={createPageUrl(item.page)}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   className={`text-sm tracking-wide transition-colors duration-300 ${
                     currentPageName === item.page
                       ? 'text-[#C2983B] font-semibold'
@@ -116,6 +117,7 @@ export default function Layout({ children, currentPageName }) {
                   <Link
                     key={item.name}
                     to={createPageUrl(item.page)}
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     className={`block text-lg ${
                       currentPageName === item.page
                         ? 'text-[#C2983B] font-medium'
@@ -159,6 +161,7 @@ export default function Layout({ children, currentPageName }) {
                   <li key={item.name}>
                     <Link 
                       to={createPageUrl(item.page)}
+                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                       className="text-gray-400 hover:text-white transition-colors font-light"
                     >
                       {item.name}
