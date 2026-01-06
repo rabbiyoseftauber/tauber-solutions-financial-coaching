@@ -42,6 +42,15 @@ function InvestmentCalculator({ formatCurrency, currency }) {
       
       <div className="space-y-6 mb-8">
         <div>
+          <Label className="text-gray-300 text-sm mb-2 block">Investment Period (Years)</Label>
+          <Input
+            type="text"
+            value={years}
+            onChange={(e) => setYears(Number(e.target.value.replace(/,/g, '')) || 0)}
+            placeholder="20"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+        </div>
+        <div>
           <Label className="text-gray-300 text-sm mb-2 block">Initial Investment</Label>
           <div className="relative">
             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
@@ -56,27 +65,9 @@ function InvestmentCalculator({ formatCurrency, currency }) {
           </div>
         </div>
         <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Expected Annual Return (%)</Label>
-          <Input
-            type="text"
-            value={rate}
-            onChange={(e) => setRate(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="7"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-        </div>
-        <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Investment Period (Years)</Label>
-          <Input
-            type="text"
-            value={years}
-            onChange={(e) => setYears(Number(e.target.value.replace(/,/g, '')) || 0)}
-            placeholder="20"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-        </div>
-        <div>
           <Label className="text-gray-300 text-sm mb-2 flex items-center justify-between">
             <span>Additional Contribution</span>
-            <div className="flex gap-2 bg-[#1a2b4b]/50 p-1 rounded">
+            <div className="flex gap-2 bg-[#1a2b4b]/50 p-1 rounded ml-auto md:ml-4">
               <button
                 onClick={() => setContributionFrequency('monthly')}
                 className={`px-3 py-1 text-xs rounded transition-colors ${
@@ -104,6 +95,15 @@ function InvestmentCalculator({ formatCurrency, currency }) {
               placeholder="500"
               className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
           </div>
+        </div>
+        <div>
+          <Label className="text-gray-300 text-sm mb-2 block">Expected Annual Return (%)</Label>
+          <Input
+            type="text"
+            value={rate}
+            onChange={(e) => setRate(Number(e.target.value.replace(/,/g, '')) || 0)}
+            placeholder="7"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
         </div>
       </div>
       
