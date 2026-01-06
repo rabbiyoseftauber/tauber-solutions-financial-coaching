@@ -30,11 +30,16 @@ function InvestmentCalculator({ formatCurrency, currency }) {
 
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
-      <div className="flex items-center gap-4 mb-8">
-        <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
-          <TrendingUp className="w-7 h-7 text-white" />
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
+            <TrendingUp className="w-7 h-7 text-white" />
+          </div>
+          <h3 className="text-2xl font-bold text-white">Investment Calculator</h3>
         </div>
-        <h3 className="text-2xl font-bold text-white">Investment Calculator</h3>
+        <div className="px-4 py-2 bg-[#C2983B]/20 rounded-lg">
+          <span className="text-[#C2983B] font-semibold text-sm">{currency}</span>
+        </div>
       </div>
       
       <div className="space-y-6 mb-8">
@@ -163,11 +168,16 @@ function MortgageCalculator({ formatCurrency, currency }) {
 
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
-      <div className="flex items-center gap-4 mb-8">
-        <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
-          <Home className="w-7 h-7 text-white" />
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
+            <Home className="w-7 h-7 text-white" />
+          </div>
+          <h3 className="text-2xl font-bold text-white">Mortgage Calculator</h3>
         </div>
-        <h3 className="text-2xl font-bold text-white">Mortgage Calculator</h3>
+        <div className="px-4 py-2 bg-[#C2983B]/20 rounded-lg">
+          <span className="text-[#C2983B] font-semibold text-sm">{currency}</span>
+        </div>
       </div>
       
       <div className="space-y-6 mb-8">
@@ -350,11 +360,16 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
 
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
-      <div className="flex items-center gap-4 mb-8">
-        <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
-          <Building2 className="w-7 h-7 text-white" />
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
+            <Building2 className="w-7 h-7 text-white" />
+          </div>
+          <h3 className="text-2xl font-bold text-white">Commercial Mortgage</h3>
         </div>
-        <h3 className="text-2xl font-bold text-white">Commercial Mortgage</h3>
+        <div className="px-4 py-2 bg-[#C2983B]/20 rounded-lg">
+          <span className="text-[#C2983B] font-semibold text-sm">{currency}</span>
+        </div>
       </div>
       
       <div className="space-y-6 mb-8">
@@ -500,6 +515,7 @@ function LoanCalculator({ formatCurrency, currency }) {
   const [loanAmount, setLoanAmount] = useState(25000);
   const [interestRate, setInterestRate] = useState(8);
   const [loanTerm, setLoanTerm] = useState(5);
+  const [additionalPayment, setAdditionalPayment] = useState(0);
   const [showAmortization, setShowAmortization] = useState(false);
   const [viewMode, setViewMode] = useState('yearly');
 
@@ -507,20 +523,49 @@ function LoanCalculator({ formatCurrency, currency }) {
     const r = interestRate / 100 / 12;
     const n = loanTerm * 12;
     const monthlyPayment = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-    const totalPayment = monthlyPayment * n;
-    const totalInterest = totalPayment - loanAmount;
-    return { monthlyPayment, totalPayment, totalInterest };
+    
+    // Calculate with additional payments
+    let balance = loanAmount;
+    let totalInterestPaid = 0;
+    let monthsPaid = 0;
+    const maxMonths = n;
+    
+    for (let month = 1; month <= maxMonths; month++) {
+      if (balance <= 0) break;
+      
+      const interestPayment = balance * r;
+      const principalPayment = monthlyPayment - interestPayment + additionalPayment;
+      
+      totalInterestPaid += interestPayment;
+      balance -= principalPayment;
+      monthsPaid = month;
+      
+      if (balance < 0) balance = 0;
+    }
+    
+    const totalPayment = (monthlyPayment + additionalPayment) * monthsPaid;
+    const savedInterest = (monthlyPayment * n + loanAmount * r * n) - totalPayment;
+    
+    return { 
+      monthlyPayment, 
+      totalPayment, 
+      totalInterest: totalInterestPaid,
+      monthsSaved: n - monthsPaid,
+      interestSaved: additionalPayment > 0 ? savedInterest : 0
+    };
   };
 
   const calculateAmortization = () => {
     const r = interestRate / 100 / 12;
-    const monthlyPayment = calculateLoan().monthlyPayment;
+    const baseMonthlyPayment = loanAmount * (r * Math.pow(1 + r, loanTerm * 12)) / (Math.pow(1 + r, loanTerm * 12) - 1);
     let balance = loanAmount;
     const schedule = [];
 
     for (let month = 1; month <= loanTerm * 12; month++) {
+      if (balance <= 0) break;
+      
       const interestPayment = balance * r;
-      const principalPayment = monthlyPayment - interestPayment;
+      const principalPayment = baseMonthlyPayment - interestPayment + additionalPayment;
       balance -= principalPayment;
 
       schedule.push({
@@ -528,19 +573,26 @@ function LoanCalculator({ formatCurrency, currency }) {
         year: Math.ceil(month / 12),
         principal: principalPayment,
         interest: interestPayment,
-        balance: Math.max(0, balance)
+        balance: Math.max(0, balance),
+        totalPayment: baseMonthlyPayment + additionalPayment
       });
+      
+      if (balance <= 0) break;
     }
 
     const yearlySchedule = [];
-    for (let year = 1; year <= loanTerm; year++) {
+    const maxYear = Math.ceil(schedule.length / 12);
+    
+    for (let year = 1; year <= maxYear; year++) {
       const yearData = schedule.filter(m => m.year === year);
-      yearlySchedule.push({
-        year,
-        principal: yearData.reduce((sum, m) => sum + m.principal, 0),
-        interest: yearData.reduce((sum, m) => sum + m.interest, 0),
-        balance: yearData[yearData.length - 1].balance
-      });
+      if (yearData.length > 0) {
+        yearlySchedule.push({
+          year,
+          principal: yearData.reduce((sum, m) => sum + m.principal, 0),
+          interest: yearData.reduce((sum, m) => sum + m.interest, 0),
+          balance: yearData[yearData.length - 1].balance
+        });
+      }
     }
 
     return { monthly: schedule, yearly: yearlySchedule };
@@ -551,11 +603,16 @@ function LoanCalculator({ formatCurrency, currency }) {
 
   return (
     <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
-      <div className="flex items-center gap-4 mb-8">
-        <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
-          <CreditCard className="w-7 h-7 text-white" />
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 bg-[#C2983B] rounded-full flex items-center justify-center">
+            <CreditCard className="w-7 h-7 text-white" />
+          </div>
+          <h3 className="text-2xl font-bold text-white">Loan Calculator</h3>
         </div>
-        <h3 className="text-2xl font-bold text-white">Loan Calculator</h3>
+        <div className="px-4 py-2 bg-[#C2983B]/20 rounded-lg">
+          <span className="text-[#C2983B] font-semibold text-sm">{currency}</span>
+        </div>
       </div>
       
       <div className="space-y-6 mb-8">
@@ -589,14 +646,24 @@ function LoanCalculator({ formatCurrency, currency }) {
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
 
         </div>
+        <div>
+          <Label className="text-gray-300 text-sm mb-2 block">Additional Monthly Payment ({currency})</Label>
+          <Input
+            type="text"
+            value={additionalPayment.toLocaleString()}
+            onChange={(e) => setAdditionalPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
+            placeholder="e.g. 100"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
+        </div>
       </div>
       
       <div className="pt-6 border-t border-white/10">
         <p className="text-gray-400 text-sm mb-2">Monthly Payment:</p>
         <p className="text-5xl font-bold text-[#C2983B] mb-6">
-          {formatCurrency(result.monthlyPayment)}
+          {formatCurrency(result.monthlyPayment + additionalPayment)}
         </p>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 mb-6">
           <div>
             <p className="text-gray-400 text-xs mb-1">Total Payment</p>
             <p className="text-lg font-medium text-white">
@@ -609,8 +676,73 @@ function LoanCalculator({ formatCurrency, currency }) {
               {formatCurrency(result.totalInterest)}
             </p>
           </div>
+          {additionalPayment > 0 && (
+            <>
+              <div>
+                <p className="text-gray-400 text-xs mb-1">Time Saved</p>
+                <p className="text-lg font-medium text-green-400">
+                  {Math.floor(result.monthsSaved / 12)}y {result.monthsSaved % 12}m
+                </p>
+              </div>
+              <div>
+                <p className="text-gray-400 text-xs mb-1">Interest Saved</p>
+                <p className="text-lg font-medium text-green-400">
+                  {formatCurrency(result.interestSaved)}
+                </p>
+              </div>
+            </>
+          )}
         </div>
 
+        <button
+          onClick={() => setShowAmortization(!showAmortization)}
+          className="w-full bg-[#1a2b4b]/70 hover:bg-[#1a2b4b] text-white py-3 rounded-lg transition-colors">
+          {showAmortization ? 'Hide' : 'Show'} Amortization Schedule
+        </button>
+
+        {showAmortization && (
+          <div className="mt-6 border-t border-white/10 pt-6">
+            <div className="flex gap-2 mb-4">
+              <button
+                onClick={() => setViewMode('yearly')}
+                className={`flex-1 py-2 rounded-lg transition-colors ${
+                  viewMode === 'yearly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'
+                }`}>
+                Yearly
+              </button>
+              <button
+                onClick={() => setViewMode('monthly')}
+                className={`flex-1 py-2 rounded-lg transition-colors ${
+                  viewMode === 'monthly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'
+                }`}>
+                Monthly
+              </button>
+            </div>
+
+            <div className="max-h-96 overflow-y-auto">
+              <table className="w-full text-sm">
+                <thead className="sticky top-0 bg-[#2c3e50]">
+                  <tr className="text-gray-400 border-b border-white/10">
+                    <th className="text-left py-2">{viewMode === 'yearly' ? 'Year' : 'Month'}</th>
+                    <th className="text-right py-2">Interest</th>
+                    <th className="text-right py-2">Principal</th>
+                    <th className="text-right py-2">Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(viewMode === 'yearly' ? amortization.yearly : amortization.monthly).map((row, idx) => (
+                    <tr key={idx} className="border-b border-white/5 text-gray-300">
+                      <td className="py-2">{viewMode === 'yearly' ? row.year : row.month}</td>
+                      <td className="text-right">{formatCurrency(row.interest)}</td>
+                      <td className="text-right">{formatCurrency(row.principal)}</td>
+                      <td className="text-right">{formatCurrency(row.balance)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
     </div>);
 
