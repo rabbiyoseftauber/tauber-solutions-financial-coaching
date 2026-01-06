@@ -206,15 +206,10 @@ export default function Layout({ children, currentPageName }) {
             </div>
           </div>
 
-          <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="border-t border-white/10 mt-12 pt-8 text-center">
             <p className="text-gray-500 text-sm font-light">
               © {new Date().getFullYear()} Tauber Solutions. All rights reserved.
             </p>
-            <div className="flex items-center gap-6 text-sm text-gray-500">
-              <span>Terms of Service</span>
-              <span>Privacy Policy</span>
-              <span>Powered by Base44</span>
-            </div>
           </div>
         </div>
       </footer>
