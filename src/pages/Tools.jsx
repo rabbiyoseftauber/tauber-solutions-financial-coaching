@@ -41,41 +41,41 @@ function InvestmentCalculator({ formatCurrency, currency }) {
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Initial Investment ({currency})</Label>
           <Input 
-            type="number" 
-            value={principal} 
-            onChange={(e) => setPrincipal(Number(e.target.value))}
-            placeholder="e.g. 10000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            type="text" 
+            value={principal.toLocaleString()} 
+            onChange={(e) => setPrincipal(Number(e.target.value.replace(/,/g, '')) || 0)}
+            placeholder="e.g. 10,000"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Monthly Contribution ({currency})</Label>
           <Input 
-            type="number" 
-            value={monthly} 
-            onChange={(e) => setMonthly(Number(e.target.value))}
+            type="text" 
+            value={monthly.toLocaleString()} 
+            onChange={(e) => setMonthly(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 500"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Expected Annual Return (%)</Label>
           <Input 
-            type="number" 
+            type="text" 
             value={rate} 
-            onChange={(e) => setRate(Number(e.target.value))}
+            onChange={(e) => setRate(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 7"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Investment Period (Years)</Label>
           <Input 
-            type="number" 
+            type="text" 
             value={years} 
-            onChange={(e) => setYears(Number(e.target.value))}
+            onChange={(e) => setYears(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 20"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
       </div>
@@ -135,42 +135,41 @@ function MortgageCalculator({ formatCurrency, currency }) {
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Home Price ({currency})</Label>
           <Input 
-            type="number" 
-            value={homePrice} 
-            onChange={(e) => setHomePrice(Number(e.target.value))}
-            placeholder="e.g. 400000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            type="text" 
+            value={homePrice.toLocaleString()} 
+            onChange={(e) => setHomePrice(Number(e.target.value.replace(/,/g, '')) || 0)}
+            placeholder="e.g. 400,000"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Down Payment ({currency})</Label>
           <Input 
-            type="number" 
-            value={downPayment} 
-            onChange={(e) => setDownPayment(Number(e.target.value))}
-            placeholder="e.g. 80000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            type="text" 
+            value={downPayment.toLocaleString()} 
+            onChange={(e) => setDownPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
+            placeholder="e.g. 80,000"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Interest Rate (%)</Label>
           <Input 
-            type="number" 
-            step="0.1"
+            type="text" 
             value={interestRate} 
-            onChange={(e) => setInterestRate(Number(e.target.value))}
+            onChange={(e) => setInterestRate(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 6.5"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Loan Term (Years)</Label>
           <Input 
-            type="number" 
+            type="text" 
             value={loanTerm} 
-            onChange={(e) => setLoanTerm(Number(e.target.value))}
+            onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 30"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
       </div>
@@ -235,52 +234,51 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Property Value ({currency})</Label>
           <Input 
-            type="number" 
-            value={propertyValue} 
-            onChange={(e) => setPropertyValue(Number(e.target.value))}
-            placeholder="e.g. 1500000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            type="text" 
+            value={propertyValue.toLocaleString()} 
+            onChange={(e) => setPropertyValue(Number(e.target.value.replace(/,/g, '')) || 0)}
+            placeholder="e.g. 1,500,000"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Down Payment ({currency})</Label>
           <Input 
-            type="number" 
-            value={downPayment} 
-            onChange={(e) => setDownPayment(Number(e.target.value))}
-            placeholder="e.g. 375000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            type="text" 
+            value={downPayment.toLocaleString()} 
+            onChange={(e) => setDownPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
+            placeholder="e.g. 375,000"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Interest Rate (%)</Label>
           <Input 
-            type="number" 
-            step="0.1"
+            type="text" 
             value={interestRate} 
-            onChange={(e) => setInterestRate(Number(e.target.value))}
+            onChange={(e) => setInterestRate(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 7.5"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Loan Term (Years)</Label>
           <Input 
-            type="number" 
+            type="text" 
             value={loanTerm} 
-            onChange={(e) => setLoanTerm(Number(e.target.value))}
+            onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 20"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Annual Property Income ({currency})</Label>
           <Input 
-            type="number" 
-            value={annualIncome} 
-            onChange={(e) => setAnnualIncome(Number(e.target.value))}
-            placeholder="e.g. 180000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            type="text" 
+            value={annualIncome.toLocaleString()} 
+            onChange={(e) => setAnnualIncome(Number(e.target.value.replace(/,/g, '')) || 0)}
+            placeholder="e.g. 180,000"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
       </div>
@@ -350,32 +348,31 @@ function LoanCalculator({ formatCurrency, currency }) {
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Loan Amount ({currency})</Label>
           <Input 
-            type="number" 
-            value={loanAmount} 
-            onChange={(e) => setLoanAmount(Number(e.target.value))}
-            placeholder="e.g. 25000"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            type="text" 
+            value={loanAmount.toLocaleString()} 
+            onChange={(e) => setLoanAmount(Number(e.target.value.replace(/,/g, '')) || 0)}
+            placeholder="e.g. 25,000"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Interest Rate (%)</Label>
           <Input 
-            type="number" 
-            step="0.1"
+            type="text" 
             value={interestRate} 
-            onChange={(e) => setInterestRate(Number(e.target.value))}
+            onChange={(e) => setInterestRate(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 8"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
         <div>
           <Label className="text-gray-300 text-sm mb-2 block">Loan Term (Years)</Label>
           <Input 
-            type="number" 
+            type="text" 
             value={loanTerm} 
-            onChange={(e) => setLoanTerm(Number(e.target.value))}
+            onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
             placeholder="e.g. 5"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg"
+            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#c5a059] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
       </div>

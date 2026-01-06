@@ -217,23 +217,25 @@ export default function Schedule() {
                   ))}
                 </div>
 
-                <div className="mb-12">
-                  <Label className="text-[#1a2b4b] font-medium mb-3 block">
-                    Select Your Preferred Coach
-                  </Label>
-                  <Select value={selectedCoach} onValueChange={setSelectedCoach}>
-                    <SelectTrigger className="w-full h-14 rounded-none border-gray-300">
-                      <SelectValue placeholder="Choose a coach" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {coaches.map((coach) => (
-                        <SelectItem key={coach.id} value={coach.id}>
-                          {coach.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+                {selectedSession !== 'free-call' && (
+                  <div className="mb-12">
+                    <Label className="text-[#1a2b4b] font-medium mb-3 block">
+                      Select Your Preferred Coach
+                    </Label>
+                    <Select value={selectedCoach} onValueChange={setSelectedCoach}>
+                      <SelectTrigger className="w-full h-14 rounded-none border-gray-300">
+                        <SelectValue placeholder="Choose a coach" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {coaches.map((coach) => (
+                          <SelectItem key={coach.id} value={coach.id}>
+                            {coach.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
 
                 <div className="text-center">
                   <Button 

@@ -184,9 +184,18 @@ export default function Layout({ children, currentPageName }) {
                     +1 (845) 322-6500
                   </a>
                 </li>
+                <li>
+                  <a href="tel:+447392788116" className="hover:text-white transition-colors">
+                    +44 (739) 278-8116
+                  </a>
+                </li>
                 <li className="pt-2">
                   67 North Airmont Rd<br />
                   Suffern, NY 10901
+                </li>
+                <li className="pt-2">
+                  71 Wellington Street West<br />
+                  Salford M7 2ED
                 </li>
               </ul>
             </div>

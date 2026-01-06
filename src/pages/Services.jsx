@@ -91,12 +91,12 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl"
           >
-            <span className="text-[#C2983B] text-sm tracking-[0.3em] uppercase mb-4 block">
+            <span className="text-[#c5a059] text-sm tracking-[0.3em] uppercase mb-4 block">
               Our Services
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
               Smart Money{' '}
-              <span className="text-[#C2983B] font-normal">Starts Here</span>
+              <span className="text-[#c5a059] font-normal">Starts Here</span>
             </h1>
             <p className="text-xl text-gray-300 font-light leading-relaxed">
               Transform your financial life with expert guidance, proven strategies, 
@@ -119,8 +119,8 @@ export default function Services() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-[#C2983B]/10 mb-4">
-                  <stat.icon className="w-6 h-6 text-[#C2983B]" />
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-[#c5a059]/10 mb-4">
+                  <stat.icon className="w-6 h-6 text-[#c5a059]" />
                 </div>
                 <div className="text-4xl font-semibold text-[#1F2A44] mb-2">{stat.value}</div>
                 <div className="text-gray-600">{stat.label}</div>
@@ -158,10 +158,10 @@ export default function Services() {
                 
                 <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-[#C2983B] flex items-center justify-center">
+                    <div className="w-12 h-12 bg-[#c5a059] flex items-center justify-center">
                       <service.icon className="w-6 h-6 text-white" />
                     </div>
-                    <span className="text-[#C2983B] text-sm tracking-[0.2em] uppercase">
+                    <span className="text-[#c5a059] text-sm tracking-[0.2em] uppercase">
                       {service.subtitle}
                     </span>
                   </div>
@@ -177,7 +177,7 @@ export default function Services() {
                   <ul className="space-y-3 mb-8">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-[#C2983B] flex-shrink-0" />
+                        <CheckCircle className="w-5 h-5 text-[#c5a059] flex-shrink-0" />
                         <span className="text-gray-700">{feature}</span>
                       </li>
                     ))}
@@ -197,7 +197,7 @@ export default function Services() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-[#C2983B]">
+      <section className="py-24 bg-[#c5a059]">
         <div className="container mx-auto px-6 lg:px-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
