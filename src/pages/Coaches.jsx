@@ -174,7 +174,7 @@ export default function Coaches() {
                   </div>
 
                 </div>
-                <div className="p-6 flex flex-col flex-1">
+                <div className="p-6 md:p-8 flex flex-col flex-1">
                   <h3 className="text-xl font-semibold text-[#1a2b4b] mb-1">{coach.name}</h3>
                   <p className="text-[#c5a059] text-sm mb-4">{coach.title}</p>
                   <p className="text-gray-600 font-light text-sm leading-relaxed mb-6 flex-1">
