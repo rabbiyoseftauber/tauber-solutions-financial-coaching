@@ -164,7 +164,7 @@ export default function Coaches() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white group"
+                className="bg-white group flex flex-col"
               >
                 <div className="relative overflow-hidden h-64 bg-gradient-to-br from-[#1a2b4b] to-[#2c3e50] flex items-center justify-center">
                   <div className="w-28 h-28 bg-[#c5a059] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -174,15 +174,15 @@ export default function Coaches() {
                   </div>
 
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-1">
                   <h3 className="text-xl font-semibold text-[#1a2b4b] mb-1">{coach.name}</h3>
                   <p className="text-[#c5a059] text-sm mb-4">{coach.title}</p>
-                  <p className="text-gray-600 font-light text-sm leading-relaxed mb-6">
+                  <p className="text-gray-600 font-light text-sm leading-relaxed mb-6 flex-1">
                     {coach.bio}
                   </p>
                   <Link to={createPageUrl('Schedule') + '?coach=' + coach.id}>
                     <Button className="w-full bg-[#1a2b4b] hover:bg-[#2c3e50] text-white py-4 rounded-lg shadow-lg text-sm group">
-                      Schedule with {coach.name.split(' ')[0]}
+                      Schedule with {coach.id === 'rivky' ? 'Mrs. Friedman' : coach.name.split(' ')[0]}
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </Link>
