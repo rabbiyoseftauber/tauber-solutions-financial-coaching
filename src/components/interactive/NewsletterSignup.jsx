@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Mail, CheckCircle, ArrowRight } from 'lucide-react';
+import { base44 } from '@/api/base44Client';
 
 export default function NewsletterSignup({ variant = 'inline' }) {
   const [email, setEmail] = useState('');
@@ -16,9 +17,13 @@ export default function NewsletterSignup({ variant = 'inline' }) {
 
     setIsLoading(true);
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      await base44.entities.EmailSubscriber.create({
+        email: email,
+        name: name || undefined,
+        source: 'newsletter'
+      });
+      
       setIsSubmitted(true);
       setEmail('');
       setName('');
@@ -27,7 +32,11 @@ export default function NewsletterSignup({ variant = 'inline' }) {
       setTimeout(() => {
         setIsSubmitted(false);
       }, 5000);
-    }, 1000);
+    } catch (error) {
+      console.error('Failed to save email:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (variant === 'section') {

@@ -3,7 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Users, FileText, Settings, Loader2, ArrowRight } from 'lucide-react';
+import { Users, FileText, Settings, Loader2, ArrowRight, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 
@@ -39,6 +39,12 @@ export default function AdminDashboard() {
   const { data: resources = [] } = useQuery({
     queryKey: ['resources'],
     queryFn: () => base44.entities.Resource.list('sort_order', 4),
+    enabled: !loading
+  });
+
+  const { data: emailSubscribers = [] } = useQuery({
+    queryKey: ['emailSubscribers'],
+    queryFn: () => base44.entities.EmailSubscriber.list('-created_date', 50),
     enabled: !loading
   });
 
@@ -160,7 +166,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Current Resources Preview */}
-        <div>
+        <div className="mb-12">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-light text-[#1a2b4b]">
               Current <span className="font-normal text-[#C2983B]">Resources</span>
@@ -196,6 +202,58 @@ export default function AdminDashboard() {
               ))
             )}
           </div>
+        </div>
+
+        {/* Email Subscribers */}
+        <div>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-light text-[#1a2b4b]">
+              Email <span className="font-normal text-[#C2983B]">Subscribers</span>
+            </h2>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-600">{emailSubscribers.length} total</span>
+            </div>
+          </div>
+          <Card>
+            <CardContent className="p-0">
+              {emailSubscribers.length === 0 ? (
+                <p className="text-gray-500 text-center py-8">No subscribers yet</p>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead className="bg-gray-50 border-b">
+                      <tr>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Source</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {emailSubscribers.map((subscriber) => (
+                        <tr key={subscriber.id} className="hover:bg-gray-50">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            {subscriber.name || '-'}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            {subscriber.email}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm">
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                              {subscriber.source}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {new Date(subscriber.created_date).toLocaleDateString()}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
