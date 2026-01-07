@@ -104,6 +104,18 @@ export default function Schedule() {
     `.trim();
 
     try {
+      // Save to database
+      await base44.entities.ScheduleRequest.create({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        session_type: selectedSessionDetails.title,
+        coach_preference: selectedCoachDetails.name,
+        status: 'pending'
+      });
+
+      // Send email notification
       const settings = await base44.entities.SiteSettings.filter({ setting_key: 'main' });
       const adminEmail = settings[0]?.admin_email || 'office@taubersolutions.com';
       

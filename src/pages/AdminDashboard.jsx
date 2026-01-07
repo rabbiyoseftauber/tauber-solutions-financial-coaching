@@ -48,6 +48,12 @@ export default function AdminDashboard() {
     enabled: !loading
   });
 
+  const { data: scheduleRequests = [] } = useQuery({
+    queryKey: ['scheduleRequests'],
+    queryFn: () => base44.entities.ScheduleRequest.list('-created_date', 50),
+    enabled: !loading
+  });
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -202,6 +208,75 @@ export default function AdminDashboard() {
               ))
             )}
           </div>
+        </div>
+
+        {/* Schedule Requests */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-light text-[#1a2b4b]">
+              Schedule <span className="font-normal text-[#C2983B]">Requests</span>
+            </h2>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-600">{scheduleRequests.length} total</span>
+            </div>
+          </div>
+          <Card>
+            <CardContent className="p-0">
+              {scheduleRequests.length === 0 ? (
+                <p className="text-gray-500 text-center py-8">No schedule requests yet</p>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead className="bg-gray-50 border-b">
+                      <tr>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Session Type</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Coach</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {scheduleRequests.map((request) => (
+                        <tr key={request.id} className="hover:bg-gray-50">
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm font-medium text-gray-900">{request.name}</div>
+                            {request.message && (
+                              <div className="text-xs text-gray-500 max-w-xs truncate">{request.message}</div>
+                            )}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm text-gray-900">{request.email}</div>
+                            <div className="text-xs text-gray-500">{request.phone}</div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            {request.session_type}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            {request.coach_preference}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                              request.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                              request.status === 'contacted' ? 'bg-blue-100 text-blue-800' :
+                              request.status === 'scheduled' ? 'bg-purple-100 text-purple-800' :
+                              'bg-green-100 text-green-800'
+                            }`}>
+                              {request.status}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {new Date(request.created_date).toLocaleDateString()}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </div>
 
         {/* Email Subscribers */}
