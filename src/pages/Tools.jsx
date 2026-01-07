@@ -101,7 +101,12 @@ function InvestmentCalculator({ formatCurrency, currency }) {
           <Input
             type="text"
             value={rate}
-            onChange={(e) => setRate(Number(e.target.value.replace(/,/g, '')) || 0)}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                setRate(val === '' ? 0 : parseFloat(val) || 0);
+              }
+            }}
             placeholder="7"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
         </div>
@@ -232,7 +237,12 @@ function MortgageCalculator({ formatCurrency, currency }) {
           <Input
             type="text"
             value={interestRate}
-            onChange={(e) => setInterestRate(Number(e.target.value.replace(/,/g, '')) || 0)}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                setInterestRate(val === '' ? 0 : parseFloat(val) || 0);
+              }
+            }}
             placeholder="6.5"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
         </div>
@@ -426,7 +436,12 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
           <Input
             type="text"
             value={interestRate}
-            onChange={(e) => setInterestRate(Number(e.target.value.replace(/,/g, '')) || 0)}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                setInterestRate(val === '' ? 0 : parseFloat(val) || 0);
+              }
+            }}
             placeholder="7.5"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
         </div>
@@ -624,7 +639,12 @@ function LoanCalculator({ formatCurrency, currency }) {
           <Input
             type="text"
             value={interestRate}
-            onChange={(e) => setInterestRate(Number(e.target.value.replace(/,/g, '')) || 0)}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                setInterestRate(val === '' ? 0 : parseFloat(val) || 0);
+              }
+            }}
             placeholder="8"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
         </div>
