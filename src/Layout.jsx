@@ -108,27 +108,20 @@ export default function Layout({ children, currentPageName }) {
               ))}
 
               {/* Currency Selector */}
-              <Popover>
-                <PopoverTrigger asChild>
-                  <button className="text-2xl hover:scale-110 transition-transform">
-                    {currencies.find(c => c.code === currency)?.flag}
+              <div className="flex items-center gap-2 pl-4 border-l border-gray-200">
+                {currencies.map((curr) => (
+                  <button
+                    key={curr.code}
+                    onClick={() => handleCurrencyChange(curr.code)}
+                    className={`text-2xl hover:scale-110 transition-all ${
+                      currency === curr.code ? 'scale-110' : 'opacity-40'
+                    }`}
+                    title={curr.name}
+                  >
+                    {curr.flag}
                   </button>
-                </PopoverTrigger>
-                <PopoverContent className="w-48 p-2">
-                  {currencies.map((curr) => (
-                    <button
-                      key={curr.code}
-                      onClick={() => handleCurrencyChange(curr.code)}
-                      className={`w-full flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-100 transition-colors ${
-                        currency === curr.code ? 'bg-gray-100' : ''
-                      }`}
-                    >
-                      <span className="text-2xl">{curr.flag}</span>
-                      <span className="text-sm font-medium text-[#1a2b4b]">{curr.name}</span>
-                    </button>
-                  ))}
-                </PopoverContent>
-              </Popover>
+                ))}
+              </div>
             </nav>
 
             {/* Mobile Menu Button */}
