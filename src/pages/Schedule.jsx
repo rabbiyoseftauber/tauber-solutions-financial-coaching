@@ -116,20 +116,17 @@ export default function Schedule() {
         status: 'pending'
       });
 
-      // Send email notification
-      try {
-        const settings = await base44.entities.SiteSettings.filter({ setting_key: 'main' });
-        const adminEmail = settings[0]?.admin_email || 'office@taubersolutions.com';
-        
-        await base44.integrations.Core.SendEmail({
-          to: adminEmail,
-          subject: `New Coaching Request - ${formData.name}`,
-          body: emailBody
-        });
-      } catch (emailError) {
-        console.error('Email failed but submission saved:', emailError);
-        alert(`Request saved but email notification failed: ${emailError.message}`);
-      }
+      // Send email notification (don't block success on email failure)
+      base44.entities.SiteSettings.filter({ setting_key: 'main' })
+        .then(settings => {
+          const adminEmail = settings[0]?.admin_email || 'office@taubersolutions.com';
+          return base44.integrations.Core.SendEmail({
+            to: adminEmail,
+            subject: `New Coaching Request - ${formData.name}`,
+            body: emailBody
+          });
+        })
+        .catch(err => console.error('Email notification failed:', err));
 
       setIsSubmitting(false);
       setError(null);
