@@ -9,6 +9,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Calendar, Clock, MessageCircle, ArrowRight, CheckCircle, User, Video, Phone, Mic } from 'lucide-react';
 import SEO from '@/components/seo/SEO';
+import { base44 } from '@/api/base44Client';
 
 const getSessionTypes = (coachId) => {
   const isSender = coachId === 'sender';
@@ -103,18 +104,10 @@ export default function Schedule() {
     `.trim();
 
     try {
-      await fetch('https://api.base44.com/v1/integrations/call', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          integration_package: 'Core',
-          integration_name: 'SendEmail',
-          parameters: {
-            to: 'office@taubersolutions.com',
-            subject: `New Coaching Request - ${formData.name}`,
-            body: emailBody
-          }
-        })
+      await base44.integrations.Core.SendEmail({
+        to: 'office@taubersolutions.com',
+        subject: `New Coaching Request - ${formData.name}`,
+        body: emailBody
       });
     } catch (error) {
       console.error('Failed to send email:', error);
