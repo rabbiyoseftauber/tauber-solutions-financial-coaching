@@ -20,9 +20,9 @@ const getNavigation = () => {
 };
 
 const currencies = [
-  { code: 'USD', flag: '🇺🇸', name: 'US Dollar' },
-  { code: 'GBP', flag: '🇬🇧', name: 'British Pound' },
-  { code: 'ILS', flag: '🇮🇱', name: 'Israeli Shekel' }
+  { code: 'USD', flag: 'https://flagcdn.com/w40/us.png', name: 'US Dollar' },
+  { code: 'GBP', flag: 'https://flagcdn.com/w40/gb.png', name: 'British Pound' },
+  { code: 'ILS', flag: 'https://flagcdn.com/w40/il.png', name: 'Israeli Shekel' }
 ];
 
 export default function Layout({ children, currentPageName }) {
@@ -113,12 +113,12 @@ export default function Layout({ children, currentPageName }) {
                   <button
                     key={curr.code}
                     onClick={() => handleCurrencyChange(curr.code)}
-                    className={`text-2xl hover:scale-110 transition-all ${
+                    className={`hover:scale-110 transition-all ${
                       currency === curr.code ? 'scale-110' : 'opacity-40'
                     }`}
                     title={curr.name}
                   >
-                    {curr.flag}
+                    <img src={curr.flag} alt={curr.name} className="w-6 h-4 object-cover rounded" />
                   </button>
                 ))}
               </div>
@@ -163,12 +163,12 @@ export default function Layout({ children, currentPageName }) {
                     <button
                       key={curr.code}
                       onClick={() => handleCurrencyChange(curr.code)}
-                      className={`text-3xl hover:scale-110 transition-all ${
+                      className={`hover:scale-110 transition-all ${
                         currency === curr.code ? 'scale-110' : 'opacity-40'
                       }`}
                       title={curr.name}
                     >
-                      {curr.flag}
+                      <img src={curr.flag} alt={curr.name} className="w-8 h-6 object-cover rounded" />
                     </button>
                   ))}
                 </div>
