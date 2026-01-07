@@ -76,6 +76,7 @@ export default function Schedule() {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -124,13 +125,15 @@ export default function Schedule() {
         subject: `New Coaching Request - ${formData.name}`,
         body: emailBody
       });
-    } catch (error) {
-      console.error('Failed to send email:', error);
-    }
 
-    setIsSubmitting(false);
-    setStep(3);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+      setIsSubmitting(false);
+      setStep(3);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (error) {
+      console.error('Failed to submit request:', error);
+      setError('Failed to submit your request. Please try again or contact us directly.');
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -288,6 +291,11 @@ export default function Schedule() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
+                  {error && (
+                    <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded">
+                      {error}
+                    </div>
+                  )}
                   <div>
                     <Label htmlFor="name" className="text-[#1a2b4b] font-medium mb-2 block">
                       Full Name

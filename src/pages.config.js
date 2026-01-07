@@ -6,6 +6,7 @@ import Affiliates from './pages/Affiliates';
 import Coaches from './pages/Coaches';
 import Community from './pages/Community';
 import Home from './pages/Home';
+import Schedule from './pages/Schedule';
 import Services from './pages/Services';
 import Sitemap from './pages/Sitemap';
 import TestEmail from './pages/TestEmail';
@@ -13,7 +14,6 @@ import Testimonials from './pages/Testimonials';
 import Tools from './pages/Tools';
 import UK from './pages/UK';
 import UKCoaches from './pages/UKCoaches';
-import Schedule from './pages/Schedule';
 import __Layout from './Layout.jsx';
 
 
@@ -26,6 +26,7 @@ export const PAGES = {
     "Coaches": Coaches,
     "Community": Community,
     "Home": Home,
+    "Schedule": Schedule,
     "Services": Services,
     "Sitemap": Sitemap,
     "TestEmail": TestEmail,
@@ -33,7 +34,6 @@ export const PAGES = {
     "Tools": Tools,
     "UK": UK,
     "UKCoaches": UKCoaches,
-    "Schedule": Schedule,
 }
 
 export const pagesConfig = {
