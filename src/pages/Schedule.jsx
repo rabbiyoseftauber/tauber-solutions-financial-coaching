@@ -104,8 +104,11 @@ export default function Schedule() {
     `.trim();
 
     try {
+      const settings = await base44.entities.SiteSettings.filter({ setting_key: 'main' });
+      const adminEmail = settings[0]?.admin_email || 'office@taubersolutions.com';
+      
       await base44.integrations.Core.SendEmail({
-        to: 'office@taubersolutions.com',
+        to: adminEmail,
         subject: `New Coaching Request - ${formData.name}`,
         body: emailBody
       });
