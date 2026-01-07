@@ -903,6 +903,7 @@ export default function Tools() {
             {resourcesData.map((resource, idx) => {
               const ResourceIcon = resource.icon;
               const links = resource.links[currency];
+              const canDownload = isUKSession || currency === 'GBP';
               
               return (
                 <motion.div
@@ -922,27 +923,44 @@ export default function Tools() {
                         {resource.description}
                       </p>
                       <div className="flex flex-col gap-3">
-                        <a
-                          href={links.pdf}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block">
+                        {canDownload ? (
+                          <>
+                            <a
+                              href={links.pdf}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block">
 
-                          <Button variant="outline" className="w-full rounded-lg border-gray-300">
-                            <Download className="w-4 h-4 mr-2" />
-                            Download PDF
-                          </Button>
-                        </a>
-                        <a
-                          href={links.excel}
-                          download={`${resource.title.replace(/\s+/g, '-')}.xlsx`}
-                          className="block">
+                              <Button variant="outline" className="w-full rounded-lg border-gray-300">
+                                <Download className="w-4 h-4 mr-2" />
+                                Download PDF
+                              </Button>
+                            </a>
+                            <a
+                              href={links.excel}
+                              download={`${resource.title.replace(/\s+/g, '-')}.xlsx`}
+                              className="block">
 
-                          <Button variant="outline" className="w-full rounded-lg border-gray-300">
-                            <Download className="w-4 h-4 mr-2" />
-                            Download Excel
-                          </Button>
-                        </a>
+                              <Button variant="outline" className="w-full rounded-lg border-gray-300">
+                                <Download className="w-4 h-4 mr-2" />
+                                Download Excel
+                              </Button>
+                            </a>
+                          </>
+                        ) : (
+                          <div className="text-center py-4">
+                            <p className="text-sm text-gray-500 mb-3">
+                              Coming soon for {currency}
+                            </p>
+                            <Button 
+                              variant="outline" 
+                              className="w-full rounded-lg border-gray-300 opacity-50 cursor-not-allowed"
+                              disabled>
+                              <Download className="w-4 h-4 mr-2" />
+                              Not Available Yet
+                            </Button>
+                          </div>
+                        )}
                       </div>
                     </CardContent>
                   </Card>
