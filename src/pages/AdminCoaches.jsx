@@ -253,8 +253,16 @@ export default function AdminCoaches() {
         )}
 
         <div className="grid grid-cols-1 gap-4">
-          {coaches.map((coach) => (
-            <Card key={coach.id}>
+          {coaches.length === 0 ? (
+            <Card>
+              <CardContent className="p-12 text-center">
+                <p className="text-gray-500 text-lg mb-2">No coaches added yet</p>
+                <p className="text-gray-400 text-sm">Click "Add Coach" above to create your first coach profile</p>
+              </CardContent>
+            </Card>
+          ) : (
+            coaches.map((coach) => (
+              <Card key={coach.id}>
               <CardContent className="p-6 flex items-center gap-6">
                 {coach.image_url && (
                   <img src={coach.image_url} alt={coach.name} className="w-20 h-20 object-cover rounded-full" />
@@ -293,7 +301,8 @@ export default function AdminCoaches() {
                 </div>
               </CardContent>
             </Card>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </div>
