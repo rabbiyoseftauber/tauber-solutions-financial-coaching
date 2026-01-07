@@ -158,6 +158,20 @@ export default function Layout({ children, currentPageName }) {
                     {item.name}
                   </Link>
                 ))}
+                <div className="flex items-center gap-3 pt-4 border-t">
+                  {currencies.map((curr) => (
+                    <button
+                      key={curr.code}
+                      onClick={() => handleCurrencyChange(curr.code)}
+                      className={`text-3xl hover:scale-110 transition-all ${
+                        currency === curr.code ? 'scale-110' : 'opacity-40'
+                      }`}
+                      title={curr.name}
+                    >
+                      {curr.flag}
+                    </button>
+                  ))}
+                </div>
               </nav>
             </motion.div>
           )}
