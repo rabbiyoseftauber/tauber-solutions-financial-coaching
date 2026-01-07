@@ -110,28 +110,33 @@ export default function Schedule() {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        message: formData.message,
+        message: formData.message || '',
         session_type: selectedSessionDetails.title,
         coach_preference: selectedCoachDetails.name,
         status: 'pending'
       });
 
-      // Send email notification
-      const settings = await base44.entities.SiteSettings.filter({ setting_key: 'main' });
-      const adminEmail = settings[0]?.admin_email || 'office@taubersolutions.com';
-      
-      await base44.integrations.Core.SendEmail({
-        to: adminEmail,
-        subject: `New Coaching Request - ${formData.name}`,
-        body: emailBody
-      });
+      // Send email notification (don't let this fail the submission)
+      try {
+        const settings = await base44.entities.SiteSettings.filter({ setting_key: 'main' });
+        const adminEmail = settings[0]?.admin_email || 'office@taubersolutions.com';
+        
+        await base44.integrations.Core.SendEmail({
+          to: adminEmail,
+          subject: `New Coaching Request - ${formData.name}`,
+          body: emailBody
+        });
+      } catch (emailError) {
+        console.error('Email notification failed:', emailError);
+      }
 
       setIsSubmitting(false);
+      setError(null);
       setStep(3);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
       console.error('Failed to submit request:', error);
-      setError('Failed to submit your request. Please try again or contact us directly.');
+      setError(`Failed to submit: ${error.message || 'Unknown error'}`);
       setIsSubmitting(false);
     }
   };
