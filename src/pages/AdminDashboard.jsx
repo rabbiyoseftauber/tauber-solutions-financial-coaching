@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { base44 } from '@/api/base44Client';
+import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Users, FileText, Settings, Loader2 } from 'lucide-react';
+import { Users, FileText, Settings, Loader2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 
@@ -29,6 +30,18 @@ export default function AdminDashboard() {
     }
   };
 
+  const { data: coaches = [] } = useQuery({
+    queryKey: ['coaches'],
+    queryFn: () => base44.entities.Coach.list('sort_order', 5),
+    enabled: !loading
+  });
+
+  const { data: resources = [] } = useQuery({
+    queryKey: ['resources'],
+    queryFn: () => base44.entities.Resource.list('sort_order', 4),
+    enabled: !loading
+  });
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -47,7 +60,7 @@ export default function AdminDashboard() {
           <p className="text-gray-600">Welcome back, {user?.full_name}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <Link to={createPageUrl('AdminCoaches')}>
             <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-[#C2983B]">
               <CardHeader>
@@ -101,6 +114,88 @@ export default function AdminDashboard() {
               </CardContent>
             </Card>
           </Link>
+        </div>
+
+        {/* Current Coaches Preview */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-light text-[#1a2b4b]">
+              Current <span className="font-normal text-[#C2983B]">Coaches</span>
+            </h2>
+            <Link to={createPageUrl('AdminCoaches')}>
+              <Button variant="outline" size="sm">
+                View All <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {coaches.length === 0 ? (
+              <p className="text-gray-500 col-span-full text-center py-8">No coaches yet</p>
+            ) : (
+              coaches.map((coach) => (
+                <Card key={coach.id} className="hover:shadow-md transition-shadow">
+                  <CardContent className="p-4">
+                    <div className="flex items-center gap-3 mb-2">
+                      {coach.image_url && (
+                        <img src={coach.image_url} alt={coach.name} className="w-12 h-12 rounded-full object-cover" />
+                      )}
+                      <div className="flex-grow">
+                        <h3 className="font-semibold text-[#1a2b4b]">{coach.name}</h3>
+                        <p className="text-sm text-gray-600">{coach.title}</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 mt-2">
+                      {coach.is_featured && (
+                        <span className="text-xs bg-[#C2983B]/20 text-[#C2983B] px-2 py-1 rounded">Featured</span>
+                      )}
+                      {coach.is_uk_coach && (
+                        <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">UK</span>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))
+            )}
+          </div>
+        </div>
+
+        {/* Current Resources Preview */}
+        <div>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-light text-[#1a2b4b]">
+              Current <span className="font-normal text-[#C2983B]">Resources</span>
+            </h2>
+            <Link to={createPageUrl('AdminResources')}>
+              <Button variant="outline" size="sm">
+                View All <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {resources.length === 0 ? (
+              <p className="text-gray-500 col-span-full text-center py-8">No resources yet</p>
+            ) : (
+              resources.map((resource) => (
+                <Card key={resource.id} className="hover:shadow-md transition-shadow">
+                  <CardContent className="p-4">
+                    <h3 className="font-semibold text-[#1a2b4b] mb-1">{resource.title}</h3>
+                    <p className="text-sm text-gray-600 mb-3">{resource.description}</p>
+                    <div className="flex gap-3 text-xs">
+                      <div>
+                        <span className="font-medium text-[#C2983B]">GBP:</span> {resource.pdf_url_gbp ? '✓' : '✗'}
+                      </div>
+                      <div>
+                        <span className="font-medium text-blue-600">USD:</span> {resource.pdf_url_usd ? '✓' : '✗'}
+                      </div>
+                      <div>
+                        <span className="font-medium text-purple-600">ILS:</span> {resource.pdf_url_ils ? '✓' : '✗'}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))
+            )}
+          </div>
         </div>
       </div>
     </div>
