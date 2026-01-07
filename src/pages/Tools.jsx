@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -762,7 +762,33 @@ const resourcesData = [
 
 export default function Tools() {
   const isUKSession = sessionStorage.getItem('isUKSession') === 'true';
-  const [currency, setCurrency] = useState(isUKSession ? 'GBP' : 'USD');
+  const [currency, setCurrency] = useState(() => {
+    const saved = localStorage.getItem('preferredCurrency');
+    return saved || (isUKSession ? 'GBP' : 'USD');
+  });
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const saved = localStorage.getItem('preferredCurrency');
+      if (saved) {
+        setCurrency(saved);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    
+    const intervalId = setInterval(() => {
+      const saved = localStorage.getItem('preferredCurrency');
+      if (saved && saved !== currency) {
+        setCurrency(saved);
+      }
+    }, 100);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      clearInterval(intervalId);
+    };
+  }, [currency]);
 
   const availableCurrencies = isUKSession ? currencies.filter(c => c.code === 'GBP') : currencies;
   const currentCurrency = currencies.find((c) => c.code === currency);
@@ -808,7 +834,10 @@ export default function Tools() {
                 {availableCurrencies.map((curr) =>
                 <button
                   key={curr.code}
-                  onClick={() => setCurrency(curr.code)}
+                  onClick={() => {
+                    setCurrency(curr.code);
+                    localStorage.setItem('preferredCurrency', curr.code);
+                  }}
                   className={`px-5 py-2.5 text-sm font-semibold transition-all rounded-lg ${
                   currency === curr.code ?
                   'bg-[#C2983B] text-white shadow-lg' :
@@ -885,7 +914,10 @@ export default function Tools() {
                 {availableCurrencies.map((curr) =>
                 <button
                   key={curr.code}
-                  onClick={() => setCurrency(curr.code)}
+                  onClick={() => {
+                    setCurrency(curr.code);
+                    localStorage.setItem('preferredCurrency', curr.code);
+                  }}
                   className={`px-5 py-2.5 text-sm font-semibold transition-all rounded-lg ${
                   currency === curr.code ?
                   'bg-[#C2983B] text-white shadow-lg' :
