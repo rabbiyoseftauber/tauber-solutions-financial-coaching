@@ -107,11 +107,18 @@ export default function Schedule() {
       const settings = await base44.entities.SiteSettings.filter({ setting_key: 'main' });
       const adminEmail = settings[0]?.admin_email || 'office@taubersolutions.com';
       
-      await base44.integrations.Core.SendEmail({
-        to: adminEmail,
-        subject: `New Coaching Request - ${formData.name}`,
-        body: emailBody
-      });
+      await Promise.all([
+        base44.integrations.Core.SendEmail({
+          to: adminEmail,
+          subject: `New Coaching Request - ${formData.name}`,
+          body: emailBody
+        }),
+        base44.entities.EmailSubscriber.create({
+          name: formData.name,
+          email: formData.email,
+          source: 'contact_form'
+        })
+      ]);
     } catch (error) {
       console.error('Failed to send email:', error);
     }
