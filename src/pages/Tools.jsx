@@ -867,91 +867,93 @@ export default function Tools() {
       </section>
 
       {/* Downloadable Resources */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16">
+      {(isUKSession || currency === 'GBP') && (
+        <section className="py-24 bg-white">
+          <div className="container mx-auto px-6 lg:px-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16">
 
-            <h2 className="text-3xl md:text-4xl font-light text-[#1a2b4b] mb-6">
-              Downloadable <span className="font-normal">Resources</span>
-            </h2>
-            
-            <div className="flex items-center justify-center gap-3 flex-wrap">
-              <span className="text-[#1a2b4b] font-medium">Currency:</span>
-              <div className="flex gap-2 bg-gray-100 p-1.5 rounded-lg flex-wrap">
-                {availableCurrencies.map((curr) =>
-                <button
-                  key={curr.code}
-                  onClick={() => setCurrency(curr.code)}
-                  className={`px-5 py-2.5 text-sm font-semibold transition-all rounded-lg ${
-                  currency === curr.code ?
-                  'bg-[#C2983B] text-white shadow-lg' :
-                  'text-gray-600 hover:text-[#1a2b4b] hover:bg-gray-200'}`
-                  }>
-
-                    {curr.symbol} {curr.code}
-                  </button>
-                )}
-              </div>
-            </div>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {resourcesData.map((resource, idx) => {
-              const ResourceIcon = resource.icon;
-              const links = resource.links[currency];
+              <h2 className="text-3xl md:text-4xl font-light text-[#1a2b4b] mb-6">
+                Downloadable <span className="font-normal">Resources</span>
+              </h2>
               
-              return (
-                <motion.div
-                  key={resource.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}>
+              <div className="flex items-center justify-center gap-3 flex-wrap">
+                <span className="text-[#1a2b4b] font-medium">Currency:</span>
+                <div className="flex gap-2 bg-gray-100 p-1.5 rounded-lg flex-wrap">
+                  {availableCurrencies.map((curr) =>
+                  <button
+                    key={curr.code}
+                    onClick={() => setCurrency(curr.code)}
+                    className={`px-5 py-2.5 text-sm font-semibold transition-all rounded-lg ${
+                    currency === curr.code ?
+                    'bg-[#C2983B] text-white shadow-lg' :
+                    'text-gray-600 hover:text-[#1a2b4b] hover:bg-gray-200'}`
+                    }>
 
-                  <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#C2983B] hover:shadow-lg transition-all duration-300 group">
-                    <CardContent className="p-6 h-full flex flex-col">
-                      <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#C2983B]/10 mb-4 flex items-center justify-center transition-colors">
-                        <ResourceIcon className="w-6 h-6 text-gray-500 group-hover:text-[#C2983B] transition-colors" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">{resource.title}</h3>
-                      <p className="text-gray-600 text-sm font-light flex-grow mb-6">
-                        {resource.description}
-                      </p>
-                      <div className="flex flex-col gap-3">
-                        <a
-                          href={links.pdf}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block">
+                      {curr.symbol} {curr.code}
+                    </button>
+                  )}
+                </div>
+              </div>
+            </motion.div>
 
-                          <Button variant="outline" className="w-full rounded-lg border-gray-300">
-                            <Download className="w-4 h-4 mr-2" />
-                            Download PDF
-                          </Button>
-                        </a>
-                        <a
-                          href={links.excel}
-                          download={`${resource.title.replace(/\s+/g, '-')}.xlsx`}
-                          className="block">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              {resourcesData.map((resource, idx) => {
+                const ResourceIcon = resource.icon;
+                const links = resource.links[currency];
+                
+                return (
+                  <motion.div
+                    key={resource.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1 }}>
 
-                          <Button variant="outline" className="w-full rounded-lg border-gray-300">
-                            <Download className="w-4 h-4 mr-2" />
-                            Download Excel
-                          </Button>
-                        </a>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              );
-            })}
+                    <Card className="h-full border border-gray-200 hover:border-2 hover:border-[#C2983B] hover:shadow-lg transition-all duration-300 group">
+                      <CardContent className="p-6 h-full flex flex-col">
+                        <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-[#C2983B]/10 mb-4 flex items-center justify-center transition-colors">
+                          <ResourceIcon className="w-6 h-6 text-gray-500 group-hover:text-[#C2983B] transition-colors" />
+                        </div>
+                        <h3 className="text-lg font-semibold text-[#1a2b4b] mb-2">{resource.title}</h3>
+                        <p className="text-gray-600 text-sm font-light flex-grow mb-6">
+                          {resource.description}
+                        </p>
+                        <div className="flex flex-col gap-3">
+                          <a
+                            href={links.pdf}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block">
+
+                            <Button variant="outline" className="w-full rounded-lg border-gray-300">
+                              <Download className="w-4 h-4 mr-2" />
+                              Download PDF
+                            </Button>
+                          </a>
+                          <a
+                            href={links.excel}
+                            download={`${resource.title.replace(/\s+/g, '-')}.xlsx`}
+                            className="block">
+
+                            <Button variant="outline" className="w-full rounded-lg border-gray-300">
+                              <Download className="w-4 h-4 mr-2" />
+                              Download Excel
+                            </Button>
+                          </a>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Financial Literacy Quiz */}
       <section className="py-24 bg-[#f8f9fa]">
