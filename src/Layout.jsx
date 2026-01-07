@@ -6,6 +6,7 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 import { HelmetProvider } from 'react-helmet-async';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
 import NewsletterSignup from '@/components/interactive/NewsletterSignup';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 const getNavigation = () => {
   const isUKSession = sessionStorage.getItem('isUKSession') === 'true';
@@ -18,10 +19,19 @@ const getNavigation = () => {
   ];
 };
 
+const currencies = [
+  { code: 'USD', flag: '🇺🇸', name: 'US Dollar' },
+  { code: 'GBP', flag: '🇬🇧', name: 'British Pound' },
+  { code: 'ILS', flag: '🇮🇱', name: 'Israeli Shekel' }
+];
+
 export default function Layout({ children, currentPageName }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [navigation, setNavigation] = useState(getNavigation());
+  const [currency, setCurrency] = useState(() => {
+    return localStorage.getItem('preferredCurrency') || 'USD';
+  });
 
   useEffect(() => {
     setNavigation(getNavigation());
@@ -38,6 +48,11 @@ export default function Layout({ children, currentPageName }) {
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [currentPageName]);
+
+  const handleCurrencyChange = (newCurrency) => {
+    setCurrency(newCurrency);
+    localStorage.setItem('preferredCurrency', newCurrency);
+  };
 
   const logoUrl = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/c18ffb654_Untitleddesign1.png";
 
@@ -91,6 +106,29 @@ export default function Layout({ children, currentPageName }) {
                   {item.name}
                 </Link>
               ))}
+
+              {/* Currency Selector */}
+              <Popover>
+                <PopoverTrigger asChild>
+                  <button className="text-2xl hover:scale-110 transition-transform">
+                    {currencies.find(c => c.code === currency)?.flag}
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent className="w-48 p-2">
+                  {currencies.map((curr) => (
+                    <button
+                      key={curr.code}
+                      onClick={() => handleCurrencyChange(curr.code)}
+                      className={`w-full flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-100 transition-colors ${
+                        currency === curr.code ? 'bg-gray-100' : ''
+                      }`}
+                    >
+                      <span className="text-2xl">{curr.flag}</span>
+                      <span className="text-sm font-medium text-[#1a2b4b]">{curr.name}</span>
+                    </button>
+                  ))}
+                </PopoverContent>
+              </Popover>
             </nav>
 
             {/* Mobile Menu Button */}
