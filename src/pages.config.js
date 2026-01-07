@@ -10,6 +10,10 @@ import Testimonials from './pages/Testimonials';
 import UK from './pages/UK';
 import UKCoaches from './pages/UKCoaches';
 import Tools from './pages/Tools';
+import AdminDashboard from './pages/AdminDashboard';
+import AdminCoaches from './pages/AdminCoaches';
+import AdminResources from './pages/AdminResources';
+import AdminSettings from './pages/AdminSettings';
 import __Layout from './Layout.jsx';
 
 
@@ -26,6 +30,10 @@ export const PAGES = {
     "UK": UK,
     "UKCoaches": UKCoaches,
     "Tools": Tools,
+    "AdminDashboard": AdminDashboard,
+    "AdminCoaches": AdminCoaches,
+    "AdminResources": AdminResources,
+    "AdminSettings": AdminSettings,
 }
 
 export const pagesConfig = {
