@@ -50,7 +50,7 @@ export default function AdminDashboard() {
 
   const { data: scheduleRequests = [] } = useQuery({
     queryKey: ['scheduleRequests'],
-    queryFn: () => base44.entities.ScheduleRequest.list('-created_date', 50),
+    queryFn: () => base44.entities.ScheduleRequest.list('-created_date'),
     enabled: !loading
   });
 
