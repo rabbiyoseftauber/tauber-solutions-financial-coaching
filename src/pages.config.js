@@ -14,6 +14,10 @@ import Testimonials from './pages/Testimonials';
 import Tools from './pages/Tools';
 import UK from './pages/UK';
 import UKCoaches from './pages/UKCoaches';
+import Investment from './pages/Investment';
+import Mortgage from './pages/Mortgage';
+import Commercial from './pages/Commercial';
+import Loan from './pages/Loan';
 import __Layout from './Layout.jsx';
 
 
@@ -34,6 +38,10 @@ export const PAGES = {
     "Tools": Tools,
     "UK": UK,
     "UKCoaches": UKCoaches,
+    "Investment": Investment,
+    "Mortgage": Mortgage,
+    "Commercial": Commercial,
+    "Loan": Loan,
 }
 
 export const pagesConfig = {
