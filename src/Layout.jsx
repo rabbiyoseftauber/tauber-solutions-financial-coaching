@@ -25,6 +25,12 @@ const currencies = [
   { code: 'ILS', flag: 'https://flagcdn.com/w40/il.png', name: 'Israeli Shekel' }
 ];
 
+const ukCurrencies = [
+  { code: 'GBP', flag: 'https://flagcdn.com/w40/gb.png', name: 'British Pound' },
+  { code: 'USD', flag: 'https://flagcdn.com/w40/us.png', name: 'US Dollar' },
+  { code: 'ILS', flag: 'https://flagcdn.com/w40/il.png', name: 'Israeli Shekel' }
+];
+
 export default function Layout({ children, currentPageName }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
