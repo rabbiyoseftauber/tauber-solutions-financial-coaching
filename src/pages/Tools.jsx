@@ -104,8 +104,12 @@ function InvestmentCalculator({ formatCurrency, currency }) {
             onChange={(e) => {
               const val = e.target.value;
               if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                setRate(val === '' ? 0 : parseFloat(val) || 0);
+                setRate(val);
               }
+            }}
+            onBlur={(e) => {
+              const val = parseFloat(e.target.value);
+              setRate(isNaN(val) ? 0 : val);
             }}
             placeholder="7"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
@@ -240,8 +244,12 @@ function MortgageCalculator({ formatCurrency, currency }) {
             onChange={(e) => {
               const val = e.target.value;
               if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                setInterestRate(val === '' ? 0 : parseFloat(val) || 0);
+                setInterestRate(val);
               }
+            }}
+            onBlur={(e) => {
+              const val = parseFloat(e.target.value);
+              setInterestRate(isNaN(val) ? 0 : val);
             }}
             placeholder="6.5"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
@@ -439,8 +447,12 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
             onChange={(e) => {
               const val = e.target.value;
               if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                setInterestRate(val === '' ? 0 : parseFloat(val) || 0);
+                setInterestRate(val);
               }
+            }}
+            onBlur={(e) => {
+              const val = parseFloat(e.target.value);
+              setInterestRate(isNaN(val) ? 0 : val);
             }}
             placeholder="7.5"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
@@ -642,8 +654,12 @@ function LoanCalculator({ formatCurrency, currency }) {
             onChange={(e) => {
               const val = e.target.value;
               if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                setInterestRate(val === '' ? 0 : parseFloat(val) || 0);
+                setInterestRate(val);
               }
+            }}
+            onBlur={(e) => {
+              const val = parseFloat(e.target.value);
+              setInterestRate(isNaN(val) ? 0 : val);
             }}
             placeholder="8"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
