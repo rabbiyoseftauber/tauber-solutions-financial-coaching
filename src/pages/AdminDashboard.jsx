@@ -126,6 +126,24 @@ export default function AdminDashboard() {
               </CardContent>
             </Card>
           </Link>
+
+          <Link to={createPageUrl('AdminLegal')}>
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-[#C2983B]">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-[#C2983B]/10 rounded-full flex items-center justify-center">
+                    <FileText className="w-6 h-6 text-[#C2983B]" />
+                  </div>
+                  <span>Legal Pages</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-sm">
+                  Edit privacy policy and terms & conditions
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
         </div>
 
         {/* Current Coaches Preview */}

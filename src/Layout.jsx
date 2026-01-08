@@ -252,10 +252,28 @@ export default function Layout({ children, currentPageName }) {
             </div>
           </div>
 
-          <div className="border-t border-white/10 mt-12 pt-8 text-center">
-            <p className="text-gray-500 text-sm font-light">
-              © {new Date().getFullYear()} Tauber Solutions. All rights reserved.
-            </p>
+          <div className="border-t border-white/10 mt-12 pt-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-gray-500 text-sm font-light">
+                © {new Date().getFullYear()} Tauber Solutions. All rights reserved.
+              </p>
+              <div className="flex gap-6 text-sm">
+                <Link 
+                  to={createPageUrl('PrivacyPolicy')}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="text-gray-500 hover:text-white transition-colors"
+                >
+                  Privacy Policy
+                </Link>
+                <Link 
+                  to={createPageUrl('TermsAndConditions')}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="text-gray-500 hover:text-white transition-colors"
+                >
+                  Terms & Conditions
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </footer>

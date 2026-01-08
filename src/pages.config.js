@@ -18,6 +18,9 @@ import Investment from './pages/Investment';
 import Mortgage from './pages/Mortgage';
 import Commercial from './pages/Commercial';
 import Loan from './pages/Loan';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsAndConditions from './pages/TermsAndConditions';
+import AdminLegal from './pages/AdminLegal';
 import __Layout from './Layout.jsx';
 
 
@@ -42,6 +45,9 @@ export const PAGES = {
     "Mortgage": Mortgage,
     "Commercial": Commercial,
     "Loan": Loan,
+    "PrivacyPolicy": PrivacyPolicy,
+    "TermsAndConditions": TermsAndConditions,
+    "AdminLegal": AdminLegal,
 }
 
 export const pagesConfig = {
