@@ -47,7 +47,7 @@ export default function Commercial() {
     };
   }, [currency]);
 
-  const availableCurrencies = isUKSession ? currencies.filter(c => c.code === 'GBP') : currencies;
+  const availableCurrencies = currencies;
   const currentCurrency = currencies.find(c => c.code === currency);
 
   const formatCurrency = (amount) => {
