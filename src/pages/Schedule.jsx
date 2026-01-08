@@ -116,7 +116,7 @@ export default function Schedule() {
         status: 'pending'
       });
 
-      // Send email notification with fallback to mailto
+      // Send email notification
       try {
         const settings = await base44.entities.SiteSettings.filter({ setting_key: 'main' });
         const adminEmail = settings[0]?.admin_email || 'office@taubersolutions.com';
@@ -126,12 +126,8 @@ export default function Schedule() {
           body: emailBody
         });
       } catch (emailError) {
-        console.error('Email notification failed, opening mailto fallback:', emailError);
-        // Fallback: Open user's email client
-        const adminEmail = 'office@taubersolutions.com';
-        const subject = encodeURIComponent(`New Coaching Request - ${formData.name}`);
-        const body = encodeURIComponent(emailBody);
-        window.location.href = `mailto:${adminEmail}?subject=${subject}&body=${body}`;
+        console.warn('Email notification failed:', emailError);
+        // Continue anyway - the data is saved in the database
       }
 
       setIsSubmitting(false);
