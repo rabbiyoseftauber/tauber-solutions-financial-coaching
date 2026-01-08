@@ -165,7 +165,7 @@ export default function Layout({ children, currentPageName }) {
                   </Link>
                 ))}
                 <div className="flex items-center gap-3 pt-4 border-t">
-                  {currencies.map((curr) => (
+                  {(sessionStorage.getItem('isUKSession') === 'true' ? ukCurrencies : currencies).map((curr) => (
                     <button
                       key={curr.code}
                       onClick={() => handleCurrencyChange(curr.code)}
