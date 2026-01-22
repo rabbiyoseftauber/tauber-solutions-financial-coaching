@@ -279,8 +279,17 @@ function MortgageCalculator({ formatCurrency, currency }) {
             </span>
             <Input
               type="text"
-              value={downPayment.toLocaleString()}
-              onChange={(e) => setDownPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
+              value={parseFloat(downPayment) ? parseFloat(downPayment).toLocaleString() : ''}
+              onChange={(e) => {
+                const val = e.target.value.replace(/,/g, '');
+                if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                  setDownPayment(val);
+                }
+              }}
+              onBlur={(e) => {
+                const val = parseFloat(e.target.value.replace(/,/g, ''));
+                setDownPayment(isNaN(val) ? '0' : val.toString());
+              }}
               placeholder="80,000"
               className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
           </div>
