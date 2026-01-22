@@ -7,7 +7,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail, CreditCard } from 'lucide-react';
 
 export default function ContactInfoDialog() {
   return (
@@ -18,7 +18,7 @@ export default function ContactInfoDialog() {
           Contact Info
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-2xl max-h-[85vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Contact Information</DialogTitle>
         </DialogHeader>
@@ -30,15 +30,21 @@ export default function ContactInfoDialog() {
             </h4>
             <div className="space-y-2 text-sm text-gray-600">
               <div>
-                <span className="font-medium">US:</span>{' '}
+                <span className="font-medium">Main Number:</span>{' '}
                 <a href="tel:+18453226500" className="hover:text-[#C2983B]">
                   +1 (845) 322-6500
                 </a>
               </div>
               <div>
-                <span className="font-medium">UK:</span>{' '}
-                <a href="tel:+447392788116" className="hover:text-[#C2983B]">
-                  +44 (739) 278-8116
+                <span className="font-medium">UK Office:</span>{' '}
+                <a href="tel:03300276500" className="hover:text-[#C2983B]">
+                  03 300 276500
+                </a>
+              </div>
+              <div>
+                <span className="font-medium">UK Sender Eckstein (direct):</span>{' '}
+                <a href="tel:07940905991" className="hover:text-[#C2983B]">
+                  07940-905-991
                 </a>
               </div>
             </div>
@@ -59,18 +65,50 @@ export default function ContactInfoDialog() {
           <div>
             <h4 className="font-semibold text-[#1a2b4b] mb-3 flex items-center gap-2">
               <MapPin className="w-4 h-4 text-[#C2983B]" />
-              Addresses
+              Office Locations
             </h4>
-            <div className="space-y-3 text-sm text-gray-600">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
               <div>
-                <div className="font-medium text-[#1a2b4b] mb-1">US Office</div>
+                <div className="font-medium text-[#1a2b4b] mb-1">Monsey</div>
                 <div>67 North Airmont Rd</div>
                 <div>Suffern, NY 10901</div>
               </div>
               <div>
-                <div className="font-medium text-[#1a2b4b] mb-1">UK Office</div>
+                <div className="font-medium text-[#1a2b4b] mb-1">Manchester, England</div>
                 <div>71 Wellington Street West</div>
                 <div>Salford M7 2ED</div>
+              </div>
+              <div>
+                <div className="font-medium text-[#1a2b4b] mb-1">Lakewood</div>
+                <div>1750 Cedarbridge Ave, Suite 3</div>
+                <div>Lakewood, NJ 08701</div>
+              </div>
+              <div>
+                <div className="font-medium text-[#1a2b4b] mb-1">Boro Park</div>
+                <div>5309 13th Ave</div>
+                <div>Brooklyn, NY 11219</div>
+                <div className="text-xs text-gray-500 mt-1">Second floor, Conference room</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-[#1a2b4b] mb-3 flex items-center gap-2">
+              <CreditCard className="w-4 h-4 text-[#C2983B]" />
+              Payment Options
+            </h4>
+            <div className="space-y-2 text-sm text-gray-600">
+              <div>
+                <span className="font-medium">Zelle:</span>{' '}
+                <a href="mailto:Billing@taubersolutions.com" className="hover:text-[#C2983B]">
+                  Billing@taubersolutions.com
+                </a>
+              </div>
+              <div>
+                <span className="font-medium">Debit Card:</span>{' '}
+                <a href="https://taubersolutions.com/pay" target="_blank" rel="noopener noreferrer" className="hover:text-[#C2983B]">
+                  taubersolutions.com/pay
+                </a>
               </div>
             </div>
           </div>
