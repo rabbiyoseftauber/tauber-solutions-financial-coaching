@@ -134,7 +134,12 @@ export default function InvestmentCalculator() {
                   <Input
                     type="text"
                     value={years}
-                    onChange={(e) => setYears(Number(e.target.value.replace(/,/g, '')) || 0)}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                        setYears(val === '' ? 0 : parseFloat(val) || 0);
+                      }
+                    }}
                     placeholder="20"
                     className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
@@ -147,8 +152,13 @@ export default function InvestmentCalculator() {
                     </span>
                     <Input
                       type="text"
-                      value={principal.toLocaleString()}
-                      onChange={(e) => setPrincipal(Number(e.target.value.replace(/,/g, '')) || 0)}
+                      value={principal}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/,/g, '');
+                        if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                          setPrincipal(val === '' ? 0 : parseFloat(val) || 0);
+                        }
+                      }}
                       placeholder="10,000"
                       className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     />
@@ -182,8 +192,13 @@ export default function InvestmentCalculator() {
                     </span>
                     <Input
                       type="text"
-                      value={contribution.toLocaleString()}
-                      onChange={(e) => setContribution(Number(e.target.value.replace(/,/g, '')) || 0)}
+                      value={contribution}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/,/g, '');
+                        if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                          setContribution(val === '' ? 0 : parseFloat(val) || 0);
+                        }
+                      }}
                       placeholder="500"
                       className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     />

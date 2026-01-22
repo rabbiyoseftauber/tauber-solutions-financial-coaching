@@ -174,8 +174,13 @@ export default function MortgageCalculator() {
                     </span>
                     <Input
                       type="text"
-                      value={homePrice.toLocaleString()}
-                      onChange={(e) => setHomePrice(Number(e.target.value.replace(/,/g, '')) || 0)}
+                      value={homePrice}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/,/g, '');
+                        if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                          setHomePrice(val === '' ? 0 : parseFloat(val) || 0);
+                        }
+                      }}
                       placeholder="400,000"
                       className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     />
@@ -189,8 +194,13 @@ export default function MortgageCalculator() {
                     </span>
                     <Input
                       type="text"
-                      value={downPayment.toLocaleString()}
-                      onChange={(e) => setDownPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
+                      value={downPayment}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/,/g, '');
+                        if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                          setDownPayment(val === '' ? 0 : parseFloat(val) || 0);
+                        }
+                      }}
                       placeholder="80,000"
                       className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     />
@@ -220,7 +230,12 @@ export default function MortgageCalculator() {
                   <Input
                     type="text"
                     value={loanTerm}
-                    onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                        setLoanTerm(val === '' ? 0 : parseFloat(val) || 0);
+                      }
+                    }}
                     placeholder="30"
                     className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
