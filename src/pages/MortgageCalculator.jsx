@@ -25,6 +25,10 @@ export default function MortgageCalculator() {
   const [downPayment, setDownPayment] = useState('80000');
   const [interestRate, setInterestRate] = useState('6.5');
   const [loanTerm, setLoanTerm] = useState('30');
+  const [pmi, setPmi] = useState('0');
+  const [propertyTax, setPropertyTax] = useState('0');
+  const [homeInsurance, setHomeInsurance] = useState('0');
+  const [management, setManagement] = useState('0');
   const [showAmortization, setShowAmortization] = useState(false);
   const [viewMode, setViewMode] = useState('yearly');
 
@@ -263,10 +267,40 @@ export default function MortgageCalculator() {
               </div>
 
               <div className="pt-6 border-t border-white/10">
-                <p className="text-gray-400 text-sm mb-2">Monthly Payment:</p>
-                <p className="text-5xl font-bold text-[#C2983B] mb-6">
+                <p className="text-gray-400 text-sm mb-2">Principal & Interest:</p>
+                <p className="text-4xl font-bold text-white mb-4">
                   {formatCurrency(result.monthlyPayment)}
                 </p>
+
+                <div className="bg-white/5 rounded-lg p-4 mb-4">
+                  <p className="text-gray-400 text-xs mb-3">Additional Monthly Expenses</p>
+                  <div className="grid grid-cols-2 gap-3 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">PMI</span>
+                      <span className="text-white">{formatCurrency(parseFloat(pmi) || 0)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Property Tax</span>
+                      <span className="text-white">{formatCurrency(parseFloat(propertyTax) || 0)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Insurance</span>
+                      <span className="text-white">{formatCurrency(parseFloat(homeInsurance) || 0)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Management</span>
+                      <span className="text-white">{formatCurrency(parseFloat(management) || 0)}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <p className="text-gray-400 text-sm mb-2">Total Monthly Payment:</p>
+                  <p className="text-5xl font-bold text-[#C2983B]">
+                    {formatCurrency(result.monthlyPayment + (parseFloat(pmi) || 0) + (parseFloat(propertyTax) || 0) + (parseFloat(homeInsurance) || 0) + (parseFloat(management) || 0))}
+                  </p>
+                </div>
+
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div>
                     <p className="text-gray-400 text-xs mb-1">Loan Amount</p>
