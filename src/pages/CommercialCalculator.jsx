@@ -26,6 +26,10 @@ export default function CommercialCalculator() {
   const [interestRate, setInterestRate] = useState('7.5');
   const [loanTerm, setLoanTerm] = useState('20');
   const [annualIncome, setAnnualIncome] = useState('180000');
+  const [pmi, setPmi] = useState('0');
+  const [propertyTax, setPropertyTax] = useState('0');
+  const [insurance, setInsurance] = useState('0');
+  const [management, setManagement] = useState('0');
   const [showAmortization, setShowAmortization] = useState(false);
   const [viewMode, setViewMode] = useState('yearly');
 
@@ -293,10 +297,125 @@ export default function CommercialCalculator() {
               </div>
 
               <div className="pt-6 border-t border-white/10">
-                <p className="text-gray-400 text-sm mb-2">Monthly Payment (P&I):</p>
-                <p className="text-5xl font-bold text-[#C2983B] mb-6">
+                <h4 className="text-white text-lg font-semibold mb-4">Additional Monthly Expenses</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-gray-300 text-sm mb-2 block">PMI (Monthly)</Label>
+                    <div className="relative">
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+                        {currentCurrency.symbol}
+                      </span>
+                      <Input
+                        type="text"
+                        value={pmi}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/,/g, '');
+                          if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                            setPmi(val);
+                          }
+                        }}
+                        placeholder="0"
+                        className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Label className="text-gray-300 text-sm mb-2 block">Property Tax (Annual)</Label>
+                    <div className="relative">
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+                        {currentCurrency.symbol}
+                      </span>
+                      <Input
+                        type="text"
+                        value={propertyTax}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/,/g, '');
+                          if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                            setPropertyTax(val);
+                          }
+                        }}
+                        placeholder="0"
+                        className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Label className="text-gray-300 text-sm mb-2 block">Insurance (Annual)</Label>
+                    <div className="relative">
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+                        {currentCurrency.symbol}
+                      </span>
+                      <Input
+                        type="text"
+                        value={insurance}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/,/g, '');
+                          if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                            setInsurance(val);
+                          }
+                        }}
+                        placeholder="0"
+                        className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Label className="text-gray-300 text-sm mb-2 block">Management (Monthly)</Label>
+                    <div className="relative">
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+                        {currentCurrency.symbol}
+                      </span>
+                      <Input
+                        type="text"
+                        value={management}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/,/g, '');
+                          if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                            setManagement(val);
+                          }
+                        }}
+                        placeholder="0"
+                        className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-white/10">
+                <p className="text-gray-400 text-sm mb-2">Principal & Interest:</p>
+                <p className="text-4xl font-bold text-white mb-4">
                   {formatCurrency(result.monthlyPayment)}
                 </p>
+
+                <div className="bg-white/5 rounded-lg p-4 mb-4">
+                  <p className="text-gray-400 text-xs mb-3">Additional Monthly Expenses</p>
+                  <div className="grid grid-cols-2 gap-3 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">PMI</span>
+                      <span className="text-white">{formatCurrency(parseFloat(pmi) || 0)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Property Tax</span>
+                      <span className="text-white">{formatCurrency((parseFloat(propertyTax) || 0) / 12)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Insurance</span>
+                      <span className="text-white">{formatCurrency((parseFloat(insurance) || 0) / 12)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Management</span>
+                      <span className="text-white">{formatCurrency(parseFloat(management) || 0)}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <p className="text-gray-400 text-sm mb-2">Total Monthly Payment:</p>
+                  <p className="text-5xl font-bold text-[#C2983B]">
+                    {formatCurrency(result.monthlyPayment + (parseFloat(pmi) || 0) + ((parseFloat(propertyTax) || 0) / 12) + ((parseFloat(insurance) || 0) / 12) + (parseFloat(management) || 0))}
+                  </p>
+                </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-gray-400 text-xs mb-1">Loan Amount</p>
