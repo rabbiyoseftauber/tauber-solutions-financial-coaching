@@ -221,7 +221,6 @@ function MortgageCalculator({ formatCurrency, currency }) {
 
     // Aggregate by year
     const yearlySchedule = [];
-    const term = parseFloat(loanTerm) || 0;
     for (let year = 1; year <= term; year++) {
       const yearData = schedule.filter(m => m.year === year);
       yearlySchedule.push({
