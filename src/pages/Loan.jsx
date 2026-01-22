@@ -81,8 +81,8 @@ export default function Loan() {
               Loan Calculator
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
-              Loan Calculator{' '}
-              <span className="text-[#C2983B] font-normal">— Plan Your Payments</span>
+              Plan Your Loan{' '}
+              <span className="text-[#C2983B] font-normal">Payments</span>
             </h1>
             <p className="text-xl text-gray-300 font-light leading-relaxed mb-8">
               Calculate monthly payments and total interest for any loan.
