@@ -43,7 +43,7 @@ export default function HeroSection() {
             <Link to={createPageUrl('Schedule')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <Button
                 size="lg"
-                className="bg-[#C2983B] hover:bg-[#b08e35] text-white font-semibold px-8 py-6 text-lg rounded-none group transition-all duration-300">
+                className="bg-white hover:bg-gray-100 text-[#1a2b4b] font-medium px-8 py-6 text-base rounded-lg shadow-lg group transition-all duration-300">
                 Schedule Your Meeting
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -52,8 +52,7 @@ export default function HeroSection() {
             <Link to={createPageUrl('Pay')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <Button
                 size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white/10 font-semibold px-8 py-6 text-lg rounded-none">
+                className="bg-white hover:bg-gray-100 text-[#1a2b4b] font-medium px-8 py-6 text-base rounded-lg shadow-lg">
                 <CreditCard className="mr-2 w-5 h-5" />
                 Make a Payment
               </Button>
