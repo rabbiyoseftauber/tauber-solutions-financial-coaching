@@ -12,7 +12,7 @@ import FinancialQuiz from '@/components/interactive/FinancialQuiz';
 import SEO from '@/components/seo/SEO';
 
 function InvestmentCalculator({ formatCurrency, currency }) {
-  const currentCurrencyObj = currencies.find(c => c.code === currency);
+  const currentCurrencyObj = currencies.find((c) => c.code === currency);
   const [principal, setPrincipal] = useState('10000');
   const [contribution, setContribution] = useState('500');
   const [contributionFrequency, setContributionFrequency] = useState('monthly');
@@ -93,15 +93,15 @@ function InvestmentCalculator({ formatCurrency, currency }) {
               <button
                 onClick={() => setContributionFrequency('monthly')}
                 className={`px-3 py-1 text-xs rounded transition-colors ${
-                  contributionFrequency === 'monthly' ? 'bg-[#C2983B] text-white' : 'text-gray-400'
-                }`}>
+                contributionFrequency === 'monthly' ? 'bg-[#C2983B] text-white' : 'text-gray-400'}`
+                }>
                 Monthly
               </button>
               <button
                 onClick={() => setContributionFrequency('yearly')}
                 className={`px-3 py-1 text-xs rounded transition-colors ${
-                  contributionFrequency === 'yearly' ? 'bg-[#C2983B] text-white' : 'text-gray-400'
-                }`}>
+                contributionFrequency === 'yearly' ? 'bg-[#C2983B] text-white' : 'text-gray-400'}`
+                }>
                 Yearly
               </button>
             </div>
@@ -172,7 +172,7 @@ function InvestmentCalculator({ formatCurrency, currency }) {
 }
 
 function MortgageCalculator({ formatCurrency, currency }) {
-  const currentCurrencyObj = currencies.find(c => c.code === currency);
+  const currentCurrencyObj = currencies.find((c) => c.code === currency);
   const [homePrice, setHomePrice] = useState('400000');
   const [downPayment, setDownPayment] = useState('80000');
   const [interestRate, setInterestRate] = useState('6.5');
@@ -226,7 +226,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
     // Aggregate by year
     const yearlySchedule = [];
     for (let year = 1; year <= term; year++) {
-      const yearData = schedule.filter(m => m.year === year);
+      const yearData = schedule.filter((m) => m.year === year);
       yearlySchedule.push({
         year,
         principal: yearData.reduce((sum, m) => sum + m.principal, 0),
@@ -358,13 +358,13 @@ function MortgageCalculator({ formatCurrency, currency }) {
                     setPmi(isNaN(val) ? '0' : val.toString());
                   }}
                   placeholder="0"
-                  className="h-12 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                />
+                  className="h-12 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
               </div>
             </div>
 
             <div>
-              <Label className="text-gray-300 text-sm mb-2 block">Property Tax (Monthly)</Label>
+              <Label className="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-300 text-sm mb-2 block">Property Tax (Annual)</Label>
               <div className="relative">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
                   {currentCurrencyObj.symbol}
@@ -383,13 +383,13 @@ function MortgageCalculator({ formatCurrency, currency }) {
                     setPropertyTax(isNaN(val) ? '0' : val.toString());
                   }}
                   placeholder="0"
-                  className="h-12 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                />
+                  className="h-12 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
               </div>
             </div>
 
             <div>
-              <Label className="text-gray-300 text-sm mb-2 block">Home Insurance (Monthly)</Label>
+              <Label className="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-300 text-sm mb-2 block">Home Insurance (Annual)</Label>
               <div className="relative">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
                   {currentCurrencyObj.symbol}
@@ -408,8 +408,8 @@ function MortgageCalculator({ formatCurrency, currency }) {
                     setHomeInsurance(isNaN(val) ? '0' : val.toString());
                   }}
                   placeholder="0"
-                  className="h-12 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                />
+                  className="h-12 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
               </div>
             </div>
 
@@ -433,8 +433,8 @@ function MortgageCalculator({ formatCurrency, currency }) {
                     setManagement(isNaN(val) ? '0' : val.toString());
                   }}
                   placeholder="0"
-                  className="h-12 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                />
+                  className="h-12 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+
               </div>
             </div>
           </div>
@@ -472,7 +472,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
         <div className="mb-6">
           <p className="text-gray-400 text-sm mb-2">Total Monthly Payment:</p>
           <p className="text-5xl font-bold text-[#C2983B]">
-            {formatCurrency(result.monthlyPayment + (parseFloat(pmi) || 0) + ((parseFloat(propertyTax) || 0) / 12) + ((parseFloat(homeInsurance) || 0) / 12) + (parseFloat(management) || 0))}
+            {formatCurrency(result.monthlyPayment + (parseFloat(pmi) || 0) + (parseFloat(propertyTax) || 0) / 12 + (parseFloat(homeInsurance) || 0) / 12 + (parseFloat(management) || 0))}
           </p>
         </div>
 
@@ -497,21 +497,21 @@ function MortgageCalculator({ formatCurrency, currency }) {
           {showAmortization ? 'Hide' : 'Show'} Amortization Schedule
         </button>
 
-        {showAmortization && (
-          <div className="mt-6 border-t border-white/10 pt-6">
+        {showAmortization &&
+        <div className="mt-6 border-t border-white/10 pt-6">
             <div className="flex gap-2 mb-4">
               <button
-                onClick={() => setViewMode('yearly')}
-                className={`flex-1 py-2 rounded-lg transition-colors ${
-                  viewMode === 'yearly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'
-                }`}>
+              onClick={() => setViewMode('yearly')}
+              className={`flex-1 py-2 rounded-lg transition-colors ${
+              viewMode === 'yearly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'}`
+              }>
                 Yearly
               </button>
               <button
-                onClick={() => setViewMode('monthly')}
-                className={`flex-1 py-2 rounded-lg transition-colors ${
-                  viewMode === 'monthly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'
-                }`}>
+              onClick={() => setViewMode('monthly')}
+              className={`flex-1 py-2 rounded-lg transition-colors ${
+              viewMode === 'monthly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'}`
+              }>
                 Monthly
               </button>
             </div>
@@ -527,26 +527,26 @@ function MortgageCalculator({ formatCurrency, currency }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {(viewMode === 'yearly' ? amortization.yearly : amortization.monthly).map((row, idx) => (
-                    <tr key={idx} className="border-b border-white/5 text-gray-300">
+                  {(viewMode === 'yearly' ? amortization.yearly : amortization.monthly).map((row, idx) =>
+                <tr key={idx} className="border-b border-white/5 text-gray-300">
                       <td className="py-2">{viewMode === 'yearly' ? row.year : row.month}</td>
                       <td className="text-right">{formatCurrency(row.interest)}</td>
                       <td className="text-right">{formatCurrency(row.principal)}</td>
                       <td className="text-right">{formatCurrency(row.balance)}</td>
                     </tr>
-                  ))}
+                )}
                 </tbody>
               </table>
             </div>
           </div>
-        )}
+        }
       </div>
     </div>);
 
 }
 
 function CommercialMortgageCalculator({ formatCurrency, currency }) {
-  const currentCurrencyObj = currencies.find(c => c.code === currency);
+  const currentCurrencyObj = currencies.find((c) => c.code === currency);
   const [propertyValue, setPropertyValue] = useState('1500000');
   const [downPayment, setDownPayment] = useState('375000');
   const [interestRate, setInterestRate] = useState('7.5');
@@ -601,7 +601,7 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
 
     const yearlySchedule = [];
     for (let year = 1; year <= loanTerm; year++) {
-      const yearData = schedule.filter(m => m.year === year);
+      const yearData = schedule.filter((m) => m.year === year);
       yearlySchedule.push({
         year,
         principal: yearData.reduce((sum, m) => sum + m.principal, 0),
@@ -771,21 +771,21 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
           {showAmortization ? 'Hide' : 'Show'} Amortization Schedule
         </button>
 
-        {showAmortization && (
-          <div className="mt-6 border-t border-white/10 pt-6">
+        {showAmortization &&
+        <div className="mt-6 border-t border-white/10 pt-6">
             <div className="flex gap-2 mb-4">
               <button
-                onClick={() => setViewMode('yearly')}
-                className={`flex-1 py-2 rounded-lg transition-colors ${
-                  viewMode === 'yearly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'
-                }`}>
+              onClick={() => setViewMode('yearly')}
+              className={`flex-1 py-2 rounded-lg transition-colors ${
+              viewMode === 'yearly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'}`
+              }>
                 Yearly
               </button>
               <button
-                onClick={() => setViewMode('monthly')}
-                className={`flex-1 py-2 rounded-lg transition-colors ${
-                  viewMode === 'monthly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'
-                }`}>
+              onClick={() => setViewMode('monthly')}
+              className={`flex-1 py-2 rounded-lg transition-colors ${
+              viewMode === 'monthly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'}`
+              }>
                 Monthly
               </button>
             </div>
@@ -801,26 +801,26 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {(viewMode === 'yearly' ? amortization.yearly : amortization.monthly).map((row, idx) => (
-                    <tr key={idx} className="border-b border-white/5 text-gray-300">
+                  {(viewMode === 'yearly' ? amortization.yearly : amortization.monthly).map((row, idx) =>
+                <tr key={idx} className="border-b border-white/5 text-gray-300">
                       <td className="py-2">{viewMode === 'yearly' ? row.year : row.month}</td>
                       <td className="text-right">{formatCurrency(row.interest)}</td>
                       <td className="text-right">{formatCurrency(row.principal)}</td>
                       <td className="text-right">{formatCurrency(row.balance)}</td>
                     </tr>
-                  ))}
+                )}
                 </tbody>
               </table>
             </div>
           </div>
-        )}
+        }
       </div>
     </div>);
 
 }
 
 function LoanCalculator({ formatCurrency, currency }) {
-  const currentCurrencyObj = currencies.find(c => c.code === currency);
+  const currentCurrencyObj = currencies.find((c) => c.code === currency);
   const [loanAmount, setLoanAmount] = useState('25000');
   const [interestRate, setInterestRate] = useState('8');
   const [loanTerm, setLoanTerm] = useState('5');
@@ -864,7 +864,7 @@ function LoanCalculator({ formatCurrency, currency }) {
 
     const yearlySchedule = [];
     for (let year = 1; year <= loanTerm; year++) {
-      const yearData = schedule.filter(m => m.year === year);
+      const yearData = schedule.filter((m) => m.year === year);
       yearlySchedule.push({
         year,
         principal: yearData.reduce((sum, m) => sum + m.principal, 0),
@@ -988,87 +988,87 @@ const currencies = [
 { code: 'GBP', symbol: '£', rate: 0.79, name: 'British Pound' }];
 
 const resourcesData = [
-  {
-    id: 'goals',
-    title: 'Your Goals Sheet',
-    description: "Capture your goals simply and clearly. It's the starting point for building your plan.",
-    icon: Target,
-    links: {
-      GBP: {
-        pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/83e47f6d0_UKGoalsSheet.pdf',
-        excel: 'https://docs.google.com/spreadsheets/d/10wTabnJSDS6fHRUYk3Fj2ade7loGHxQ3/export?format=xlsx',
-      },
-      USD: {
-        pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/83e47f6d0_UKGoalsSheet.pdf',
-        excel: 'https://docs.google.com/spreadsheets/d/10wTabnJSDS6fHRUYk3Fj2ade7loGHxQ3/export?format=xlsx',
-      },
-      ILS: {
-        pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/83e47f6d0_UKGoalsSheet.pdf',
-        excel: 'https://docs.google.com/spreadsheets/d/10wTabnJSDS6fHRUYk3Fj2ade7loGHxQ3/export?format=xlsx',
-      },
+{
+  id: 'goals',
+  title: 'Your Goals Sheet',
+  description: "Capture your goals simply and clearly. It's the starting point for building your plan.",
+  icon: Target,
+  links: {
+    GBP: {
+      pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/83e47f6d0_UKGoalsSheet.pdf',
+      excel: 'https://docs.google.com/spreadsheets/d/10wTabnJSDS6fHRUYk3Fj2ade7loGHxQ3/export?format=xlsx'
+    },
+    USD: {
+      pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/83e47f6d0_UKGoalsSheet.pdf',
+      excel: 'https://docs.google.com/spreadsheets/d/10wTabnJSDS6fHRUYk3Fj2ade7loGHxQ3/export?format=xlsx'
+    },
+    ILS: {
+      pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/83e47f6d0_UKGoalsSheet.pdf',
+      excel: 'https://docs.google.com/spreadsheets/d/10wTabnJSDS6fHRUYk3Fj2ade7loGHxQ3/export?format=xlsx'
     }
-  },
-  {
-    id: 'asset',
-    title: 'Asset Sheet',
-    description: 'See your full financial picture in one clear sheet. Review it monthly to support real action and progress.',
-    icon: Wallet,
-    links: {
-      GBP: {
-        pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/191dcde5b_UKAssetSheet.pdf',
-        excel: 'https://docs.google.com/spreadsheets/d/1JiVVyn2C9rfZ2gGqkcldAJ7DUpohRHus/export?format=xlsx',
-      },
-      USD: {
-        pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/191dcde5b_UKAssetSheet.pdf',
-        excel: 'https://docs.google.com/spreadsheets/d/1JiVVyn2C9rfZ2gGqkcldAJ7DUpohRHus/export?format=xlsx',
-      },
-      ILS: {
-        pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/191dcde5b_UKAssetSheet.pdf',
-        excel: 'https://docs.google.com/spreadsheets/d/1JiVVyn2C9rfZ2gGqkcldAJ7DUpohRHus/export?format=xlsx',
-      },
+  }
+},
+{
+  id: 'asset',
+  title: 'Asset Sheet',
+  description: 'See your full financial picture in one clear sheet. Review it monthly to support real action and progress.',
+  icon: Wallet,
+  links: {
+    GBP: {
+      pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/191dcde5b_UKAssetSheet.pdf',
+      excel: 'https://docs.google.com/spreadsheets/d/1JiVVyn2C9rfZ2gGqkcldAJ7DUpohRHus/export?format=xlsx'
+    },
+    USD: {
+      pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/191dcde5b_UKAssetSheet.pdf',
+      excel: 'https://docs.google.com/spreadsheets/d/1JiVVyn2C9rfZ2gGqkcldAJ7DUpohRHus/export?format=xlsx'
+    },
+    ILS: {
+      pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/191dcde5b_UKAssetSheet.pdf',
+      excel: 'https://docs.google.com/spreadsheets/d/1JiVVyn2C9rfZ2gGqkcldAJ7DUpohRHus/export?format=xlsx'
     }
-  },
-  {
-    id: 'budget_planner',
-    title: 'Budget Planner',
-    description: 'A powerful Excel budget tool you can also upload to Google Sheets for tracking. Plan your month, track weekly, and stay on top of spending with clear totals.',
-    icon: Calculator,
-    links: {
-      GBP: {
-        pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/668cc6683_TSMonthlyUKFinancialPlanner.pdf',
-        excel: 'https://docs.google.com/spreadsheets/d/1OWSZoa6DQ-n3HeHtw-cUjBnwbRW-hVte/export?format=xlsx',
-      },
-      USD: {
-        pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/668cc6683_TSMonthlyUKFinancialPlanner.pdf',
-        excel: 'https://docs.google.com/spreadsheets/d/1OWSZoa6DQ-n3HeHtw-cUjBnwbRW-hVte/export?format=xlsx',
-      },
-      ILS: {
-        pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/668cc6683_TSMonthlyUKFinancialPlanner.pdf',
-        excel: 'https://docs.google.com/spreadsheets/d/1OWSZoa6DQ-n3HeHtw-cUjBnwbRW-hVte/export?format=xlsx',
-      },
+  }
+},
+{
+  id: 'budget_planner',
+  title: 'Budget Planner',
+  description: 'A powerful Excel budget tool you can also upload to Google Sheets for tracking. Plan your month, track weekly, and stay on top of spending with clear totals.',
+  icon: Calculator,
+  links: {
+    GBP: {
+      pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/668cc6683_TSMonthlyUKFinancialPlanner.pdf',
+      excel: 'https://docs.google.com/spreadsheets/d/1OWSZoa6DQ-n3HeHtw-cUjBnwbRW-hVte/export?format=xlsx'
+    },
+    USD: {
+      pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/668cc6683_TSMonthlyUKFinancialPlanner.pdf',
+      excel: 'https://docs.google.com/spreadsheets/d/1OWSZoa6DQ-n3HeHtw-cUjBnwbRW-hVte/export?format=xlsx'
+    },
+    ILS: {
+      pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/668cc6683_TSMonthlyUKFinancialPlanner.pdf',
+      excel: 'https://docs.google.com/spreadsheets/d/1OWSZoa6DQ-n3HeHtw-cUjBnwbRW-hVte/export?format=xlsx'
     }
-  },
-  {
-    id: 'budget_category_guide',
-    title: 'Budget Category Guide',
-    description: 'A ready-made list of categories to use in the Budget Planner dropdowns. This guide matches the category dropdowns in the Budget Planner.',
-    icon: BookOpen,
-    links: {
-      GBP: {
-        pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/54dc673a5_TSUKCategoryGuide.pdf',
-        excel: 'https://docs.google.com/spreadsheets/d/1XsoYxlf9BWJuB1kdSbL9-yySmOe2ipls/export?format=xlsx',
-      },
-      USD: {
-        pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/54dc673a5_TSUKCategoryGuide.pdf',
-        excel: 'https://docs.google.com/spreadsheets/d/1XsoYxlf9BWJuB1kdSbL9-yySmOe2ipls/export?format=xlsx',
-      },
-      ILS: {
-        pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/54dc673a5_TSUKCategoryGuide.pdf',
-        excel: 'https://docs.google.com/spreadsheets/d/1XsoYxlf9BWJuB1kdSbL9-yySmOe2ipls/export?format=xlsx',
-      },
+  }
+},
+{
+  id: 'budget_category_guide',
+  title: 'Budget Category Guide',
+  description: 'A ready-made list of categories to use in the Budget Planner dropdowns. This guide matches the category dropdowns in the Budget Planner.',
+  icon: BookOpen,
+  links: {
+    GBP: {
+      pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/54dc673a5_TSUKCategoryGuide.pdf',
+      excel: 'https://docs.google.com/spreadsheets/d/1XsoYxlf9BWJuB1kdSbL9-yySmOe2ipls/export?format=xlsx'
+    },
+    USD: {
+      pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/54dc673a5_TSUKCategoryGuide.pdf',
+      excel: 'https://docs.google.com/spreadsheets/d/1XsoYxlf9BWJuB1kdSbL9-yySmOe2ipls/export?format=xlsx'
+    },
+    ILS: {
+      pdf: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69529b452690abb118ee83b9/54dc673a5_TSUKCategoryGuide.pdf',
+      excel: 'https://docs.google.com/spreadsheets/d/1XsoYxlf9BWJuB1kdSbL9-yySmOe2ipls/export?format=xlsx'
     }
-  },
-];
+  }
+}];
+
 
 
 export default function Tools() {
@@ -1087,7 +1087,7 @@ export default function Tools() {
     };
 
     window.addEventListener('storage', handleStorageChange);
-    
+
     const intervalId = setInterval(() => {
       const saved = localStorage.getItem('preferredCurrency');
       if (saved && saved !== currency) {
@@ -1247,7 +1247,7 @@ export default function Tools() {
               const ResourceIcon = resource.icon;
               const links = resource.links[currency];
               const canDownload = isUKSession || currency === 'GBP';
-              
+
               return (
                 <motion.div
                   key={resource.id}
@@ -1266,13 +1266,13 @@ export default function Tools() {
                         {resource.description}
                       </p>
                       <div className="flex flex-col gap-3">
-                        {canDownload ? (
-                          <>
+                        {canDownload ?
+                        <>
                             <a
-                              href={links.pdf}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block">
+                            href={links.pdf}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block">
 
                               <Button variant="outline" className="w-full rounded-lg border-gray-300">
                                 <Download className="w-4 h-4 mr-2" />
@@ -1280,35 +1280,35 @@ export default function Tools() {
                               </Button>
                             </a>
                             <a
-                              href={links.excel}
-                              download={`${resource.title.replace(/\s+/g, '-')}.xlsx`}
-                              className="block">
+                            href={links.excel}
+                            download={`${resource.title.replace(/\s+/g, '-')}.xlsx`}
+                            className="block">
 
                               <Button variant="outline" className="w-full rounded-lg border-gray-300">
                                 <Download className="w-4 h-4 mr-2" />
                                 Download Excel
                               </Button>
                             </a>
-                          </>
-                        ) : (
-                          <div className="text-center py-4">
+                          </> :
+
+                        <div className="text-center py-4">
                             <p className="text-sm text-gray-500 mb-3">
                               Coming soon for {currency}
                             </p>
-                            <Button 
-                              variant="outline" 
-                              className="w-full rounded-lg border-gray-300 opacity-50 cursor-not-allowed"
-                              disabled>
+                            <Button
+                            variant="outline"
+                            className="w-full rounded-lg border-gray-300 opacity-50 cursor-not-allowed"
+                            disabled>
                               <Download className="w-4 h-4 mr-2" />
                               Not Available Yet
                             </Button>
                           </div>
-                        )}
+                        }
                       </div>
                     </CardContent>
                   </Card>
-                </motion.div>
-              );
+                </motion.div>);
+
             })}
           </div>
         </div>
