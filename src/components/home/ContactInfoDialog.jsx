@@ -13,7 +13,7 @@ export default function ContactInfoDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button size="lg" className="bg-white hover:bg-gray-100 text-[#1a2b4b] font-medium px-8 py-6 text-base rounded-lg shadow-lg">
+        <Button size="lg" className="w-full sm:w-auto bg-white hover:bg-gray-100 text-[#1a2b4b] font-medium px-8 py-6 text-base rounded-lg shadow-lg">
           <MapPin className="w-5 h-5 mr-2" />
           Contact Info
         </Button>
