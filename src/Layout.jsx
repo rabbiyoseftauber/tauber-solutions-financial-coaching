@@ -238,8 +238,8 @@ export default function Layout({ children, currentPageName }) {
                   </a>
                 </li>
                 <li>
-                  <a href="tel:+447392788116" className="hover:text-white transition-colors">
-                    +44 (739) 278-8116
+                  <a href="tel:03300276500" className="hover:text-white transition-colors">
+                    03 300 276500
                   </a>
                 </li>
                 <li className="pt-2">
