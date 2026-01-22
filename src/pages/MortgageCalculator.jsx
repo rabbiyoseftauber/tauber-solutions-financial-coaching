@@ -21,10 +21,10 @@ export default function MortgageCalculator() {
     return saved || (isUKSession ? 'GBP' : 'USD');
   });
 
-  const [homePrice, setHomePrice] = useState(400000);
-  const [downPayment, setDownPayment] = useState(80000);
-  const [interestRate, setInterestRate] = useState(6.5);
-  const [loanTerm, setLoanTerm] = useState(30);
+  const [homePrice, setHomePrice] = useState('400000');
+  const [downPayment, setDownPayment] = useState('80000');
+  const [interestRate, setInterestRate] = useState('6.5');
+  const [loanTerm, setLoanTerm] = useState('30');
   const [showAmortization, setShowAmortization] = useState(false);
   const [viewMode, setViewMode] = useState('yearly');
 
@@ -54,9 +54,13 @@ export default function MortgageCalculator() {
   };
 
   const calculateMortgage = () => {
-    const principal = homePrice - downPayment;
-    const r = interestRate / 100 / 12;
-    const n = loanTerm * 12;
+    const price = parseFloat(homePrice) || 0;
+    const down = parseFloat(downPayment) || 0;
+    const rate = parseFloat(interestRate) || 0;
+    const term = parseFloat(loanTerm) || 0;
+    const principal = price - down;
+    const r = rate / 100 / 12;
+    const n = term * 12;
     const monthlyPayment = principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
     const totalPayment = monthlyPayment * n;
     const totalInterest = totalPayment - principal;
@@ -64,13 +68,17 @@ export default function MortgageCalculator() {
   };
 
   const calculateAmortization = () => {
-    const principal = homePrice - downPayment;
-    const r = interestRate / 100 / 12;
+    const price = parseFloat(homePrice) || 0;
+    const down = parseFloat(downPayment) || 0;
+    const rate = parseFloat(interestRate) || 0;
+    const term = parseFloat(loanTerm) || 0;
+    const principal = price - down;
+    const r = rate / 100 / 12;
     const monthlyPayment = calculateMortgage().monthlyPayment;
     let balance = principal;
     const schedule = [];
 
-    for (let month = 1; month <= loanTerm * 12; month++) {
+    for (let month = 1; month <= term * 12; month++) {
       const interestPayment = balance * r;
       const principalPayment = monthlyPayment - interestPayment;
       balance -= principalPayment;
@@ -85,7 +93,8 @@ export default function MortgageCalculator() {
     }
 
     const yearlySchedule = [];
-    for (let year = 1; year <= loanTerm; year++) {
+    const term = parseFloat(loanTerm) || 0;
+    for (let year = 1; year <= term; year++) {
       const yearData = schedule.filter(m => m.year === year);
       yearlySchedule.push({
         year,

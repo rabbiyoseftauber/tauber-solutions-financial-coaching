@@ -21,11 +21,11 @@ export default function InvestmentCalculator() {
     return saved || (isUKSession ? 'GBP' : 'USD');
   });
 
-  const [principal, setPrincipal] = useState(10000);
-  const [contribution, setContribution] = useState(500);
+  const [principal, setPrincipal] = useState('10000');
+  const [contribution, setContribution] = useState('500');
   const [contributionFrequency, setContributionFrequency] = useState('monthly');
-  const [rate, setRate] = useState(7);
-  const [years, setYears] = useState(20);
+  const [rate, setRate] = useState('7');
+  const [years, setYears] = useState('20');
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -53,11 +53,15 @@ export default function InvestmentCalculator() {
   };
 
   const calculateInvestment = () => {
-    const r = rate / 100 / 12;
-    const n = years * 12;
-    const monthlyContribution = contributionFrequency === 'monthly' ? contribution : contribution / 12;
-    const futureValue = principal * Math.pow(1 + r, n) + monthlyContribution * ((Math.pow(1 + r, n) - 1) / r);
-    const totalContributions = principal + monthlyContribution * n;
+    const p = parseFloat(principal) || 0;
+    const c = parseFloat(contribution) || 0;
+    const rateVal = parseFloat(rate) || 0;
+    const y = parseFloat(years) || 0;
+    const r = rateVal / 100 / 12;
+    const n = y * 12;
+    const monthlyContribution = contributionFrequency === 'monthly' ? c : c / 12;
+    const futureValue = p * Math.pow(1 + r, n) + monthlyContribution * ((Math.pow(1 + r, n) - 1) / r);
+    const totalContributions = p + monthlyContribution * n;
     const earnings = futureValue - totalContributions;
     return { futureValue, totalContributions, earnings };
   };

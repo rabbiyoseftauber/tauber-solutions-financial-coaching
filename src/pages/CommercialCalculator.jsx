@@ -21,11 +21,11 @@ export default function CommercialCalculator() {
     return saved || (isUKSession ? 'GBP' : 'USD');
   });
 
-  const [propertyValue, setPropertyValue] = useState(1500000);
-  const [downPayment, setDownPayment] = useState(375000);
-  const [interestRate, setInterestRate] = useState(7.5);
-  const [loanTerm, setLoanTerm] = useState(20);
-  const [annualIncome, setAnnualIncome] = useState(180000);
+  const [propertyValue, setPropertyValue] = useState('1500000');
+  const [downPayment, setDownPayment] = useState('375000');
+  const [interestRate, setInterestRate] = useState('7.5');
+  const [loanTerm, setLoanTerm] = useState('20');
+  const [annualIncome, setAnnualIncome] = useState('180000');
   const [showAmortization, setShowAmortization] = useState(false);
   const [viewMode, setViewMode] = useState('yearly');
 
@@ -55,27 +55,36 @@ export default function CommercialCalculator() {
   };
 
   const calculateCommercialMortgage = () => {
-    const principal = propertyValue - downPayment;
-    const r = interestRate / 100 / 12;
-    const n = loanTerm * 12;
+    const value = parseFloat(propertyValue) || 0;
+    const down = parseFloat(downPayment) || 0;
+    const rate = parseFloat(interestRate) || 0;
+    const term = parseFloat(loanTerm) || 0;
+    const income = parseFloat(annualIncome) || 0;
+    const principal = value - down;
+    const r = rate / 100 / 12;
+    const n = term * 12;
     const monthlyPayment = principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
     const annualDebtService = monthlyPayment * 12;
-    const dscr = annualIncome / annualDebtService;
+    const dscr = income / annualDebtService;
     const totalPayment = monthlyPayment * n;
     const totalInterest = totalPayment - principal;
-    const ltv = principal / propertyValue * 100;
+    const ltv = principal / value * 100;
 
     return { monthlyPayment, totalPayment, totalInterest, principal, dscr, ltv };
   };
 
   const calculateAmortization = () => {
-    const principal = propertyValue - downPayment;
-    const r = interestRate / 100 / 12;
+    const value = parseFloat(propertyValue) || 0;
+    const down = parseFloat(downPayment) || 0;
+    const rate = parseFloat(interestRate) || 0;
+    const term = parseFloat(loanTerm) || 0;
+    const principal = value - down;
+    const r = rate / 100 / 12;
     const monthlyPayment = calculateCommercialMortgage().monthlyPayment;
     let balance = principal;
     const schedule = [];
 
-    for (let month = 1; month <= loanTerm * 12; month++) {
+    for (let month = 1; month <= term * 12; month++) {
       const interestPayment = balance * r;
       const principalPayment = monthlyPayment - interestPayment;
       balance -= principalPayment;
@@ -90,7 +99,8 @@ export default function CommercialCalculator() {
     }
 
     const yearlySchedule = [];
-    for (let year = 1; year <= loanTerm; year++) {
+    const term = parseFloat(loanTerm) || 0;
+    for (let year = 1; year <= term; year++) {
       const yearData = schedule.filter(m => m.year === year);
       yearlySchedule.push({
         year,

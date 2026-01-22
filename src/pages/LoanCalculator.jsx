@@ -21,9 +21,9 @@ export default function LoanCalculator() {
     return saved || (isUKSession ? 'GBP' : 'USD');
   });
 
-  const [loanAmount, setLoanAmount] = useState(25000);
-  const [interestRate, setInterestRate] = useState(8);
-  const [loanTerm, setLoanTerm] = useState(5);
+  const [loanAmount, setLoanAmount] = useState('25000');
+  const [interestRate, setInterestRate] = useState('8');
+  const [loanTerm, setLoanTerm] = useState('5');
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -51,11 +51,14 @@ export default function LoanCalculator() {
   };
 
   const calculateLoan = () => {
-    const r = interestRate / 100 / 12;
-    const n = loanTerm * 12;
-    const monthlyPayment = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const amount = parseFloat(loanAmount) || 0;
+    const rate = parseFloat(interestRate) || 0;
+    const term = parseFloat(loanTerm) || 0;
+    const r = rate / 100 / 12;
+    const n = term * 12;
+    const monthlyPayment = amount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
     const totalPayment = monthlyPayment * n;
-    const totalInterest = totalPayment - loanAmount;
+    const totalInterest = totalPayment - amount;
     return { monthlyPayment, totalPayment, totalInterest };
   };
 
