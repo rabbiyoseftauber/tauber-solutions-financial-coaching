@@ -5,8 +5,13 @@ import AdminResources from './pages/AdminResources';
 import AdminSettings from './pages/AdminSettings';
 import Affiliates from './pages/Affiliates';
 import Coaches from './pages/Coaches';
+import CommercialCalculator from './pages/CommercialCalculator';
 import Community from './pages/Community';
 import Home from './pages/Home';
+import InvestmentCalculator from './pages/InvestmentCalculator';
+import LoanCalculator from './pages/LoanCalculator';
+import MortgageCalculator from './pages/MortgageCalculator';
+import Pay from './pages/Pay';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Schedule from './pages/Schedule';
 import Services from './pages/Services';
@@ -17,11 +22,6 @@ import Testimonials from './pages/Testimonials';
 import Tools from './pages/Tools';
 import UK from './pages/UK';
 import UKCoaches from './pages/UKCoaches';
-import Pay from './pages/Pay';
-import LoanCalculator from './pages/LoanCalculator';
-import MortgageCalculator from './pages/MortgageCalculator';
-import CommercialCalculator from './pages/CommercialCalculator';
-import InvestmentCalculator from './pages/InvestmentCalculator';
 import __Layout from './Layout.jsx';
 
 
@@ -33,8 +33,13 @@ export const PAGES = {
     "AdminSettings": AdminSettings,
     "Affiliates": Affiliates,
     "Coaches": Coaches,
+    "CommercialCalculator": CommercialCalculator,
     "Community": Community,
     "Home": Home,
+    "InvestmentCalculator": InvestmentCalculator,
+    "LoanCalculator": LoanCalculator,
+    "MortgageCalculator": MortgageCalculator,
+    "Pay": Pay,
     "PrivacyPolicy": PrivacyPolicy,
     "Schedule": Schedule,
     "Services": Services,
@@ -45,11 +50,6 @@ export const PAGES = {
     "Tools": Tools,
     "UK": UK,
     "UKCoaches": UKCoaches,
-    "Pay": Pay,
-    "LoanCalculator": LoanCalculator,
-    "MortgageCalculator": MortgageCalculator,
-    "CommercialCalculator": CommercialCalculator,
-    "InvestmentCalculator": InvestmentCalculator,
 }
 
 export const pagesConfig = {
