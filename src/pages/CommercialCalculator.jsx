@@ -246,7 +246,7 @@ export default function CommercialCalculator() {
                   />
                 </div>
                 <div>
-                  <Label className="text-gray-300 text-sm mb-2 block">Annual Property Income</Label>
+                  <Label className="text-gray-300 text-sm mb-2 block">Net Operating Income (NOI)</Label>
                   <div className="relative">
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
                       {currentCurrency.symbol}
@@ -268,7 +268,7 @@ export default function CommercialCalculator() {
               </div>
 
               <div className="pt-6 border-t border-white/10">
-                <p className="text-gray-400 text-sm mb-2">Monthly Payment:</p>
+                <p className="text-gray-400 text-sm mb-2">Monthly Payment (P&I):</p>
                 <p className="text-5xl font-bold text-[#C2983B] mb-6">
                   {formatCurrency(result.monthlyPayment)}
                 </p>
