@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Home, ArrowRight } from 'lucide-react';
+import { Building2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import SEO from '@/components/seo/SEO';
@@ -14,17 +14,18 @@ const currencies = [
   { code: 'GBP', symbol: '£', name: 'British Pound' }
 ];
 
-export default function Mortgage() {
+export default function CommercialCalculator() {
   const isUKSession = sessionStorage.getItem('isUKSession') === 'true';
   const [currency, setCurrency] = useState(() => {
     const saved = localStorage.getItem('preferredCurrency');
     return saved || (isUKSession ? 'GBP' : 'USD');
   });
 
-  const [homePrice, setHomePrice] = useState(400000);
-  const [downPayment, setDownPayment] = useState(80000);
-  const [interestRate, setInterestRate] = useState(6.5);
-  const [loanTerm, setLoanTerm] = useState(30);
+  const [propertyValue, setPropertyValue] = useState(1500000);
+  const [downPayment, setDownPayment] = useState(375000);
+  const [interestRate, setInterestRate] = useState(7.5);
+  const [loanTerm, setLoanTerm] = useState(20);
+  const [annualIncome, setAnnualIncome] = useState(180000);
   const [showAmortization, setShowAmortization] = useState(false);
   const [viewMode, setViewMode] = useState('yearly');
 
@@ -53,20 +54,24 @@ export default function Mortgage() {
     return `${currentCurrency.symbol}${amount.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
   };
 
-  const calculateMortgage = () => {
-    const principal = homePrice - downPayment;
+  const calculateCommercialMortgage = () => {
+    const principal = propertyValue - downPayment;
     const r = interestRate / 100 / 12;
     const n = loanTerm * 12;
     const monthlyPayment = principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const annualDebtService = monthlyPayment * 12;
+    const dscr = annualIncome / annualDebtService;
     const totalPayment = monthlyPayment * n;
     const totalInterest = totalPayment - principal;
-    return { monthlyPayment, totalPayment, totalInterest, principal };
+    const ltv = principal / propertyValue * 100;
+
+    return { monthlyPayment, totalPayment, totalInterest, principal, dscr, ltv };
   };
 
   const calculateAmortization = () => {
-    const principal = homePrice - downPayment;
+    const principal = propertyValue - downPayment;
     const r = interestRate / 100 / 12;
-    const monthlyPayment = calculateMortgage().monthlyPayment;
+    const monthlyPayment = calculateCommercialMortgage().monthlyPayment;
     let balance = principal;
     const schedule = [];
 
@@ -98,15 +103,15 @@ export default function Mortgage() {
     return { monthly: schedule, yearly: yearlySchedule };
   };
 
-  const result = calculateMortgage();
+  const result = calculateCommercialMortgage();
   const amortization = calculateAmortization();
 
   return (
     <div className="pt-20">
       <SEO
-        title="Mortgage Calculator"
-        description="Calculate your monthly mortgage payment, total interest, and amortization schedule. Plan your home purchase with our free mortgage calculator."
-        canonical="/mortgage"
+        title="Commercial Mortgage Calculator"
+        description="Calculate commercial property loan payments, DSCR, and LTV ratios. Plan your investment property financing with our free commercial mortgage calculator."
+        canonical="/commercialcalculator"
       />
 
       {/* Hero Section */}
@@ -118,14 +123,14 @@ export default function Mortgage() {
             className="max-w-3xl"
           >
             <span className="text-[#C2983B] text-sm tracking-[0.3em] uppercase mb-4 block">
-              Mortgage Calculator
+              Commercial Mortgage Calculator
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
-              Plan Your Home{' '}
-              <span className="text-[#C2983B] font-normal">Purchase</span>
+              Plan Your Commercial{' '}
+              <span className="text-[#C2983B] font-normal">Investment</span>
             </h1>
             <p className="text-xl text-gray-300 font-light leading-relaxed mb-8">
-              Calculate your monthly payments and see how much home you can afford.
+              Calculate payments, DSCR, and LTV for your commercial property investment.
             </p>
 
             <div className="flex items-center gap-3 flex-wrap">
@@ -160,23 +165,23 @@ export default function Mortgage() {
             <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-14 h-14 min-w-[3.5rem] bg-[#C2983B] rounded-full flex items-center justify-center">
-                  <Home className="w-7 h-7 text-white" />
+                  <Building2 className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-white">Mortgage Calculator</h3>
+                <h3 className="text-2xl font-bold text-white">Commercial Mortgage</h3>
               </div>
 
               <div className="space-y-6 mb-8">
                 <div>
-                  <Label className="text-gray-300 text-sm mb-2 block">Home Price</Label>
+                  <Label className="text-gray-300 text-sm mb-2 block">Property Value</Label>
                   <div className="relative">
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
                       {currentCurrency.symbol}
                     </span>
                     <Input
                       type="text"
-                      value={homePrice.toLocaleString()}
-                      onChange={(e) => setHomePrice(Number(e.target.value.replace(/,/g, '')) || 0)}
-                      placeholder="400,000"
+                      value={propertyValue.toLocaleString()}
+                      onChange={(e) => setPropertyValue(Number(e.target.value.replace(/,/g, '')) || 0)}
+                      placeholder="1,500,000"
                       className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     />
                   </div>
@@ -191,7 +196,7 @@ export default function Mortgage() {
                       type="text"
                       value={downPayment.toLocaleString()}
                       onChange={(e) => setDownPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
-                      placeholder="80,000"
+                      placeholder="375,000"
                       className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     />
                   </div>
@@ -211,7 +216,7 @@ export default function Mortgage() {
                       const val = parseFloat(e.target.value);
                       setInterestRate(isNaN(val) ? 0 : val);
                     }}
-                    placeholder="6.5"
+                    placeholder="7.5"
                     className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                 </div>
@@ -221,9 +226,24 @@ export default function Mortgage() {
                     type="text"
                     value={loanTerm}
                     onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
-                    placeholder="30"
+                    placeholder="20"
                     className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
+                </div>
+                <div>
+                  <Label className="text-gray-300 text-sm mb-2 block">Annual Property Income</Label>
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+                      {currentCurrency.symbol}
+                    </span>
+                    <Input
+                      type="text"
+                      value={annualIncome.toLocaleString()}
+                      onChange={(e) => setAnnualIncome(Number(e.target.value.replace(/,/g, '')) || 0)}
+                      placeholder="180,000"
+                      className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -232,11 +252,23 @@ export default function Mortgage() {
                 <p className="text-5xl font-bold text-[#C2983B] mb-6">
                   {formatCurrency(result.monthlyPayment)}
                 </p>
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-gray-400 text-xs mb-1">Loan Amount</p>
                     <p className="text-lg font-medium text-white">
                       {formatCurrency(result.principal)}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400 text-xs mb-1">LTV Ratio</p>
+                    <p className="text-lg font-medium text-white">
+                      {result.ltv.toFixed(1)}%
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400 text-xs mb-1">DSCR</p>
+                    <p className={`text-lg font-medium ${result.dscr >= 1.25 ? 'text-green-400' : 'text-yellow-400'}`}>
+                      {result.dscr.toFixed(2)}x
                     </p>
                   </div>
                   <div>
@@ -249,7 +281,7 @@ export default function Mortgage() {
 
                 <button
                   onClick={() => setShowAmortization(!showAmortization)}
-                  className="w-full bg-[#1a2b4b]/70 hover:bg-[#1a2b4b] text-white py-3 rounded-lg transition-colors"
+                  className="w-full bg-[#1a2b4b]/70 hover:bg-[#1a2b4b] text-white py-3 rounded-lg transition-colors mt-6"
                 >
                   {showAmortization ? 'Hide' : 'Show'} Amortization Schedule
                 </button>

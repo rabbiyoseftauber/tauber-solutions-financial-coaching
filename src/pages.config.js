@@ -5,12 +5,8 @@ import AdminResources from './pages/AdminResources';
 import AdminSettings from './pages/AdminSettings';
 import Affiliates from './pages/Affiliates';
 import Coaches from './pages/Coaches';
-import Commercial from './pages/Commercial';
 import Community from './pages/Community';
 import Home from './pages/Home';
-import Investment from './pages/Investment';
-import Loan from './pages/Loan';
-import Mortgage from './pages/Mortgage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Schedule from './pages/Schedule';
 import Services from './pages/Services';
@@ -22,6 +18,10 @@ import Tools from './pages/Tools';
 import UK from './pages/UK';
 import UKCoaches from './pages/UKCoaches';
 import Pay from './pages/Pay';
+import LoanCalculator from './pages/LoanCalculator';
+import MortgageCalculator from './pages/MortgageCalculator';
+import CommercialCalculator from './pages/CommercialCalculator';
+import InvestmentCalculator from './pages/InvestmentCalculator';
 import __Layout from './Layout.jsx';
 
 
@@ -33,12 +33,8 @@ export const PAGES = {
     "AdminSettings": AdminSettings,
     "Affiliates": Affiliates,
     "Coaches": Coaches,
-    "Commercial": Commercial,
     "Community": Community,
     "Home": Home,
-    "Investment": Investment,
-    "Loan": Loan,
-    "Mortgage": Mortgage,
     "PrivacyPolicy": PrivacyPolicy,
     "Schedule": Schedule,
     "Services": Services,
@@ -50,6 +46,10 @@ export const PAGES = {
     "UK": UK,
     "UKCoaches": UKCoaches,
     "Pay": Pay,
+    "LoanCalculator": LoanCalculator,
+    "MortgageCalculator": MortgageCalculator,
+    "CommercialCalculator": CommercialCalculator,
+    "InvestmentCalculator": InvestmentCalculator,
 }
 
 export const pagesConfig = {

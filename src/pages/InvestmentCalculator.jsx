@@ -14,7 +14,7 @@ const currencies = [
   { code: 'GBP', symbol: '£', name: 'British Pound' }
 ];
 
-export default function Investment() {
+export default function InvestmentCalculator() {
   const isUKSession = sessionStorage.getItem('isUKSession') === 'true';
   const [currency, setCurrency] = useState(() => {
     const saved = localStorage.getItem('preferredCurrency');
@@ -69,7 +69,7 @@ export default function Investment() {
       <SEO
         title="Investment Calculator"
         description="Calculate your investment growth over time with compound interest. Plan your financial future with our free investment calculator."
-        canonical="/investment"
+        canonical="/investmentcalculator"
       />
 
       {/* Hero Section */}

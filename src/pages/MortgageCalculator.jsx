@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { CreditCard, ArrowRight } from 'lucide-react';
+import { Home, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import SEO from '@/components/seo/SEO';
@@ -14,16 +14,19 @@ const currencies = [
   { code: 'GBP', symbol: '£', name: 'British Pound' }
 ];
 
-export default function Loan() {
+export default function MortgageCalculator() {
   const isUKSession = sessionStorage.getItem('isUKSession') === 'true';
   const [currency, setCurrency] = useState(() => {
     const saved = localStorage.getItem('preferredCurrency');
     return saved || (isUKSession ? 'GBP' : 'USD');
   });
 
-  const [loanAmount, setLoanAmount] = useState(25000);
-  const [interestRate, setInterestRate] = useState(8);
-  const [loanTerm, setLoanTerm] = useState(5);
+  const [homePrice, setHomePrice] = useState(400000);
+  const [downPayment, setDownPayment] = useState(80000);
+  const [interestRate, setInterestRate] = useState(6.5);
+  const [loanTerm, setLoanTerm] = useState(30);
+  const [showAmortization, setShowAmortization] = useState(false);
+  const [viewMode, setViewMode] = useState('yearly');
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -50,23 +53,60 @@ export default function Loan() {
     return `${currentCurrency.symbol}${amount.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
   };
 
-  const calculateLoan = () => {
+  const calculateMortgage = () => {
+    const principal = homePrice - downPayment;
     const r = interestRate / 100 / 12;
     const n = loanTerm * 12;
-    const monthlyPayment = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const monthlyPayment = principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
     const totalPayment = monthlyPayment * n;
-    const totalInterest = totalPayment - loanAmount;
-    return { monthlyPayment, totalPayment, totalInterest };
+    const totalInterest = totalPayment - principal;
+    return { monthlyPayment, totalPayment, totalInterest, principal };
   };
 
-  const result = calculateLoan();
+  const calculateAmortization = () => {
+    const principal = homePrice - downPayment;
+    const r = interestRate / 100 / 12;
+    const monthlyPayment = calculateMortgage().monthlyPayment;
+    let balance = principal;
+    const schedule = [];
+
+    for (let month = 1; month <= loanTerm * 12; month++) {
+      const interestPayment = balance * r;
+      const principalPayment = monthlyPayment - interestPayment;
+      balance -= principalPayment;
+
+      schedule.push({
+        month,
+        year: Math.ceil(month / 12),
+        principal: principalPayment,
+        interest: interestPayment,
+        balance: Math.max(0, balance)
+      });
+    }
+
+    const yearlySchedule = [];
+    for (let year = 1; year <= loanTerm; year++) {
+      const yearData = schedule.filter(m => m.year === year);
+      yearlySchedule.push({
+        year,
+        principal: yearData.reduce((sum, m) => sum + m.principal, 0),
+        interest: yearData.reduce((sum, m) => sum + m.interest, 0),
+        balance: yearData[yearData.length - 1].balance
+      });
+    }
+
+    return { monthly: schedule, yearly: yearlySchedule };
+  };
+
+  const result = calculateMortgage();
+  const amortization = calculateAmortization();
 
   return (
     <div className="pt-20">
       <SEO
-        title="Loan Calculator"
-        description="Calculate your loan payments and total interest. Plan your personal or business loan with our free calculator."
-        canonical="/loan"
+        title="Mortgage Calculator"
+        description="Calculate your monthly mortgage payment, total interest, and amortization schedule. Plan your home purchase with our free mortgage calculator."
+        canonical="/mortgagecalculator"
       />
 
       {/* Hero Section */}
@@ -78,14 +118,14 @@ export default function Loan() {
             className="max-w-3xl"
           >
             <span className="text-[#C2983B] text-sm tracking-[0.3em] uppercase mb-4 block">
-              Loan Calculator
+              Mortgage Calculator
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
-              Plan Your Loan{' '}
-              <span className="text-[#C2983B] font-normal">Payments</span>
+              Plan Your Home{' '}
+              <span className="text-[#C2983B] font-normal">Purchase</span>
             </h1>
             <p className="text-xl text-gray-300 font-light leading-relaxed mb-8">
-              Calculate monthly payments and total interest for any loan.
+              Calculate your monthly payments and see how much home you can afford.
             </p>
 
             <div className="flex items-center gap-3 flex-wrap">
@@ -120,23 +160,38 @@ export default function Loan() {
             <div className="bg-[#2c3e50] rounded-xl p-8 border border-white/10">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-14 h-14 min-w-[3.5rem] bg-[#C2983B] rounded-full flex items-center justify-center">
-                  <CreditCard className="w-7 h-7 text-white" />
+                  <Home className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-white">Loan Calculator</h3>
+                <h3 className="text-2xl font-bold text-white">Mortgage Calculator</h3>
               </div>
 
               <div className="space-y-6 mb-8">
                 <div>
-                  <Label className="text-gray-300 text-sm mb-2 block">Loan Amount</Label>
+                  <Label className="text-gray-300 text-sm mb-2 block">Home Price</Label>
                   <div className="relative">
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
                       {currentCurrency.symbol}
                     </span>
                     <Input
                       type="text"
-                      value={loanAmount.toLocaleString()}
-                      onChange={(e) => setLoanAmount(Number(e.target.value.replace(/,/g, '')) || 0)}
-                      placeholder="25,000"
+                      value={homePrice.toLocaleString()}
+                      onChange={(e) => setHomePrice(Number(e.target.value.replace(/,/g, '')) || 0)}
+                      placeholder="400,000"
+                      className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <Label className="text-gray-300 text-sm mb-2 block">Down Payment</Label>
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+                      {currentCurrency.symbol}
+                    </span>
+                    <Input
+                      type="text"
+                      value={downPayment.toLocaleString()}
+                      onChange={(e) => setDownPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
+                      placeholder="80,000"
                       className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     />
                   </div>
@@ -156,7 +211,7 @@ export default function Loan() {
                       const val = parseFloat(e.target.value);
                       setInterestRate(isNaN(val) ? 0 : val);
                     }}
-                    placeholder="8"
+                    placeholder="6.5"
                     className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                 </div>
@@ -166,7 +221,7 @@ export default function Loan() {
                     type="text"
                     value={loanTerm}
                     onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
-                    placeholder="5"
+                    placeholder="30"
                     className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                 </div>
@@ -177,11 +232,11 @@ export default function Loan() {
                 <p className="text-5xl font-bold text-[#C2983B] mb-6">
                   {formatCurrency(result.monthlyPayment)}
                 </p>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 mb-6">
                   <div>
-                    <p className="text-gray-400 text-xs mb-1">Total Payment</p>
+                    <p className="text-gray-400 text-xs mb-1">Loan Amount</p>
                     <p className="text-lg font-medium text-white">
-                      {formatCurrency(result.totalPayment)}
+                      {formatCurrency(result.principal)}
                     </p>
                   </div>
                   <div>
@@ -191,6 +246,59 @@ export default function Loan() {
                     </p>
                   </div>
                 </div>
+
+                <button
+                  onClick={() => setShowAmortization(!showAmortization)}
+                  className="w-full bg-[#1a2b4b]/70 hover:bg-[#1a2b4b] text-white py-3 rounded-lg transition-colors"
+                >
+                  {showAmortization ? 'Hide' : 'Show'} Amortization Schedule
+                </button>
+
+                {showAmortization && (
+                  <div className="mt-6 border-t border-white/10 pt-6">
+                    <div className="flex gap-2 mb-4">
+                      <button
+                        onClick={() => setViewMode('yearly')}
+                        className={`flex-1 py-2 rounded-lg transition-colors ${
+                          viewMode === 'yearly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'
+                        }`}
+                      >
+                        Yearly
+                      </button>
+                      <button
+                        onClick={() => setViewMode('monthly')}
+                        className={`flex-1 py-2 rounded-lg transition-colors ${
+                          viewMode === 'monthly' ? 'bg-[#C2983B] text-white' : 'bg-[#1a2b4b]/50 text-gray-400'
+                        }`}
+                      >
+                        Monthly
+                      </button>
+                    </div>
+
+                    <div className="max-h-96 overflow-y-auto">
+                      <table className="w-full text-sm">
+                        <thead className="sticky top-0 bg-[#2c3e50]">
+                          <tr className="text-gray-400 border-b border-white/10">
+                            <th className="text-left py-2">{viewMode === 'yearly' ? 'Year' : 'Month'}</th>
+                            <th className="text-right py-2">Interest</th>
+                            <th className="text-right py-2">Principal</th>
+                            <th className="text-right py-2">Balance</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {(viewMode === 'yearly' ? amortization.yearly : amortization.monthly).map((row, idx) => (
+                            <tr key={idx} className="border-b border-white/5 text-gray-300">
+                              <td className="py-2">{viewMode === 'yearly' ? row.year : row.month}</td>
+                              <td className="text-right">{formatCurrency(row.interest)}</td>
+                              <td className="text-right">{formatCurrency(row.principal)}</td>
+                              <td className="text-right">{formatCurrency(row.balance)}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
