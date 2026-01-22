@@ -173,8 +173,12 @@ export default function LoanCalculator() {
                     onChange={(e) => {
                       const val = e.target.value;
                       if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                        setLoanTerm(val === '' ? 0 : parseFloat(val) || 0);
+                        setLoanTerm(val);
                       }
+                    }}
+                    onBlur={(e) => {
+                      const val = parseFloat(e.target.value);
+                      setLoanTerm(isNaN(val) ? 0 : val);
                     }}
                     placeholder="5"
                     className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"

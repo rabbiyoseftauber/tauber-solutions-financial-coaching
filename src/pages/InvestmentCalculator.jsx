@@ -137,8 +137,12 @@ export default function InvestmentCalculator() {
                     onChange={(e) => {
                       const val = e.target.value;
                       if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                        setYears(val === '' ? 0 : parseFloat(val) || 0);
+                        setYears(val);
                       }
+                    }}
+                    onBlur={(e) => {
+                      const val = parseFloat(e.target.value);
+                      setYears(isNaN(val) ? 0 : val);
                     }}
                     placeholder="20"
                     className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
