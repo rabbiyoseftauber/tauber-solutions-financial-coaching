@@ -13,18 +13,22 @@ import SEO from '@/components/seo/SEO';
 
 function InvestmentCalculator({ formatCurrency, currency }) {
   const currentCurrencyObj = currencies.find(c => c.code === currency);
-  const [principal, setPrincipal] = useState(10000);
-  const [contribution, setContribution] = useState(500);
+  const [principal, setPrincipal] = useState('10000');
+  const [contribution, setContribution] = useState('500');
   const [contributionFrequency, setContributionFrequency] = useState('monthly');
-  const [rate, setRate] = useState(7);
-  const [years, setYears] = useState(20);
+  const [rate, setRate] = useState('7');
+  const [years, setYears] = useState('20');
 
   const calculateInvestment = () => {
-    const r = rate / 100 / 12;
-    const n = years * 12;
-    const monthlyContribution = contributionFrequency === 'monthly' ? contribution : contribution / 12;
-    const futureValue = principal * Math.pow(1 + r, n) + monthlyContribution * ((Math.pow(1 + r, n) - 1) / r);
-    const totalContributions = principal + monthlyContribution * n;
+    const p = parseFloat(principal) || 0;
+    const c = parseFloat(contribution) || 0;
+    const rateVal = parseFloat(rate) || 0;
+    const y = parseFloat(years) || 0;
+    const r = rateVal / 100 / 12;
+    const n = y * 12;
+    const monthlyContribution = contributionFrequency === 'monthly' ? c : c / 12;
+    const futureValue = p * Math.pow(1 + r, n) + monthlyContribution * ((Math.pow(1 + r, n) - 1) / r);
+    const totalContributions = p + monthlyContribution * n;
     const earnings = futureValue - totalContributions;
     return { futureValue, totalContributions, earnings };
   };
@@ -46,7 +50,16 @@ function InvestmentCalculator({ formatCurrency, currency }) {
           <Input
             type="text"
             value={years}
-            onChange={(e) => setYears(Number(e.target.value.replace(/,/g, '')) || 0)}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                setYears(val);
+              }
+            }}
+            onBlur={(e) => {
+              const val = parseFloat(e.target.value);
+              setYears(isNaN(val) ? '0' : val.toString());
+            }}
             placeholder="20"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
         </div>
@@ -58,8 +71,17 @@ function InvestmentCalculator({ formatCurrency, currency }) {
             </span>
             <Input
               type="text"
-              value={principal.toLocaleString()}
-              onChange={(e) => setPrincipal(Number(e.target.value.replace(/,/g, '')) || 0)}
+              value={parseFloat(principal) ? parseFloat(principal).toLocaleString() : ''}
+              onChange={(e) => {
+                const val = e.target.value.replace(/,/g, '');
+                if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                  setPrincipal(val);
+                }
+              }}
+              onBlur={(e) => {
+                const val = parseFloat(e.target.value.replace(/,/g, ''));
+                setPrincipal(isNaN(val) ? '0' : val.toString());
+              }}
               placeholder="10,000"
               className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
           </div>
@@ -90,8 +112,17 @@ function InvestmentCalculator({ formatCurrency, currency }) {
             </span>
             <Input
               type="text"
-              value={contribution.toLocaleString()}
-              onChange={(e) => setContribution(Number(e.target.value.replace(/,/g, '')) || 0)}
+              value={parseFloat(contribution) ? parseFloat(contribution).toLocaleString() : ''}
+              onChange={(e) => {
+                const val = e.target.value.replace(/,/g, '');
+                if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                  setContribution(val);
+                }
+              }}
+              onBlur={(e) => {
+                const val = parseFloat(e.target.value.replace(/,/g, ''));
+                setContribution(isNaN(val) ? '0' : val.toString());
+              }}
               placeholder="500"
               className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
           </div>
@@ -109,7 +140,7 @@ function InvestmentCalculator({ formatCurrency, currency }) {
             }}
             onBlur={(e) => {
               const val = parseFloat(e.target.value);
-              setRate(isNaN(val) ? 0 : val);
+              setRate(isNaN(val) ? '0' : val.toString());
             }}
             placeholder="7"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
@@ -142,17 +173,21 @@ function InvestmentCalculator({ formatCurrency, currency }) {
 
 function MortgageCalculator({ formatCurrency, currency }) {
   const currentCurrencyObj = currencies.find(c => c.code === currency);
-  const [homePrice, setHomePrice] = useState(400000);
-  const [downPayment, setDownPayment] = useState(80000);
-  const [interestRate, setInterestRate] = useState(6.5);
-  const [loanTerm, setLoanTerm] = useState(30);
+  const [homePrice, setHomePrice] = useState('400000');
+  const [downPayment, setDownPayment] = useState('80000');
+  const [interestRate, setInterestRate] = useState('6.5');
+  const [loanTerm, setLoanTerm] = useState('30');
   const [showAmortization, setShowAmortization] = useState(false);
   const [viewMode, setViewMode] = useState('yearly');
 
   const calculateMortgage = () => {
-    const principal = homePrice - downPayment;
-    const r = interestRate / 100 / 12;
-    const n = loanTerm * 12;
+    const price = parseFloat(homePrice) || 0;
+    const down = parseFloat(downPayment) || 0;
+    const rate = parseFloat(interestRate) || 0;
+    const term = parseFloat(loanTerm) || 0;
+    const principal = price - down;
+    const r = rate / 100 / 12;
+    const n = term * 12;
     const monthlyPayment = principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
     const totalPayment = monthlyPayment * n;
     const totalInterest = totalPayment - principal;
@@ -160,13 +195,17 @@ function MortgageCalculator({ formatCurrency, currency }) {
   };
 
   const calculateAmortization = () => {
-    const principal = homePrice - downPayment;
-    const r = interestRate / 100 / 12;
+    const price = parseFloat(homePrice) || 0;
+    const down = parseFloat(downPayment) || 0;
+    const rate = parseFloat(interestRate) || 0;
+    const term = parseFloat(loanTerm) || 0;
+    const principal = price - down;
+    const r = rate / 100 / 12;
     const monthlyPayment = calculateMortgage().monthlyPayment;
     let balance = principal;
     const schedule = [];
 
-    for (let month = 1; month <= loanTerm * 12; month++) {
+    for (let month = 1; month <= term * 12; month++) {
       const interestPayment = balance * r;
       const principalPayment = monthlyPayment - interestPayment;
       balance -= principalPayment;
@@ -182,7 +221,8 @@ function MortgageCalculator({ formatCurrency, currency }) {
 
     // Aggregate by year
     const yearlySchedule = [];
-    for (let year = 1; year <= loanTerm; year++) {
+    const term = parseFloat(loanTerm) || 0;
+    for (let year = 1; year <= term; year++) {
       const yearData = schedule.filter(m => m.year === year);
       yearlySchedule.push({
         year,
@@ -216,8 +256,17 @@ function MortgageCalculator({ formatCurrency, currency }) {
             </span>
             <Input
               type="text"
-              value={homePrice.toLocaleString()}
-              onChange={(e) => setHomePrice(Number(e.target.value.replace(/,/g, '')) || 0)}
+              value={parseFloat(homePrice) ? parseFloat(homePrice).toLocaleString() : ''}
+              onChange={(e) => {
+                const val = e.target.value.replace(/,/g, '');
+                if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                  setHomePrice(val);
+                }
+              }}
+              onBlur={(e) => {
+                const val = parseFloat(e.target.value.replace(/,/g, ''));
+                setHomePrice(isNaN(val) ? '0' : val.toString());
+              }}
               placeholder="400,000"
               className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
           </div>
@@ -249,7 +298,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
             }}
             onBlur={(e) => {
               const val = parseFloat(e.target.value);
-              setInterestRate(isNaN(val) ? 0 : val);
+              setInterestRate(isNaN(val) ? '0' : val.toString());
             }}
             placeholder="6.5"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
@@ -259,7 +308,16 @@ function MortgageCalculator({ formatCurrency, currency }) {
           <Input
             type="text"
             value={loanTerm}
-            onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                setLoanTerm(val);
+              }
+            }}
+            onBlur={(e) => {
+              const val = parseFloat(e.target.value);
+              setLoanTerm(isNaN(val) ? '0' : val.toString());
+            }}
             placeholder="30"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
         </div>
@@ -341,36 +399,45 @@ function MortgageCalculator({ formatCurrency, currency }) {
 
 function CommercialMortgageCalculator({ formatCurrency, currency }) {
   const currentCurrencyObj = currencies.find(c => c.code === currency);
-  const [propertyValue, setPropertyValue] = useState(1500000);
-  const [downPayment, setDownPayment] = useState(375000);
-  const [interestRate, setInterestRate] = useState(7.5);
-  const [loanTerm, setLoanTerm] = useState(20);
-  const [annualIncome, setAnnualIncome] = useState(180000);
+  const [propertyValue, setPropertyValue] = useState('1500000');
+  const [downPayment, setDownPayment] = useState('375000');
+  const [interestRate, setInterestRate] = useState('7.5');
+  const [loanTerm, setLoanTerm] = useState('20');
+  const [annualIncome, setAnnualIncome] = useState('180000');
   const [showAmortization, setShowAmortization] = useState(false);
   const [viewMode, setViewMode] = useState('yearly');
 
   const calculateCommercialMortgage = () => {
-    const principal = propertyValue - downPayment;
-    const r = interestRate / 100 / 12;
-    const n = loanTerm * 12;
+    const value = parseFloat(propertyValue) || 0;
+    const down = parseFloat(downPayment) || 0;
+    const rate = parseFloat(interestRate) || 0;
+    const term = parseFloat(loanTerm) || 0;
+    const income = parseFloat(annualIncome) || 0;
+    const principal = value - down;
+    const r = rate / 100 / 12;
+    const n = term * 12;
     const monthlyPayment = principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
     const annualDebtService = monthlyPayment * 12;
-    const dscr = annualIncome / annualDebtService;
+    const dscr = income / annualDebtService;
     const totalPayment = monthlyPayment * n;
     const totalInterest = totalPayment - principal;
-    const ltv = principal / propertyValue * 100;
+    const ltv = principal / value * 100;
 
     return { monthlyPayment, totalPayment, totalInterest, principal, dscr, ltv };
   };
 
   const calculateAmortization = () => {
-    const principal = propertyValue - downPayment;
-    const r = interestRate / 100 / 12;
+    const value = parseFloat(propertyValue) || 0;
+    const down = parseFloat(downPayment) || 0;
+    const rate = parseFloat(interestRate) || 0;
+    const term = parseFloat(loanTerm) || 0;
+    const principal = value - down;
+    const r = rate / 100 / 12;
     const monthlyPayment = calculateCommercialMortgage().monthlyPayment;
     let balance = principal;
     const schedule = [];
 
-    for (let month = 1; month <= loanTerm * 12; month++) {
+    for (let month = 1; month <= term * 12; month++) {
       const interestPayment = balance * r;
       const principalPayment = monthlyPayment - interestPayment;
       balance -= principalPayment;
@@ -419,8 +486,17 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
             </span>
             <Input
               type="text"
-              value={propertyValue.toLocaleString()}
-              onChange={(e) => setPropertyValue(Number(e.target.value.replace(/,/g, '')) || 0)}
+              value={parseFloat(propertyValue) ? parseFloat(propertyValue).toLocaleString() : ''}
+              onChange={(e) => {
+                const val = e.target.value.replace(/,/g, '');
+                if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                  setPropertyValue(val);
+                }
+              }}
+              onBlur={(e) => {
+                const val = parseFloat(e.target.value.replace(/,/g, ''));
+                setPropertyValue(isNaN(val) ? '0' : val.toString());
+              }}
               placeholder="1,500,000"
               className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
           </div>
@@ -433,8 +509,17 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
             </span>
             <Input
               type="text"
-              value={downPayment.toLocaleString()}
-              onChange={(e) => setDownPayment(Number(e.target.value.replace(/,/g, '')) || 0)}
+              value={parseFloat(downPayment) ? parseFloat(downPayment).toLocaleString() : ''}
+              onChange={(e) => {
+                const val = e.target.value.replace(/,/g, '');
+                if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                  setDownPayment(val);
+                }
+              }}
+              onBlur={(e) => {
+                const val = parseFloat(e.target.value.replace(/,/g, ''));
+                setDownPayment(isNaN(val) ? '0' : val.toString());
+              }}
               placeholder="375,000"
               className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
           </div>
@@ -452,7 +537,7 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
             }}
             onBlur={(e) => {
               const val = parseFloat(e.target.value);
-              setInterestRate(isNaN(val) ? 0 : val);
+              setInterestRate(isNaN(val) ? '0' : val.toString());
             }}
             placeholder="7.5"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
@@ -462,7 +547,16 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
           <Input
             type="text"
             value={loanTerm}
-            onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                setLoanTerm(val);
+              }
+            }}
+            onBlur={(e) => {
+              const val = parseFloat(e.target.value);
+              setLoanTerm(isNaN(val) ? '0' : val.toString());
+            }}
             placeholder="20"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
         </div>
@@ -474,8 +568,17 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
             </span>
             <Input
               type="text"
-              value={annualIncome.toLocaleString()}
-              onChange={(e) => setAnnualIncome(Number(e.target.value.replace(/,/g, '')) || 0)}
+              value={parseFloat(annualIncome) ? parseFloat(annualIncome).toLocaleString() : ''}
+              onChange={(e) => {
+                const val = e.target.value.replace(/,/g, '');
+                if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                  setAnnualIncome(val);
+                }
+              }}
+              onBlur={(e) => {
+                const val = parseFloat(e.target.value.replace(/,/g, ''));
+                setAnnualIncome(isNaN(val) ? '0' : val.toString());
+              }}
               placeholder="180,000"
               className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
           </div>
@@ -570,28 +673,34 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
 
 function LoanCalculator({ formatCurrency, currency }) {
   const currentCurrencyObj = currencies.find(c => c.code === currency);
-  const [loanAmount, setLoanAmount] = useState(25000);
-  const [interestRate, setInterestRate] = useState(8);
-  const [loanTerm, setLoanTerm] = useState(5);
+  const [loanAmount, setLoanAmount] = useState('25000');
+  const [interestRate, setInterestRate] = useState('8');
+  const [loanTerm, setLoanTerm] = useState('5');
   const [showAmortization, setShowAmortization] = useState(false);
   const [viewMode, setViewMode] = useState('yearly');
 
   const calculateLoan = () => {
-    const r = interestRate / 100 / 12;
-    const n = loanTerm * 12;
-    const monthlyPayment = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const amount = parseFloat(loanAmount) || 0;
+    const rate = parseFloat(interestRate) || 0;
+    const term = parseFloat(loanTerm) || 0;
+    const r = rate / 100 / 12;
+    const n = term * 12;
+    const monthlyPayment = amount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
     const totalPayment = monthlyPayment * n;
-    const totalInterest = totalPayment - loanAmount;
+    const totalInterest = totalPayment - amount;
     return { monthlyPayment, totalPayment, totalInterest };
   };
 
   const calculateAmortization = () => {
-    const r = interestRate / 100 / 12;
+    const amount = parseFloat(loanAmount) || 0;
+    const rate = parseFloat(interestRate) || 0;
+    const term = parseFloat(loanTerm) || 0;
+    const r = rate / 100 / 12;
     const monthlyPayment = calculateLoan().monthlyPayment;
-    let balance = loanAmount;
+    let balance = amount;
     const schedule = [];
 
-    for (let month = 1; month <= loanTerm * 12; month++) {
+    for (let month = 1; month <= term * 12; month++) {
       const interestPayment = balance * r;
       const principalPayment = monthlyPayment - interestPayment;
       balance -= principalPayment;
@@ -640,8 +749,17 @@ function LoanCalculator({ formatCurrency, currency }) {
             </span>
             <Input
               type="text"
-              value={loanAmount.toLocaleString()}
-              onChange={(e) => setLoanAmount(Number(e.target.value.replace(/,/g, '')) || 0)}
+              value={parseFloat(loanAmount) ? parseFloat(loanAmount).toLocaleString() : ''}
+              onChange={(e) => {
+                const val = e.target.value.replace(/,/g, '');
+                if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                  setLoanAmount(val);
+                }
+              }}
+              onBlur={(e) => {
+                const val = parseFloat(e.target.value.replace(/,/g, ''));
+                setLoanAmount(isNaN(val) ? '0' : val.toString());
+              }}
               placeholder="25,000"
               className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
           </div>
@@ -659,7 +777,7 @@ function LoanCalculator({ formatCurrency, currency }) {
             }}
             onBlur={(e) => {
               const val = parseFloat(e.target.value);
-              setInterestRate(isNaN(val) ? 0 : val);
+              setInterestRate(isNaN(val) ? '0' : val.toString());
             }}
             placeholder="8"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
@@ -669,7 +787,16 @@ function LoanCalculator({ formatCurrency, currency }) {
           <Input
             type="text"
             value={loanTerm}
-            onChange={(e) => setLoanTerm(Number(e.target.value.replace(/,/g, '')) || 0)}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                setLoanTerm(val);
+              }
+            }}
+            onBlur={(e) => {
+              const val = parseFloat(e.target.value);
+              setLoanTerm(isNaN(val) ? '0' : val.toString());
+            }}
             placeholder="5"
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
         </div>
