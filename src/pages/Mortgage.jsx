@@ -121,8 +121,8 @@ export default function Mortgage() {
               Mortgage Calculator
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
-              Plan Your Home{' '}
-              <span className="text-[#C2983B] font-normal">Purchase</span>
+              Mortgage Calculator{' '}
+              <span className="text-[#C2983B] font-normal">— Plan Your Purchase</span>
             </h1>
             <p className="text-xl text-gray-300 font-light leading-relaxed mb-8">
               Calculate your monthly payments and see how much home you can afford.

@@ -84,8 +84,8 @@ export default function Investment() {
               Investment Calculator
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
-              Plan Your Financial{' '}
-              <span className="text-[#C2983B] font-normal">Future</span>
+              Investment Calculator{' '}
+              <span className="text-[#C2983B] font-normal">— Plan Your Future</span>
             </h1>
             <p className="text-xl text-gray-300 font-light leading-relaxed mb-8">
               See how your investments can grow over time with compound interest.
