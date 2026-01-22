@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, MessageCircle } from 'lucide-react';
+import { ArrowRight, MessageCircle, CreditCard } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import ContactInfoDialog from '@/components/home/ContactInfoDialog';
 
 export default function HeroSection() {
   return (
@@ -47,6 +48,18 @@ export default function HeroSection() {
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
+
+            <Link to={createPageUrl('Pay')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white/10 font-semibold px-8 py-6 text-lg rounded-none">
+                <CreditCard className="mr-2 w-5 h-5" />
+                Make a Payment
+              </Button>
+            </Link>
+
+            <ContactInfoDialog />
           </motion.div>
         </div>
       </div>
