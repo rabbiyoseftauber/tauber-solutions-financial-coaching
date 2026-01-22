@@ -160,8 +160,12 @@ export default function InvestmentCalculator() {
                       onChange={(e) => {
                         const val = e.target.value.replace(/,/g, '');
                         if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                          setPrincipal(val === '' ? 0 : parseFloat(val) || 0);
+                          setPrincipal(val);
                         }
+                      }}
+                      onBlur={(e) => {
+                        const val = parseFloat(e.target.value.replace(/,/g, ''));
+                        setPrincipal(isNaN(val) ? 0 : val);
                       }}
                       placeholder="10,000"
                       className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
@@ -200,8 +204,12 @@ export default function InvestmentCalculator() {
                       onChange={(e) => {
                         const val = e.target.value.replace(/,/g, '');
                         if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                          setContribution(val === '' ? 0 : parseFloat(val) || 0);
+                          setContribution(val);
                         }
+                      }}
+                      onBlur={(e) => {
+                        const val = parseFloat(e.target.value.replace(/,/g, ''));
+                        setContribution(isNaN(val) ? 0 : val);
                       }}
                       placeholder="500"
                       className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"

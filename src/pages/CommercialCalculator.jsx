@@ -183,8 +183,12 @@ export default function CommercialCalculator() {
                       onChange={(e) => {
                         const val = e.target.value.replace(/,/g, '');
                         if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                          setPropertyValue(val === '' ? 0 : parseFloat(val) || 0);
+                          setPropertyValue(val);
                         }
+                      }}
+                      onBlur={(e) => {
+                        const val = parseFloat(e.target.value.replace(/,/g, ''));
+                        setPropertyValue(isNaN(val) ? 0 : val);
                       }}
                       placeholder="1,500,000"
                       className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
@@ -203,8 +207,12 @@ export default function CommercialCalculator() {
                       onChange={(e) => {
                         const val = e.target.value.replace(/,/g, '');
                         if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                          setDownPayment(val === '' ? 0 : parseFloat(val) || 0);
+                          setDownPayment(val);
                         }
+                      }}
+                      onBlur={(e) => {
+                        const val = parseFloat(e.target.value.replace(/,/g, ''));
+                        setDownPayment(isNaN(val) ? 0 : val);
                       }}
                       placeholder="375,000"
                       className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
@@ -261,8 +269,12 @@ export default function CommercialCalculator() {
                       onChange={(e) => {
                         const val = e.target.value.replace(/,/g, '');
                         if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                          setAnnualIncome(val === '' ? 0 : parseFloat(val) || 0);
+                          setAnnualIncome(val);
                         }
+                      }}
+                      onBlur={(e) => {
+                        const val = parseFloat(e.target.value.replace(/,/g, ''));
+                        setAnnualIncome(isNaN(val) ? 0 : val);
                       }}
                       placeholder="180,000"
                       className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"

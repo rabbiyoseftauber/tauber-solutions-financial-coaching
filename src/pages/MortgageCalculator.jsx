@@ -178,8 +178,12 @@ export default function MortgageCalculator() {
                       onChange={(e) => {
                         const val = e.target.value.replace(/,/g, '');
                         if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                          setHomePrice(val === '' ? 0 : parseFloat(val) || 0);
+                          setHomePrice(val);
                         }
+                      }}
+                      onBlur={(e) => {
+                        const val = parseFloat(e.target.value.replace(/,/g, ''));
+                        setHomePrice(isNaN(val) ? 0 : val);
                       }}
                       placeholder="400,000"
                       className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
@@ -198,8 +202,12 @@ export default function MortgageCalculator() {
                       onChange={(e) => {
                         const val = e.target.value.replace(/,/g, '');
                         if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                          setDownPayment(val === '' ? 0 : parseFloat(val) || 0);
+                          setDownPayment(val);
                         }
+                      }}
+                      onBlur={(e) => {
+                        const val = parseFloat(e.target.value.replace(/,/g, ''));
+                        setDownPayment(isNaN(val) ? 0 : val);
                       }}
                       placeholder="80,000"
                       className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
