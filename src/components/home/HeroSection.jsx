@@ -43,22 +43,13 @@ export default function HeroSection() {
             <Link to={createPageUrl('Schedule')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="w-full sm:w-auto">
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-white hover:bg-gray-100 text-[#1a2b4b] font-medium px-8 py-6 text-base rounded-lg shadow-lg group transition-all duration-300">
+                className="w-full sm:w-auto bg-[#C2983B] hover:bg-[#b08e35] text-white font-medium px-8 py-6 text-base rounded-lg shadow-lg group transition-all duration-300">
                 Schedule Your Meeting
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
 
-            <Link to={createPageUrl('Pay')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="w-full sm:w-auto">
-              <Button
-                size="lg"
-                className="w-full sm:w-auto bg-white hover:bg-gray-100 text-[#1a2b4b] font-medium px-8 py-6 text-base rounded-lg shadow-lg">
-                <CreditCard className="mr-2 w-5 h-5" />
-                Make a Payment
-              </Button>
-            </Link>
-
-            <div className="w-full sm:w-auto">
+            <div className="w-full sm:w-auto scale-90">
               <ContactInfoDialog />
             </div>
           </motion.div>
