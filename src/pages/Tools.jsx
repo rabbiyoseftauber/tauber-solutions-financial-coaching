@@ -456,11 +456,11 @@ function MortgageCalculator({ formatCurrency, currency }) {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-400">Property Tax</span>
-              <span className="text-white">{formatCurrency(parseFloat(propertyTax) || 0)}</span>
+              <span className="text-white">{formatCurrency((parseFloat(propertyTax) || 0) / 12)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-400">Insurance</span>
-              <span className="text-white">{formatCurrency(parseFloat(homeInsurance) || 0)}</span>
+              <span className="text-white">{formatCurrency((parseFloat(homeInsurance) || 0) / 12)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-400">Management</span>
@@ -472,7 +472,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
         <div className="mb-6">
           <p className="text-gray-400 text-sm mb-2">Total Monthly Payment:</p>
           <p className="text-5xl font-bold text-[#C2983B]">
-            {formatCurrency(result.monthlyPayment + (parseFloat(pmi) || 0) + (parseFloat(propertyTax) || 0) + (parseFloat(homeInsurance) || 0) + (parseFloat(management) || 0))}
+            {formatCurrency(result.monthlyPayment + (parseFloat(pmi) || 0) + ((parseFloat(propertyTax) || 0) / 12) + ((parseFloat(homeInsurance) || 0) / 12) + (parseFloat(management) || 0))}
           </p>
         </div>
 
