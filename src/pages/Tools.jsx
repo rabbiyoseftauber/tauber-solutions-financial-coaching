@@ -174,7 +174,9 @@ function InvestmentCalculator({ formatCurrency, currency }) {
 function MortgageCalculator({ formatCurrency, currency }) {
   const currentCurrencyObj = currencies.find((c) => c.code === currency);
   const [homePrice, setHomePrice] = useState('400000');
-  const [downPayment, setDownPayment] = useState('80000');
+  const [downPaymentMode, setDownPaymentMode] = useState('percent');
+  const [downPaymentPercent, setDownPaymentPercent] = useState('20');
+  const [downPaymentDollar, setDownPaymentDollar] = useState('80000');
   const [interestRate, setInterestRate] = useState('6.5');
   const [loanTerm, setLoanTerm] = useState('30');
   const [pmi, setPmi] = useState('0');
@@ -182,11 +184,21 @@ function MortgageCalculator({ formatCurrency, currency }) {
   const [homeInsurance, setHomeInsurance] = useState('0');
   const [management, setManagement] = useState('0');
   const [showAmortization, setShowAmortization] = useState(false);
+  const [showAdditionalExpenses, setShowAdditionalExpenses] = useState(true);
   const [viewMode, setViewMode] = useState('yearly');
+
+  const getDownPayment = () => {
+    const price = parseFloat(homePrice) || 0;
+    if (downPaymentMode === 'percent') {
+      const percent = parseFloat(downPaymentPercent) || 0;
+      return (price * percent) / 100;
+    }
+    return parseFloat(downPaymentDollar) || 0;
+  };
 
   const calculateMortgage = () => {
     const price = parseFloat(homePrice) || 0;
-    const down = parseFloat(downPayment) || 0;
+    const down = getDownPayment();
     const rate = parseFloat(interestRate) || 0;
     const term = parseFloat(loanTerm) || 0;
     const principal = price - down;
@@ -200,7 +212,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
 
   const calculateAmortization = () => {
     const price = parseFloat(homePrice) || 0;
-    const down = parseFloat(downPayment) || 0;
+    const down = getDownPayment();
     const rate = parseFloat(interestRate) || 0;
     const term = parseFloat(loanTerm) || 0;
     const principal = price - down;
@@ -251,120 +263,142 @@ function MortgageCalculator({ formatCurrency, currency }) {
       </div>
       
       <div className="space-y-6 mb-8">
-        <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Home Price</Label>
-          <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
-              {currentCurrencyObj.symbol}
-            </span>
-            <Input
-              type="text"
-              value={parseFloat(homePrice) ? parseFloat(homePrice).toLocaleString() : ''}
-              onChange={(e) => {
-                const val = e.target.value.replace(/,/g, '');
-                if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                  setHomePrice(val);
-                }
-              }}
-              onBlur={(e) => {
-                const val = parseFloat(e.target.value.replace(/,/g, ''));
-                setHomePrice(isNaN(val) ? '0' : val.toString());
-              }}
-              placeholder="400,000"
-              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <Label className="text-gray-300 text-sm mb-2 block">Home Price</Label>
+            <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+                {currentCurrencyObj.symbol}
+              </span>
+              <Input
+                type="text"
+                value={parseFloat(homePrice) ? parseFloat(homePrice).toLocaleString() : ''}
+                onChange={(e) => {
+                  const val = e.target.value.replace(/,/g, '');
+                  if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                    setHomePrice(val);
+                  }
+                }}
+                onBlur={(e) => {
+                  const val = parseFloat(e.target.value.replace(/,/g, ''));
+                  setHomePrice(isNaN(val) ? '0' : val.toString());
+                }}
+                placeholder="400,000"
+                className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+            </div>
           </div>
-        </div>
-        <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Down Payment</Label>
-          <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
-              {currentCurrencyObj.symbol}
-            </span>
-            <Input
-              type="text"
-              value={parseFloat(downPayment) ? parseFloat(downPayment).toLocaleString() : ''}
-              onChange={(e) => {
-                const val = e.target.value.replace(/,/g, '');
-                if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                  setDownPayment(val);
-                }
-              }}
-              onBlur={(e) => {
-                const val = parseFloat(e.target.value.replace(/,/g, ''));
-                setDownPayment(isNaN(val) ? '0' : val.toString());
-              }}
-              placeholder="80,000"
-              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-          </div>
-        </div>
-        <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Interest Rate (%)</Label>
-          <Input
-            type="text"
-            value={interestRate}
-            onChange={(e) => {
-              const val = e.target.value;
-              if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                setInterestRate(val);
-              }
-            }}
-            onBlur={(e) => {
-              const val = parseFloat(e.target.value);
-              setInterestRate(isNaN(val) ? '0' : val.toString());
-            }}
-            placeholder="6.5"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-        </div>
-        <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Loan Term (Years)</Label>
-          <Input
-            type="text"
-            value={loanTerm}
-            onChange={(e) => {
-              const val = e.target.value;
-              if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                setLoanTerm(val);
-              }
-            }}
-            onBlur={(e) => {
-              const val = parseFloat(e.target.value);
-              setLoanTerm(isNaN(val) ? '0' : val.toString());
-            }}
-            placeholder="30"
-            className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-        </div>
-
-        <div className="pt-6 border-t border-white/10">
-          <h4 className="text-white font-medium mb-4">Additional Monthly Expenses</h4>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <Label className="text-gray-300 text-sm mb-2 block">PMI (Monthly)</Label>
-              <div className="relative">
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <Label className="text-gray-300 text-sm">Down Payment</Label>
+              <div className="flex gap-1 bg-white/10 rounded-lg p-0.5">
+                <button
+                  onClick={() => setDownPaymentMode('percent')}
+                  className={`px-3 py-1 text-xs rounded transition-colors ${
+                    downPaymentMode === 'percent' ? 'bg-[#C2983B] text-white' : 'text-gray-400'
+                  }`}
+                >
+                  %
+                </button>
+                <button
+                  onClick={() => setDownPaymentMode('dollar')}
+                  className={`px-3 py-1 text-xs rounded transition-colors ${
+                    downPaymentMode === 'dollar' ? 'bg-[#C2983B] text-white' : 'text-gray-400'
+                  }`}
+                >
+                  {currentCurrencyObj.symbol}
+                </button>
+              </div>
+            </div>
+            <div className="relative">
+              {downPaymentMode === 'dollar' && (
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
                   {currentCurrencyObj.symbol}
                 </span>
-                <Input
-                  type="text"
-                  value={parseFloat(pmi) ? parseFloat(pmi).toLocaleString() : ''}
-                  onChange={(e) => {
-                    const val = e.target.value.replace(/,/g, '');
-                    if (val === '' || /^\d*\.?\d*$/.test(val)) {
-                      setPmi(val);
+              )}
+              {downPaymentMode === 'percent' && (
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+                  %
+                </span>
+              )}
+              <Input
+                type="text"
+                value={downPaymentMode === 'percent' ? downPaymentPercent : (parseFloat(downPaymentDollar) ? parseFloat(downPaymentDollar).toLocaleString() : '')}
+                onChange={(e) => {
+                  const val = e.target.value.replace(/,/g, '');
+                  if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                    if (downPaymentMode === 'percent') {
+                      setDownPaymentPercent(val);
+                    } else {
+                      setDownPaymentDollar(val);
                     }
-                  }}
-                  onBlur={(e) => {
-                    const val = parseFloat(e.target.value.replace(/,/g, ''));
-                    setPmi(isNaN(val) ? '0' : val.toString());
-                  }}
-                  placeholder="0"
-                  className="h-12 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
-              </div>
+                  }
+                }}
+                onBlur={(e) => {
+                  const val = parseFloat(e.target.value.replace(/,/g, ''));
+                  if (downPaymentMode === 'percent') {
+                    setDownPaymentPercent(isNaN(val) ? '0' : val.toString());
+                  } else {
+                    setDownPaymentDollar(isNaN(val) ? '0' : val.toString());
+                  }
+                }}
+                placeholder={downPaymentMode === 'percent' ? '20' : '80,000'}
+                className={`h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg ${
+                  downPaymentMode === 'dollar' ? 'pl-10' : 'pr-10'
+                } [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none`} />
             </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <Label className="text-gray-300 text-sm mb-2 block">Interest Rate (%)</Label>
+            <Input
+              type="text"
+              value={interestRate}
+              onChange={(e) => {
+                const val = e.target.value;
+                if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                  setInterestRate(val);
+                }
+              }}
+              onBlur={(e) => {
+                const val = parseFloat(e.target.value);
+                setInterestRate(isNaN(val) ? '0' : val.toString());
+              }}
+              placeholder="6.5"
+              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+          </div>
+          <div>
+            <Label className="text-gray-300 text-sm mb-2 block">Loan Term (Years)</Label>
+            <Input
+              type="text"
+              value={loanTerm}
+              onChange={(e) => {
+                const val = e.target.value;
+                if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                  setLoanTerm(val);
+                }
+              }}
+              onBlur={(e) => {
+                const val = parseFloat(e.target.value);
+                setLoanTerm(isNaN(val) ? '0' : val.toString());
+              }}
+              placeholder="30"
+              className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+          </div>
+        </div>
 
+        <div className="pt-6 border-t border-white/10">
+          <button 
+            onClick={() => setShowAdditionalExpenses(!showAdditionalExpenses)}
+            className="flex items-center justify-between w-full mb-4 text-white font-medium hover:text-[#C2983B] transition-colors"
+          >
+            <h4>Additional Monthly Expenses</h4>
+            <span className="text-sm text-[#C2983B]">{showAdditionalExpenses ? 'Hide' : 'Show'}</span>
+          </button>
+          {showAdditionalExpenses && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label className="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-300 text-sm mb-2 block">Property Tax (Annualyl)</Label>
+              <Label className="text-gray-300 text-sm mb-2 block">Property Tax (Annually)</Label>
               <div className="relative">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
                   {currentCurrencyObj.symbol}
@@ -384,12 +418,11 @@ function MortgageCalculator({ formatCurrency, currency }) {
                   }}
                   placeholder="0"
                   className="h-12 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
               </div>
             </div>
 
             <div>
-              <Label className="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-300 text-sm mb-2 block">Home Insurance (Annually)</Label>
+              <Label className="text-gray-300 text-sm mb-2 block">Home Insurance (Annually)</Label>
               <div className="relative">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
                   {currentCurrencyObj.symbol}
@@ -409,7 +442,6 @@ function MortgageCalculator({ formatCurrency, currency }) {
                   }}
                   placeholder="0"
                   className="h-12 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-
               </div>
             </div>
 
@@ -434,10 +466,34 @@ function MortgageCalculator({ formatCurrency, currency }) {
                   }}
                   placeholder="0"
                   className="h-12 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+              </div>
+            </div>
 
+            <div>
+              <Label className="text-gray-300 text-sm mb-2 block">PMI (Monthly)</Label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
+                  {currentCurrencyObj.symbol}
+                </span>
+                <Input
+                  type="text"
+                  value={parseFloat(pmi) ? parseFloat(pmi).toLocaleString() : ''}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/,/g, '');
+                    if (val === '' || /^\d*\.?\d*$/.test(val)) {
+                      setPmi(val);
+                    }
+                  }}
+                  onBlur={(e) => {
+                    const val = parseFloat(e.target.value.replace(/,/g, ''));
+                    setPmi(isNaN(val) ? '0' : val.toString());
+                  }}
+                  placeholder="0"
+                  className="h-12 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg pl-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
               </div>
             </div>
           </div>
+          )}
         </div>
       </div>
       
@@ -451,20 +507,20 @@ function MortgageCalculator({ formatCurrency, currency }) {
           <p className="text-gray-400 text-xs mb-3">Additional Monthly Expenses</p>
           <div className="grid grid-cols-2 gap-3 text-sm">
             <div className="flex justify-between">
-              <span className="text-gray-400">PMI</span>
-              <span className="text-white">{formatCurrency(parseFloat(pmi) || 0)}</span>
-            </div>
-            <div className="flex justify-between">
               <span className="text-gray-400">Property Tax</span>
               <span className="text-white">{formatCurrency((parseFloat(propertyTax) || 0) / 12)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-400">Insurance</span>
+              <span className="text-gray-400">Home Insurance</span>
               <span className="text-white">{formatCurrency((parseFloat(homeInsurance) || 0) / 12)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-400">Management</span>
               <span className="text-white">{formatCurrency(parseFloat(management) || 0)}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-400">PMI</span>
+              <span className="text-white">{formatCurrency(parseFloat(pmi) || 0)}</span>
             </div>
           </div>
         </div>
