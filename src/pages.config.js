@@ -5,6 +5,7 @@ import AdminResources from './pages/AdminResources';
 import AdminSettings from './pages/AdminSettings';
 import Affiliates from './pages/Affiliates';
 import Coaches from './pages/Coaches';
+import CommercialCalculator from './pages/CommercialCalculator';
 import Community from './pages/Community';
 import Home from './pages/Home';
 import InvestmentCalculator from './pages/InvestmentCalculator';
@@ -21,7 +22,6 @@ import Testimonials from './pages/Testimonials';
 import Tools from './pages/Tools';
 import UK from './pages/UK';
 import UKCoaches from './pages/UKCoaches';
-import CommercialCalculator from './pages/CommercialCalculator';
 import __Layout from './Layout.jsx';
 
 
@@ -33,6 +33,7 @@ export const PAGES = {
     "AdminSettings": AdminSettings,
     "Affiliates": Affiliates,
     "Coaches": Coaches,
+    "CommercialCalculator": CommercialCalculator,
     "Community": Community,
     "Home": Home,
     "InvestmentCalculator": InvestmentCalculator,
@@ -49,7 +50,6 @@ export const PAGES = {
     "Tools": Tools,
     "UK": UK,
     "UKCoaches": UKCoaches,
-    "CommercialCalculator": CommercialCalculator,
 }
 
 export const pagesConfig = {
