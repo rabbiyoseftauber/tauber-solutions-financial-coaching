@@ -22,6 +22,7 @@ import Testimonials from './pages/Testimonials';
 import UK from './pages/UK';
 import UKCoaches from './pages/UKCoaches';
 import Tools from './pages/Tools';
+import ToolsMortgageCalculator from './pages/ToolsMortgageCalculator';
 import __Layout from './Layout.jsx';
 
 
@@ -50,6 +51,7 @@ export const PAGES = {
     "UK": UK,
     "UKCoaches": UKCoaches,
     "Tools": Tools,
+    "ToolsMortgageCalculator": ToolsMortgageCalculator,
 }
 
 export const pagesConfig = {

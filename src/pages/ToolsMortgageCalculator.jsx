@@ -14,7 +14,7 @@ const currencies = [
   { code: 'GBP', symbol: '£', name: 'British Pound' }
 ];
 
-export default function MortgageCalculator() {
+export default function ToolsMortgageCalculator() {
   const isUKSession = sessionStorage.getItem('isUKSession') === 'true';
   const [currency, setCurrency] = useState(() => {
     const saved = localStorage.getItem('preferredCurrency');
@@ -130,7 +130,7 @@ export default function MortgageCalculator() {
       <SEO
         title="Mortgage Calculator"
         description="Calculate your monthly mortgage payment, total interest, and amortization schedule. Plan your home purchase with our free mortgage calculator."
-        canonical="/mortgagecalculator"
+        canonical="/tools/mortgagecalculator"
       />
 
       {/* Hero Section */}
