@@ -364,7 +364,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
             </div>
 
             <div>
-              <Label className="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-300 text-sm mb-2 block">Property Tax (Annual)</Label>
+              <Label className="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-300 text-sm mb-2 block">Property Tax (Annualyl)</Label>
               <div className="relative">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
                   {currentCurrencyObj.symbol}
@@ -389,7 +389,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
             </div>
 
             <div>
-              <Label className="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-300 text-sm mb-2 block">Home Insurance (Annual)</Label>
+              <Label className="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-300 text-sm mb-2 block">Home Insurance (Annually)</Label>
               <div className="relative">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
                   {currentCurrencyObj.symbol}
