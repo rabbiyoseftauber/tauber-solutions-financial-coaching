@@ -770,7 +770,7 @@ function CommercialMortgageCalculator({ formatCurrency, currency }) {
             className="h-14 bg-[#1a2b4b]/50 border-white/20 text-white placeholder:text-gray-500 focus:border-[#C2983B] rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
         </div>
         <div>
-          <Label className="text-gray-300 text-sm mb-2 block">Annual Property Income</Label>
+          <Label className="text-gray-300 text-sm mb-2 block">Annual Operating Income (NOI)</Label>
           <div className="relative">
             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
               {currentCurrencyObj.symbol}
