@@ -346,6 +346,11 @@ function MortgageCalculator({ formatCurrency, currency }) {
                   downPaymentMode === 'dollar' ? 'pl-10' : 'pr-10'
                 } [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none`} />
             </div>
+            {downPaymentMode === 'percent' && (
+              <p className="text-gray-400 text-xs mt-1">
+                = {formatCurrency(((parseFloat(homePrice) || 0) * (parseFloat(downPaymentPercent) || 0)) / 100)}
+              </p>
+            )}
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
