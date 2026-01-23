@@ -19,9 +19,9 @@ import Sitemap from './pages/Sitemap';
 import TermsAndConditions from './pages/TermsAndConditions';
 import TestEmail from './pages/TestEmail';
 import Testimonials from './pages/Testimonials';
-import Tools from './pages/Tools';
 import UK from './pages/UK';
 import UKCoaches from './pages/UKCoaches';
+import Tools from './pages/Tools';
 import __Layout from './Layout.jsx';
 
 
@@ -47,9 +47,9 @@ export const PAGES = {
     "TermsAndConditions": TermsAndConditions,
     "TestEmail": TestEmail,
     "Testimonials": Testimonials,
-    "Tools": Tools,
     "UK": UK,
     "UKCoaches": UKCoaches,
+    "Tools": Tools,
 }
 
 export const pagesConfig = {

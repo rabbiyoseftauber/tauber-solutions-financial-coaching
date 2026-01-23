@@ -397,7 +397,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
             onClick={() => setShowAdditionalExpenses(!showAdditionalExpenses)}
             className="flex items-center justify-between w-full mb-4 text-white font-medium hover:text-[#C2983B] transition-colors"
           >
-            <h4>Additional Monthly Expenses</h4>
+            <h4>Additional Expenses</h4>
             <span className="text-sm text-[#C2983B]">{showAdditionalExpenses ? 'Hide' : 'Show'}</span>
           </button>
           {showAdditionalExpenses && (
@@ -509,7 +509,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
         </p>
         
         <div className="bg-white/5 rounded-lg p-4 mb-4">
-          <p className="text-gray-400 text-xs mb-3">Additional Monthly Expenses</p>
+          <p className="text-gray-400 text-xs mb-3">Additional Expenses</p>
           <div className="grid grid-cols-2 gap-3 text-sm">
             <div className="flex justify-between">
               <span className="text-gray-400">Property Tax</span>
