@@ -265,7 +265,10 @@ function MortgageCalculator({ formatCurrency, currency }) {
       <div className="space-y-6 mb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <Label className="text-gray-300 text-sm mb-2 block">Home Price</Label>
+            <div className="flex items-center justify-between mb-2">
+              <Label className="text-gray-300 text-sm">Home Price</Label>
+              <div className="w-[88px]"></div>
+            </div>
             <div className="relative">
               <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
                 {currentCurrencyObj.symbol}
