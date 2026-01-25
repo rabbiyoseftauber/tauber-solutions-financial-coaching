@@ -192,7 +192,10 @@ export default function ToolsMortgageCalculator() {
               <div className="space-y-6 mb-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <Label className="text-gray-300 text-sm mb-2 block">Home Price</Label>
+                    <div className="flex items-center justify-between mb-2">
+                      <Label className="text-gray-300 text-sm">Home Price</Label>
+                      <div className="h-[30px] w-[88px]"></div>
+                    </div>
                     <div className="relative">
                       <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
                         {currentCurrency.symbol}
@@ -564,7 +567,7 @@ export default function ToolsMortgageCalculator() {
                 size="lg"
                 className="bg-[#1a2b4b] hover:bg-[#2c3e50] text-white font-semibold px-10 py-6 text-lg rounded-lg shadow-lg"
               >
-                Schedule a Free Call
+                Schedule Your Meeting
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>

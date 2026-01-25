@@ -237,7 +237,7 @@ export default function LoanCalculator() {
                 size="lg"
                 className="bg-[#1a2b4b] hover:bg-[#2c3e50] text-white font-semibold px-10 py-6 text-lg rounded-lg shadow-lg"
               >
-                Schedule a Free Call
+                Schedule Your Meeting
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
