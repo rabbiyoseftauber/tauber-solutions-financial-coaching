@@ -267,7 +267,7 @@ function MortgageCalculator({ formatCurrency, currency }) {
           <div>
             <div className="flex items-center justify-between mb-2">
               <Label className="text-gray-300 text-sm">Home Price</Label>
-              <div className="w-[88px]"></div>
+              <div className="h-[30px] w-[88px]"></div>
             </div>
             <div className="relative">
               <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg">
