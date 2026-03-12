@@ -121,12 +121,14 @@ export default function Schedule() {
         const settings = await base44.entities.SiteSettings.filter({ setting_key: 'main' });
         const adminEmail = settings[0]?.admin_email || 'office@taubersolutions.com';
         await base44.integrations.Core.SendEmail({
+          from_name: 'Tauber Solutions',
           to: adminEmail,
           subject: `New Coaching Request - ${formData.name}`,
           body: emailBody
         });
       } catch (emailError) {
-        console.warn('Email notification failed:', emailError);
+        console.error('Email delivery failed:', emailError);
+        setError(`Request saved but email notification failed: ${emailError.message || 'Email service error'}`);
         // Continue anyway - the data is saved in the database
       }
 
