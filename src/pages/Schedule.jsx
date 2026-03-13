@@ -90,18 +90,26 @@ export default function Schedule() {
     const selectedCoachDetails = coaches.find(c => c.id === selectedCoach);
 
     const emailBody = `
-  New Coaching Session Request
+New Coaching Request Received
 
-  Session Details:
-  - Type: ${selectedSessionDetails.title}
-  - Duration: ${selectedSessionDetails.duration}
-  - Coach: ${selectedCoachDetails.name}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Client Information:
-  - Name: ${formData.name}
-  - Email: ${formData.email}
-  - Phone: ${formData.phone}
-  - Message: ${formData.message || 'No additional message'}
+CLIENT INFORMATION:
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+
+SESSION DETAILS:
+Type: ${selectedSessionDetails.title}
+Duration: ${selectedSessionDetails.duration}
+Preferred Coach: ${selectedCoachDetails.name}
+
+MESSAGE:
+${formData.message || 'No additional message provided'}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Reply directly to this client at: ${formData.email}
     `.trim();
 
     try {
@@ -116,19 +124,13 @@ export default function Schedule() {
         status: 'pending'
       });
 
-      // Send email notification
-      try {
-        await base44.integrations.Core.SendEmail({
-          from_name: 'Tauber Solutions',
-          to: 'office@taubersolutions.com',
-          subject: `New Coaching Request - ${formData.name}`,
-          body: emailBody
-        });
-      } catch (emailError) {
-        console.error('Email delivery failed:', emailError);
-        setError(`Request saved but email notification failed: ${emailError.message || 'Email service error'}`);
-        // Continue anyway - the data is saved in the database
-      }
+      // Send email notification - must succeed before confirmation
+      await base44.integrations.Core.SendEmail({
+        from_name: 'Tauber Solutions Contact Form',
+        to: 'office@taubersolutions.com',
+        subject: `New Coaching Request - ${formData.name}`,
+        body: emailBody
+      });
 
       setIsSubmitting(false);
       setError(null);
