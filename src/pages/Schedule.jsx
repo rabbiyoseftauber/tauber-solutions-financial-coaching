@@ -89,29 +89,6 @@ export default function Schedule() {
     const selectedSessionDetails = sessionTypes.find(s => s.id === selectedSession);
     const selectedCoachDetails = coaches.find(c => c.id === selectedCoach);
 
-    const emailBody = `
-New Coaching Request Received
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-CLIENT INFORMATION:
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-
-SESSION DETAILS:
-Type: ${selectedSessionDetails.title}
-Duration: ${selectedSessionDetails.duration}
-Preferred Coach: ${selectedCoachDetails.name}
-
-MESSAGE:
-${formData.message || 'No additional message provided'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Reply directly to this client at: ${formData.email}
-    `.trim();
-
     try {
       // Save to database
       await base44.entities.ScheduleRequest.create({
@@ -124,13 +101,19 @@ Reply directly to this client at: ${formData.email}
         status: 'pending'
       });
 
-      // Send email notification - must succeed before confirmation
-      await base44.integrations.Core.SendEmail({
-        from_name: 'Tauber Solutions Contact Form',
-        to: 'office@taubersolutions.com',
-        subject: `New Coaching Request - ${formData.name}`,
-        body: emailBody
+      // Send email via Resend backend function
+      const emailRes = await base44.functions.invoke('sendContactEmail', {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message || '',
+        sessionType: selectedSessionDetails.title,
+        sessionDuration: selectedSessionDetails.duration,
+        coachName: selectedCoachDetails.name,
       });
+      if (emailRes.data?.error) {
+        throw new Error(emailRes.data.error);
+      }
 
       setIsSubmitting(false);
       setError(null);
