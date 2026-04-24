@@ -441,50 +441,52 @@ export default function MortgageCalculator() {
               </div>
 
               <div className="pt-6 border-t border-white/10">
-                <p className="text-gray-400 text-sm mb-2">Principal & Interest:</p>
-                <p className="text-4xl font-bold text-white mb-4">
+                {/* Principal & Interest */}
+                <p className="text-gray-300 text-sm mb-1">Principal & Interest:</p>
+                <p className="text-5xl font-bold text-white mb-5">
                   {formatCurrency(result.monthlyPayment)}
                 </p>
 
-                <div className="bg-white/5 rounded-lg p-4 mb-4">
+                {/* Additional Expenses box */}
+                <div className="bg-[#1a2b4b]/60 border border-white/10 rounded-lg p-4 mb-5">
                   <p className="text-gray-400 text-xs mb-3">Additional Expenses</p>
-                  <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-400">Property Tax</span>
-                      <span className="text-white">{formatCurrency((parseFloat(propertyTax) || 0) / 12)}</span>
+                      <span className="text-gray-300">Property Tax</span>
+                      <span className="text-gray-300">{formatCurrency((parseFloat(propertyTax) || 0) / 12)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-400">Home Insurance</span>
-                      <span className="text-white">{formatCurrency((parseFloat(homeInsurance) || 0) / 12)}</span>
+                      <span className="text-gray-300">Home Insurance</span>
+                      <span className="text-gray-300">{formatCurrency((parseFloat(homeInsurance) || 0) / 12)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-400">Management</span>
-                      <span className="text-white">{formatCurrency(parseFloat(management) || 0)}</span>
+                      <span className="text-gray-300">Management</span>
+                      <span className="text-gray-300">{formatCurrency(parseFloat(management) || 0)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-400">PMI</span>
-                      <span className="text-white">{formatCurrency(parseFloat(pmi) || 0)}</span>
+                      <span className="text-gray-300">PMI</span>
+                      <span className="text-gray-300">{formatCurrency(parseFloat(pmi) || 0)}</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="mb-6">
-                  <p className="text-gray-400 text-sm mb-2">Total Monthly Payment:</p>
-                  <p className="text-5xl font-bold text-[#C2983B]">
-                    {formatCurrency(result.monthlyPayment + (parseFloat(pmi) || 0) + (parseFloat(propertyTax) || 0) / 12 + (parseFloat(homeInsurance) || 0) / 12 + (parseFloat(management) || 0))}
-                  </p>
-                </div>
+                {/* Total Monthly Payment */}
+                <p className="text-gray-300 text-sm mb-1">Total Monthly Payment:</p>
+                <p className="text-5xl font-bold text-[#C2983B] mb-5">
+                  {formatCurrency(result.monthlyPayment + (parseFloat(pmi) || 0) + (parseFloat(propertyTax) || 0) / 12 + (parseFloat(homeInsurance) || 0) / 12 + (parseFloat(management) || 0))}
+                </p>
 
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div>
+                {/* Loan Amount & Total Interest */}
+                <div className="grid grid-cols-2 gap-4 mb-6 pt-2 border-t border-white/10">
+                  <div className="pt-3">
                     <p className="text-gray-400 text-xs mb-1">Loan Amount</p>
-                    <p className="text-lg font-medium text-white">
+                    <p className="text-xl font-semibold text-white">
                       {formatCurrency(result.principal)}
                     </p>
                   </div>
-                  <div>
+                  <div className="pt-3">
                     <p className="text-gray-400 text-xs mb-1">Total Interest</p>
-                    <p className="text-lg font-medium text-red-400">
+                    <p className="text-xl font-semibold text-red-400">
                       {formatCurrency(result.totalInterest)}
                     </p>
                   </div>
