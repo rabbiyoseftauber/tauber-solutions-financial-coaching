@@ -450,31 +450,31 @@ export default function MortgageCalculator() {
                 </div>
 
                 {/* Card: Principal & Interest + Additional Expenses */}
-                <div className="bg-[#1a2b4b]/60 border border-white/10 rounded-xl p-5 mb-6">
+                <div className="bg-white/10 border border-white/15 rounded-xl p-5 mb-6">
                   <div className="flex flex-col md:flex-row md:gap-8">
                     {/* Left: Principal & Interest */}
                     <div className="md:w-1/3 mb-4 md:mb-0 md:border-r md:border-white/10 md:pr-8">
-                      <p className="text-gray-400 text-sm mb-1">Principal & Interest:</p>
+                      <p className="text-gray-300 text-sm mb-1">Principal & Interest:</p>
                       <p className="text-3xl font-bold text-white">{formatCurrency(result.monthlyPayment)}</p>
                     </div>
                     {/* Right: Additional Expenses grid */}
                     <div className="flex-1">
-                      <p className="text-gray-400 text-xs mb-3">Additional Expenses</p>
+                      <p className="text-gray-300 text-xs mb-3">Additional Expenses</p>
                       <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
                         <div className="flex justify-between">
-                          <span className="text-gray-400">Property Tax</span>
+                          <span className="text-gray-300">Property Tax</span>
                           <span className="text-white">{formatCurrency((parseFloat(propertyTax) || 0) / 12)}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-400">Home Insurance</span>
+                          <span className="text-gray-300">Home Insurance</span>
                           <span className="text-white">{formatCurrency((parseFloat(homeInsurance) || 0) / 12)}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-400">Management</span>
+                          <span className="text-gray-300">Management</span>
                           <span className="text-white">{formatCurrency(parseFloat(management) || 0)}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-400">PMI</span>
+                          <span className="text-gray-300">PMI</span>
                           <span className="text-white">{formatCurrency(parseFloat(pmi) || 0)}</span>
                         </div>
                       </div>
