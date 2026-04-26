@@ -441,38 +441,49 @@ export default function MortgageCalculator() {
               </div>
 
               <div className="pt-6 border-t border-white/10">
-                <p className="text-gray-400 text-sm mb-2">Principal & Interest:</p>
-                <p className="text-4xl font-bold text-white mb-4">
-                  {formatCurrency(result.monthlyPayment)}
-                </p>
-
-                <div className="bg-white/5 rounded-lg p-4 mb-4">
-                  <p className="text-gray-400 text-xs mb-3">Additional Expenses</p>
-                  <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Property Tax</span>
-                      <span className="text-white">{formatCurrency((parseFloat(propertyTax) || 0) / 12)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Home Insurance</span>
-                      <span className="text-white">{formatCurrency((parseFloat(homeInsurance) || 0) / 12)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Management</span>
-                      <span className="text-white">{formatCurrency(parseFloat(management) || 0)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">PMI</span>
-                      <span className="text-white">{formatCurrency(parseFloat(pmi) || 0)}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mb-6">
-                  <p className="text-gray-400 text-sm mb-2">Total Monthly Payment:</p>
+                {/* Total Monthly Payment — above the box */}
+                <div className="mb-4">
+                  <p className="text-gray-400 text-sm mb-1">Total Monthly Payment:</p>
                   <p className="text-5xl font-bold text-[#C2983B]">
                     {formatCurrency(result.monthlyPayment + (parseFloat(pmi) || 0) + (parseFloat(propertyTax) || 0) / 12 + (parseFloat(homeInsurance) || 0) / 12 + (parseFloat(management) || 0))}
                   </p>
+                </div>
+
+                {/* Grey box: Principal & Interest on left, Additional Expenses on right */}
+                <div className="bg-white/5 rounded-lg p-4 mb-6 flex flex-col md:flex-row gap-4">
+                  {/* Left: Principal & Interest */}
+                  <div className="md:w-1/3 flex flex-col justify-center">
+                    <p className="text-gray-400 text-sm mb-1">Principal & Interest:</p>
+                    <p className="text-3xl font-bold text-white">
+                      {formatCurrency(result.monthlyPayment)}
+                    </p>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="hidden md:block w-px bg-white/10"></div>
+
+                  {/* Right: Additional Expenses */}
+                  <div className="flex-1">
+                    <p className="text-gray-400 text-xs mb-3">Additional Expenses</p>
+                    <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-gray-400">Property Tax</span>
+                        <span className="text-white">{formatCurrency((parseFloat(propertyTax) || 0) / 12)}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-400">Home Insurance</span>
+                        <span className="text-white">{formatCurrency((parseFloat(homeInsurance) || 0) / 12)}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-400">Management</span>
+                        <span className="text-white">{formatCurrency(parseFloat(management) || 0)}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-400">PMI</span>
+                        <span className="text-white">{formatCurrency(parseFloat(pmi) || 0)}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 mb-6">
