@@ -32,8 +32,8 @@ Reply directly to this client at: ${email}
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Tauber Solutions <noreply@taubersolutions.com>',
-        to: ['Office@taubersolutioms.com'],
+        from: 'Tauber Solutions <dunger@taubersolutions.com>',
+        to: ['office@taubersolutions.com'],
         reply_to: email,
         subject: `New Coaching Request - ${name}`,
         text: body,
